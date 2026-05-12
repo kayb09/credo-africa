@@ -95,35 +95,32 @@ function formatCurrency(n) { if(!n) return "R0"; return n>=1e6?"R"+(n/1e6).toFix
 function escapeHtml(t) { if(!t) return ""; const d=document.createElement("div"); d.textContent=t; return d.innerHTML; }
 
 function CredoLogo({size=32,showTagline=false}) {
-  return (
-    React.createElement("svg", { viewBox:"0 0 400 120", width:size*(400/120), height:size, style:{display:'block'} },
-      React.createElement("defs", null,
-        React.createElement("linearGradient", { id:"mg", x1:"0%", y1:"0%", x2:"100%", y2:"100%" },
-          React.createElement("stop", { offset:"0%", stopColor:"#00E87A" }),
-          React.createElement("stop", { offset:"100%", stopColor:"#3B6EF8" })
-        )
-      ),
-      React.createElement("path", { d:"M 85,20 A 40,40 0 1,0 85,100", stroke:"url(#mg)", strokeWidth:"7", fill:"none", strokeLinecap:"round" }),
-      React.createElement("polyline", { points:"52,72 62,62 72,55 80,44", stroke:"#00E87A", strokeWidth:"3.5", fill:"none", strokeLinecap:"round" }),
-      React.createElement("circle", { cx:"80", cy:"44", r:"4", fill:"#00E87A" }),
-      React.createElement("line", { x1:"78", y1:"20", x2:"92", y2:"20", stroke:"#00E87A", strokeWidth:"5", strokeLinecap:"round" }),
-      React.createElement("line", { x1:"78", y1:"100", x2:"92", y2:"100", stroke:"#00E87A", strokeWidth:"5", strokeLinecap:"round" }),
-      React.createElement("text", { x:"118", y:"72", fontFamily:"Georgia,serif", fontWeight:"700", fontSize:"48", fill:"#F0F4FF", letterSpacing:"-1" }, "CREDO"),
-      showTagline && React.createElement("text", { x:"118", y:"94", fontFamily:"DM Sans,sans-serif", fontWeight:"400", fontSize:"10", fill:"#6B7A99", letterSpacing:"3.5" }, "FINANCIAL IDENTITY FOR AFRICA")
-    )
+  return React.createElement("svg", { viewBox:"0 0 400 120", width:size*(400/120), height:size, style:{display:'block'} },
+    React.createElement("defs", null,
+      React.createElement("linearGradient", { id:"mg", x1:"0%", y1:"0%", x2:"100%", y2:"100%" },
+        React.createElement("stop", { offset:"0%", stopColor:"#00E87A" }),
+        React.createElement("stop", { offset:"100%", stopColor:"#3B6EF8" })
+      )
+    ),
+    React.createElement("path", { d:"M 85,20 A 40,40 0 1,0 85,100", stroke:"url(#mg)", strokeWidth:"7", fill:"none", strokeLinecap:"round" }),
+    React.createElement("polyline", { points:"52,72 62,62 72,55 80,44", stroke:"#00E87A", strokeWidth:"3.5", fill:"none", strokeLinecap:"round" }),
+    React.createElement("circle", { cx:"80", cy:"44", r:"4", fill:"#00E87A" }),
+    React.createElement("line", { x1:"78", y1:"20", x2:"92", y2:"20", stroke:"#00E87A", strokeWidth:"5", strokeLinecap:"round" }),
+    React.createElement("line", { x1:"78", y1:"100", x2:"92", y2:"100", stroke:"#00E87A", strokeWidth:"5", strokeLinecap:"round" }),
+    React.createElement("text", { x:"118", y:"72", fontFamily:"Georgia,serif", fontWeight:"700", fontSize:"48", fill:"#F0F4FF", letterSpacing:"-1" }, "CREDO"),
+    showTagline && React.createElement("text", { x:"118", y:"94", fontFamily:"DM Sans,sans-serif", fontWeight:"400", fontSize:"10", fill:"#6B7A99", letterSpacing:"3.5" }, "FINANCIAL IDENTITY FOR AFRICA")
   );
 }
 
-// Public Landing (unchanged)
+// ── PUBLIC LANDING (nav logo only, WhatsApp contact) ──
 function PublicLanding({ onStartOnboarding }) {
   return React.createElement("div", null,
     React.createElement("nav", null,
       React.createElement("div", { style:{display:'flex',alignItems:'center',gap:10} },
         React.createElement(CredoLogo, { size:28 })
-      ),
-      React.createElement("button", { onClick:onStartOnboarding, style:{background:'transparent',color:C.green,border:`1px solid ${C.green}`,padding:'6px 14px',borderRadius:6,fontWeight:600,fontSize:13,cursor:'pointer'} }, "Start Onboarding")
+      )
     ),
-    // Hero (simplified, but complete)
+    // Hero
     React.createElement("div", { style:{minHeight:'100vh',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',padding:'6rem 2rem 4rem',position:'relative',overflow:'hidden'} },
       React.createElement("div", { style:{position:'absolute',inset:0,backgroundImage:`linear-gradient(${C.border} 1px,transparent 1px),linear-gradient(90deg,${C.border} 1px,transparent 1px)`,backgroundSize:'64px 64px',opacity:0.25} }),
       React.createElement("div", { style:{position:'absolute',top:'20%',left:'50%',transform:'translateX(-50%)',width:700,height:400,borderRadius:'50%',background:'radial-gradient(ellipse,rgba(0,232,122,0.07),transparent 70%)'} }),
@@ -143,7 +140,7 @@ function PublicLanding({ onStartOnboarding }) {
         )
       )
     ),
-    // Stats bar
+    // Stats
     React.createElement("div", { style:{padding:'3rem 2rem',background:C.surface,borderTop:`1px solid ${C.border}`,borderBottom:`1px solid ${C.border}`} },
       React.createElement("div", { style:{maxWidth:860,margin:'0 auto',display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:'2rem'} },
         [{val:"R3.2T",label:"Informal economy"},{val:"6.4M",label:"Unbanked SMEs"},{val:"82%",label:"Loan rejection rate"},{val:"54",label:"AfCFTA markets"}].map(s =>
@@ -154,7 +151,7 @@ function PublicLanding({ onStartOnboarding }) {
         )
       )
     ),
-    // Architecture (unchanged)
+    // Architecture
     React.createElement("div", { id:"how", style:{padding:'6rem 2rem',maxWidth:980,margin:'0 auto'} },
       React.createElement("div", { style:{textAlign:'center',marginBottom:'3.5rem'} },
         React.createElement("div", { style:{fontSize:11,color:C.green,letterSpacing:'0.12em',marginBottom:'1rem',fontWeight:700} }, "SYSTEM ARCHITECTURE"),
@@ -172,11 +169,14 @@ function PublicLanding({ onStartOnboarding }) {
         )
       )
     ),
-    // Contact
+    // Contact – now with WhatsApp
     React.createElement("div", { id:"contact", style:{padding:'5rem 2rem',textAlign:'center'} },
       React.createElement("h2", { style:{fontFamily:'DM Serif Display,Georgia,serif',fontSize:'2rem',fontWeight:400,marginBottom:'1rem'} }, "Ready to build your financial identity?"),
-      React.createElement("p", { style:{color:C.muted,maxWidth:480,margin:'0 auto 2rem'} }, "We're onboarding businesses at Bara Taxi Rank and beyond. Get in touch."),
-      React.createElement("a", { href:"mailto:contact@credo.africa", style:{background:C.green,color:'#000',border:'none',padding:'14px 32px',borderRadius:10,fontWeight:700,fontSize:15,textDecoration:'none'} }, "contact@credo.africa")
+      React.createElement("p", { style:{color:C.muted,maxWidth:480,margin:'0 auto 1rem'} }, "We're onboarding businesses at Bara Taxi Rank and beyond."),
+      React.createElement("p", { style:{color:C.muted,maxWidth:480,margin:'0 auto 2rem',fontSize:14} },
+        "Message us on WhatsApp: ",
+        React.createElement("a", { href:"https://wa.me/27705151771", target:"_blank", style:{color:C.green,fontWeight:700,textDecoration:'none'} }, "070 515 1771")
+      )
     ),
     // Footer
     React.createElement("div", { style:{padding:'2rem',textAlign:'center',borderTop:`1px solid ${C.border}`} },
@@ -186,22 +186,17 @@ function PublicLanding({ onStartOnboarding }) {
   );
 }
 
-// Onboarding components (unchanged logic, but using React.createElement)
+// ── FILE UPLOAD ───────────────────────────
 function FileUpload({ label, accept, multiple, file, files, onChange }) {
   const [previews, setPreviews] = useState([]);
   const [dragging, setDragging] = useState(false);
   const inputRef = useRef(null);
-
   const handleFileSelect = (e) => {
     const selected = e.target.files;
     if (!selected.length) return;
-    if (multiple) {
-      onChange(Array.from(selected));
-    } else {
-      onChange(selected[0]);
-    }
+    if (multiple) { onChange(Array.from(selected)); }
+    else { onChange(selected[0]); }
   };
-
   useEffect(() => {
     const fileList = multiple ? files : (file ? [file] : []);
     if (fileList && fileList.length) {
@@ -210,9 +205,7 @@ function FileUpload({ label, accept, multiple, file, files, onChange }) {
         reader.onload = e => res(e.target.result);
         reader.readAsDataURL(f);
       }))).then(setPreviews);
-    } else {
-      setPreviews([]);
-    }
+    } else { setPreviews([]); }
   }, [file, files, multiple]);
 
   return React.createElement("div", { style:{marginBottom:'1rem'} },
@@ -225,7 +218,7 @@ function FileUpload({ label, accept, multiple, file, files, onChange }) {
       onClick:()=>inputRef.current.click()
     },
       React.createElement("input", { ref:inputRef, type:"file", accept, multiple, onChange:handleFileSelect, style:{display:'none'} }),
-      previews.length ? 
+      previews.length ?
         React.createElement("div", { className:"upload-preview", style:{justifyContent:'center'} },
           previews.map((src,i) => React.createElement("img", { key:i, src, alt:"" }))
         ) :
@@ -238,13 +231,14 @@ const inputStyle = { background:C.surface2, border:`1px solid ${C.border}`, colo
 const primaryBtn = { background:C.green, color:'#000', border:'none', padding:'10px 24px', borderRadius:8, fontWeight:700, cursor:'pointer' };
 const secondaryBtn = { background:'transparent', color:C.muted, border:`1px solid ${C.border}`, padding:'10px 24px', borderRadius:8, cursor:'pointer' };
 
+// ── VENDOR ONBOARDING ─────────────────────
 function VendorOnboarding({ onBackToLanding }) {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
-    businessName: '', fullName: '', phone: '', category: '', location: '', yearsOperating: '', socialMedia: '',
-    idDoc: null, selfieWithId: null, proofOfAddress: null,
-    stallImage: null, vendorAtStall: null,
-    supplierReceipts: []
+    businessName:'', fullName:'', phone:'', category:'', location:'', yearsOperating:'', socialMedia:'',
+    idDoc:null, selfieWithId:null, proofOfAddress:null,
+    stallImage:null, vendorAtStall:null,
+    supplierReceipts:[]
   });
   const [verificationStatus, setVerificationStatus] = useState(null);
 
@@ -343,7 +337,7 @@ function VendorOnboarding({ onBackToLanding }) {
   );
 }
 
-// Admin Dashboard (unchanged)
+// ── ADMIN DASHBOARD (real data) ───────────
 function AdminDashboard() {
   const [businesses, setBusinesses] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -409,16 +403,13 @@ function AdminDashboard() {
 
   const recent = useMemo(() => businesses.slice(0,5), [businesses]);
 
-  // Return JSX with React.createElement
   return React.createElement("div", { style:{padding:'2rem',maxWidth:1200,margin:'0 auto'} },
-    // KPIs
     React.createElement("div", { style:{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:'1rem',marginBottom:'1.5rem'} },
       React.createElement("div", { className:"card" }, React.createElement("div", { style:{fontSize:12,color:C.muted,marginBottom:4} }, "Total SMEs"), React.createElement("div", { className:"kpi-val" }, kpis.total||0), React.createElement("div", { className:"kpi-sub" }, "onboarded")),
       React.createElement("div", { className:"card" }, React.createElement("div", { style:{fontSize:12,color:C.muted,marginBottom:4} }, "Avg Credo Score"), React.createElement("div", { className:"kpi-val" }, kpis.avg??"—"), React.createElement("div", { className:"kpi-sub" }, "/ 850")),
       React.createElement("div", { className:"card" }, React.createElement("div", { style:{fontSize:12,color:C.muted,marginBottom:4} }, "Loan-Ready (700+)"), React.createElement("div", { className:"kpi-val" }, kpis.loanReady), React.createElement("div", { className:"kpi-sub" }, "businesses")),
       React.createElement("div", { className:"card" }, React.createElement("div", { style:{fontSize:12,color:C.muted,marginBottom:4} }, "Total Monthly Rev"), React.createElement("div", { className:"kpi-val" }, formatCurrency(kpis.totalRev)), React.createElement("div", { className:"kpi-sub" }, "across all SMEs"))
     ),
-    // Table + Sidebar
     React.createElement("div", { style:{display:'grid',gridTemplateColumns:'1fr 340px',gap:'1.5rem'} },
       React.createElement("div", { className:"card", style:{padding:0,overflow:'hidden'} },
         React.createElement("div", { style:{display:'flex',justifyContent:'space-between',alignItems:'center',padding:'1.25rem 1.5rem',borderBottom:`1px solid ${C.border}`} },
@@ -500,7 +491,7 @@ function AdminDashboard() {
   );
 }
 
-// Credit Engine (unchanged)
+// ── CREDIT ENGINE ─────────────────────────
 function CreditEngine() {
   const [inputs, setInputs] = useState({revenue:45000,txns:220,age:4,consistency:87,suppliers:12,digital:3});
   const [score, setScore] = useState(null);
@@ -565,7 +556,7 @@ function CreditEngine() {
   );
 }
 
-// Investors (unchanged)
+// ── INVESTORS ─────────────────────────────
 function Investors() {
   const proj = [
     {yr:"Year 1",u:"1,000",r:"R300K",v:"Pre-seed",s:"Validation",c:C.blue},
@@ -621,7 +612,7 @@ function Investors() {
   );
 }
 
-// Admin App (unchanged)
+// ── ADMIN APP ─────────────────────────────
 function AdminApp() {
   const [adminView, setAdminView] = useState("Dashboard");
   return React.createElement("div", { style:{paddingTop:80} },
@@ -643,7 +634,7 @@ function AdminApp() {
   );
 }
 
-// App root
+// ── ROOT APP ──────────────────────────────
 function App() {
   const [admin, setAdmin] = useState(isAdmin());
   const [showPin, setShowPin] = useState(false);
@@ -688,7 +679,7 @@ function App() {
 }
 
 ReactDOM.createRoot(document.getElementById("root")).render(React.createElement(App));
-console.log("Credo app mounted successfully");
+console.log("Credo app mounted");
 </script>
 </body>
 </html>
