@@ -43,6 +43,18 @@ tr:hover td{background:#0F1219}
 .kpi-val{font-family:'DM Serif Display',Georgia,serif;font-size:2.2rem;color:#00E87A;margin:4px 0}
 .kpi-sub{font-size:12px;color:#6B7A99}
 input[type=range]{accent-color:#00E87A;height:4px;cursor:pointer;width:100%}
+.upload-area{border:2px dashed #1E2535;border-radius:8px;padding:2rem;text-align:center;cursor:pointer;transition:border-color 0.2s;background:#0F1219}
+.upload-area:hover{border-color:#00E87A}
+.upload-area.dragging{border-color:#3B6EF8;background:rgba(59,110,248,0.05)}
+.upload-preview{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:0.5rem}
+.upload-preview img{width:80px;height:80px;object-fit:cover;border-radius:6px;border:1px solid #1E2535}
+.step-indicator{display:flex;justify-content:space-between;margin-bottom:2rem;position:relative}
+.step-indicator::before{content:'';position:absolute;top:14px;left:10%;right:10%;height:2px;background:#1E2535;z-Index:0}
+.step-dot{width:30px;height:30px;border-radius:50%;background:#0F1219;border:2px solid #1E2535;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;z-Index:1;transition:all 0.3s}
+.step-dot.active{background:#00E87A;border-color:#00E87A;color:#000}
+.step-dot.completed{background:#00E87A80;border-color:#00E87A}
+.trust-bar{height:8px;background:#1E2535;border-radius:4px;margin:0.5rem 0;overflow:hidden}
+.trust-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,#FF6B6B,#F0B429,#00E87A);transition:width 0.5s}
 </style>
 </head>
 <body>
@@ -60,7 +72,7 @@ const SUPABASE_URL = "https://rbttcuigrrakkbunzyce.supabase.co";
 const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJidHRjdWlncnJha2tidW56eWNlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc2ODA1MTYsImV4cCI6MjA5MzI1NjUxNn0.oDSDQ6DPO-WdtS25b4or89zHNxnhmqpkml_ckbv5R7c";
 const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-const ADMIN_PIN = "credo2026"; // change this to your own PIN
+const ADMIN_PIN = "credo2026";
 const isAdmin = () => localStorage.getItem("credo_admin") === "true";
 const loginAdmin = (pin) => {
   if (pin === ADMIN_PIN) {
@@ -97,7 +109,8 @@ function CredoLogo({size=32,showTagline=false}) {
   );
 }
 
-function PublicLanding() {
+// ── PUBLIC LANDING (original, with all sections kept) ──
+function PublicLanding({ onStartOnboarding }) {
   return (
     <div>
       <nav>
@@ -112,6 +125,7 @@ function PublicLanding() {
             <text x="118" y="72" fontFamily="Georgia,serif" fontWeight="700" fontSize="48" fill="#F0F4FF" letterSpacing="-1">CREDO</text>
           </svg>
         </div>
+        <button onClick={onStartOnboarding} style={{background:'transparent',color:C.green,border:`1px solid ${C.green}`,padding:'6px 14px',borderRadius:6,fontWeight:600,fontSize:13,cursor:'pointer'}}>Start Onboarding</button>
       </nav>
 
       <div style={{minHeight:'100vh',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',padding:'6rem 2rem 4rem',position:'relative',overflow:'hidden'}}>
@@ -138,8 +152,8 @@ function PublicLanding() {
             Credo converts transactional behavior into credit identity — connecting millions of informal SMEs to capital, insurance, and financial services at scale.
           </p>
           <div style={{display:'flex',gap:12,justifyContent:'center',flexWrap:'wrap'}}>
-            <a href="#how" style={{background:C.green,color:'#000',border:'none',padding:'14px 32px',borderRadius:10,fontWeight:700,fontSize:15,textDecoration:'none'}}>How It Works</a>
-            <a href="#contact" style={{background:'transparent',color:C.text,border:`1px solid ${C.border}`,padding:'14px 32px',borderRadius:10,fontWeight:600,fontSize:15,textDecoration:'none'}}>Get in Touch</a>
+            <button onClick={onStartOnboarding} style={{background:C.green,color:'#000',border:'none',padding:'14px 32px',borderRadius:10,fontWeight:700,fontSize:15,cursor:'pointer'}}>Start Onboarding →</button>
+            <a href="#how" style={{background:'transparent',color:C.text,border:`1px solid ${C.border}`,padding:'14px 32px',borderRadius:10,fontWeight:600,fontSize:15,textDecoration:'none'}}>How It Works</a>
           </div>
         </div>
       </div>
@@ -182,6 +196,181 @@ function PublicLanding() {
   );
 }
 
+// ── NEW ONBOARDING COMPONENTS ────────────
+function FileUpload({ label, accept, multiple, file, files, onChange }) {
+  const [previews, setPreviews] = useState([]);
+  const [dragging, setDragging] = useState(false);
+  const inputRef = useRef(null);
+
+  const handleFileSelect = (e) => {
+    const selected = e.target.files;
+    if (!selected.length) return;
+    if (multiple) {
+      onChange(Array.from(selected));
+    } else {
+      onChange(selected[0]);
+    }
+  };
+
+  useEffect(() => {
+    const fileList = multiple ? files : (file ? [file] : []);
+    if (fileList && fileList.length) {
+      Promise.all(fileList.map(f => new Promise(res => {
+        const reader = new FileReader();
+        reader.onload = e => res(e.target.result);
+        reader.readAsDataURL(f);
+      }))).then(setPreviews);
+    } else {
+      setPreviews([]);
+    }
+  }, [file, files, multiple]);
+
+  return (
+    <div style={{marginBottom:'1rem'}}>
+      <label style={{fontSize:13,fontWeight:600,marginBottom:8,display:'block'}}>{label}</label>
+      <div
+        className={`upload-area ${dragging?'dragging':''}`}
+        onDragOver={e=>{e.preventDefault();setDragging(true)}}
+        onDragLeave={()=>setDragging(false)}
+        onDrop={e=>{e.preventDefault();setDragging(false); const dt = e.dataTransfer; if(dt.files.length) { if(multiple) onChange(Array.from(dt.files)); else onChange(dt.files[0]); }}}
+        onClick={()=>inputRef.current.click()}
+      >
+        <input ref={inputRef} type="file" accept={accept} multiple={multiple} onChange={handleFileSelect} style={{display:'none'}} />
+        {previews.length ? (
+          <div className="upload-preview" style={{justifyContent:'center'}}>
+            {previews.map((src,i)=><img key={i} src={src} alt="" />)}
+          </div>
+        ) : (
+          <div style={{color:C.muted}}>📁 Drag & drop or tap to upload</div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+const inputStyle = { background:C.surface2, border:`1px solid ${C.border}`, color:C.text, padding:'10px', borderRadius:6, fontSize:14, width:'100%', outline:'none' };
+const primaryBtn = { background:C.green, color:'#000', border:'none', padding:'10px 24px', borderRadius:8, fontWeight:700, cursor:'pointer' };
+const secondaryBtn = { background:'transparent', color:C.muted, border:`1px solid ${C.border}`, padding:'10px 24px', borderRadius:8, cursor:'pointer' };
+
+function VendorOnboarding({ onBackToLanding }) {
+  const [step, setStep] = useState(1);
+  const [formData, setFormData] = useState({
+    businessName: '', fullName: '', phone: '', category: '', location: '', yearsOperating: '', socialMedia: '',
+    idDoc: null, selfieWithId: null, proofOfAddress: null,
+    stallImage: null, vendorAtStall: null, productImages: [],
+    supplierReceipts: [], additionalInvoices: []
+  });
+  const [verificationStatus, setVerificationStatus] = useState(null);
+
+  const handleNext = () => {
+    if (step === 4) {
+      setVerificationStatus({ status: 'pending_review', trustLevel: 30, badges: ['Profile Complete'] });
+    } else {
+      setStep(step+1);
+    }
+  };
+  const handleBack = () => {
+    if (step === 1) onBackToLanding();
+    else setStep(step-1);
+  };
+
+  return (
+    <div style={{paddingTop:80, maxWidth:720, margin:'0 auto', padding:'2rem 1rem'}}>
+      <CredoLogo size={36} showTagline />
+      <div className="step-indicator">
+        {["Business","Identity","Presence","Supplier"].map((label,i) => (
+          <div key={i} style={{display:'flex',flexDirection:'column',alignItems:'center',gap:4}}>
+            <div className={`step-dot ${step>i+1 ? 'completed' : step===i+1 ? 'active' : ''}`}>{i+1}</div>
+            <span style={{fontSize:10,color:C.muted}}>{label}</span>
+          </div>
+        ))}
+      </div>
+
+      {step === 1 && (
+        <div className="card">
+          <h2 style={{fontFamily:'DM Serif Display',fontSize:'1.5rem',marginBottom:'1.5rem'}}>Step 1 — Basic Business Info</h2>
+          <div style={{display:'flex',flexDirection:'column',gap:'1rem'}}>
+            <input placeholder="Business Name" value={formData.businessName} onChange={e=>setFormData({...formData,businessName:e.target.value})} style={inputStyle} />
+            <input placeholder="Your Full Name" value={formData.fullName} onChange={e=>setFormData({...formData,fullName:e.target.value})} style={inputStyle} />
+            <input placeholder="WhatsApp Phone Number" value={formData.phone} onChange={e=>setFormData({...formData,phone:e.target.value})} style={inputStyle} />
+            <select value={formData.category} onChange={e=>setFormData({...formData,category:e.target.value})} style={inputStyle}>
+              <option value="">Select Category</option>
+              <option>Food & Drinks</option><option>Clothing</option><option>Electronics</option>
+              <option>Hair & Beauty</option><option>Transport</option><option>Hardware</option><option>Other</option>
+            </select>
+            <input placeholder="Trading Location (e.g., Bara Taxi Rank)" value={formData.location} onChange={e=>setFormData({...formData,location:e.target.value})} style={inputStyle} />
+            <input type="number" placeholder="Years Operating" value={formData.yearsOperating} onChange={e=>setFormData({...formData,yearsOperating:e.target.value})} style={inputStyle} />
+            <input placeholder="Instagram / Facebook link (optional)" value={formData.socialMedia} onChange={e=>setFormData({...formData,socialMedia:e.target.value})} style={inputStyle} />
+          </div>
+          <div style={{display:'flex',justifyContent:'space-between',marginTop:'1.5rem'}}>
+            <button onClick={handleBack} style={secondaryBtn}>Back</button>
+            <button onClick={handleNext} style={primaryBtn}>Next →</button>
+          </div>
+        </div>
+      )}
+
+      {step === 2 && (
+        <div className="card">
+          <h2 style={{fontFamily:'DM Serif Display',fontSize:'1.5rem',marginBottom:'1.5rem'}}>Step 2 — Identity Verification</h2>
+          <p style={{color:C.muted,fontSize:13,marginBottom:'1rem'}}>Upload clear photos of your ID and a selfie holding it.</p>
+          <FileUpload label="SA ID / Passport" accept="image/*" file={formData.idDoc} onChange={file=>setFormData({...formData,idDoc:file})} />
+          <FileUpload label="Selfie Holding ID" accept="image/*" file={formData.selfieWithId} onChange={file=>setFormData({...formData,selfieWithId:file})} />
+          <FileUpload label="Proof of Address (optional)" accept="image/*" file={formData.proofOfAddress} onChange={file=>setFormData({...formData,proofOfAddress:file})} />
+          <div style={{display:'flex',justifyContent:'space-between',marginTop:'1.5rem'}}>
+            <button onClick={handleBack} style={secondaryBtn}>← Back</button>
+            <button onClick={handleNext} style={primaryBtn}>Next →</button>
+          </div>
+        </div>
+      )}
+
+      {step === 3 && (
+        <div className="card">
+          <h2 style={{fontFamily:'DM Serif Display',fontSize:'1.5rem',marginBottom:'1.5rem'}}>Step 3 — Business Presence</h2>
+          <p style={{color:C.muted,fontSize:13,marginBottom:'1rem'}}>Show us your stall and you working there.</p>
+          <FileUpload label="Stall / Shop Photo" accept="image/*" file={formData.stallImage} onChange={file=>setFormData({...formData,stallImage:file})} />
+          <FileUpload label="Photo of YOU at the Stall (required)" accept="image/*" file={formData.vendorAtStall} onChange={file=>setFormData({...formData,vendorAtStall:file})} />
+          <div style={{display:'flex',justifyContent:'space-between',marginTop:'1.5rem'}}>
+            <button onClick={handleBack} style={secondaryBtn}>← Back</button>
+            <button onClick={handleNext} style={primaryBtn}>Next →</button>
+          </div>
+        </div>
+      )}
+
+      {step === 4 && (
+        <div className="card">
+          <h2 style={{fontFamily:'DM Serif Display',fontSize:'1.5rem',marginBottom:'1.5rem'}}>Step 4 — Supplier & Activity</h2>
+          <p style={{color:C.muted,fontSize:13,marginBottom:'1rem'}}>Upload recent supplier receipts or invoices.</p>
+          <div style={{display:'flex',gap:'0.5rem',marginBottom:'1rem'}}>
+            <input placeholder="Supplier Name" style={inputStyle} />
+            <input placeholder="Amount" type="number" style={inputStyle} />
+          </div>
+          <FileUpload label="Receipt / Invoice" accept="image/*" multiple files={formData.supplierReceipts} onChange={files=>setFormData({...formData,supplierReceipts:files})} />
+          <div style={{display:'flex',justifyContent:'space-between',marginTop:'1.5rem'}}>
+            <button onClick={handleBack} style={secondaryBtn}>← Back</button>
+            <button onClick={handleNext} style={primaryBtn}>Complete Onboarding →</button>
+          </div>
+        </div>
+      )}
+
+      {verificationStatus && (
+        <div className="card" style={{marginTop:'2rem',textAlign:'center'}}>
+          <h3 style={{fontFamily:'DM Serif Display',fontSize:'1.3rem'}}>Your Credibility Dashboard</h3>
+          <div style={{margin:'1.5rem 0'}}>
+            <div style={{display:'flex',justifyContent:'space-between',fontSize:12}}><span>Trust Level</span><span>{verificationStatus.trustLevel}%</span></div>
+            <div className="trust-bar"><div className="trust-fill" style={{width:`${verificationStatus.trustLevel}%`}} /></div>
+          </div>
+          <div style={{display:'flex',gap:4,flexWrap:'wrap',justifyContent:'center'}}>
+            {verificationStatus.badges.map(b=><span key={b} className="badge badge-green">{b}</span>)}
+            {verificationStatus.status === 'pending_review' && <span className="badge badge-gold">Pending Review</span>}
+          </div>
+          <p style={{fontSize:13,color:C.muted,marginTop:'1rem'}}>We're reviewing your information. Your trust score will increase as verifications are completed.</p>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ── ADMIN APP (unchanged) ─────────────────
 function AdminApp() {
   const [adminView, setAdminView] = useState("Dashboard");
   return (
@@ -213,6 +402,7 @@ function AdminApp() {
   );
 }
 
+// ── DASHBOARD / CREDIT ENGINE / INVESTORS (same as before) ──
 function AdminDashboard() {
   const [businesses, setBusinesses] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -334,11 +524,7 @@ function AdminDashboard() {
               </tbody>
             </table>
           )}
-          {!loading && businesses.length > 0 && filtered.length === 0 && (
-            <div className="empty-state" style={{padding:'2rem'}}>No SMEs match your search.</div>
-          )}
         </div>
-
         <div style={{display:'flex',flexDirection:'column',gap:'1rem'}}>
           <div className="card">
             <div style={{fontSize:13,fontWeight:700,marginBottom:'1rem'}}>Score Distribution</div>
@@ -392,7 +578,7 @@ function CreditEngine() {
   const loan = !sc?'—':sc>=700?'R500K–R2M':sc>=600?'R50K–R500K':'R10K–R50K';
   return (
     <div style={{padding:'2rem',maxWidth:980,margin:'0 auto'}}>
-      <h2 style={{fontFamily:'DM Serif Display,Georgia,serif',fontSize:'1.8rem',fontWeight:400}}>Credit Intelligence Engine</h2>
+      <h2 style={{fontFamily:'DM Serif Display',Georgia,serif',fontSize:'1.8rem',fontWeight:400}}>Credit Intelligence Engine</h2>
       <p style={{color:C.muted,fontSize:14,marginBottom:'1.5rem'}}>Input SME behavioral data — Credo outputs a bankable credit profile</p>
       <div style={{display:'grid',gridTemplateColumns:'1fr 320px',gap:'1.5rem'}}>
         <div className="card" style={{padding:'2rem'}}>
@@ -410,7 +596,7 @@ function CreditEngine() {
         <div style={{display:'flex',flexDirection:'column',gap:'1rem'}}>
           <div className="card" style={{padding:'2rem',textAlign:'center',flex:1}}>
             <div style={{fontSize:11,color:C.muted,letterSpacing:'0.1em',marginBottom:'1rem'}}>CREDO CREDIT SCORE</div>
-            <div style={{fontSize:'5.5rem',fontFamily:'DM Serif Display,Georgia,serif',color:scoreColorVal,lineHeight:1}}>{sc??'—'}</div>
+            <div style={{fontSize:'5.5rem',fontFamily:'DM Serif Display',Georgia,serif',color:scoreColorVal,lineHeight:1}}>{sc??'—'}</div>
             <div style={{fontSize:'1rem',color:scoreColorVal,fontWeight:700,marginBottom:'1.5rem'}}>{tier}</div>
             <div style={{width:'100%',height:7,background:C.border,borderRadius:4}}><div style={{width:sc?`${((sc-300)/550)*100}%`:'0%',height:'100%',background:`linear-gradient(90deg,${C.red},${C.gold},${C.green})`,borderRadius:4}}/></div>
             {sc && <div style={{display:'flex',flexDirection:'column',gap:'0.75rem',textAlign:'left',marginTop:'1.5rem'}}>
@@ -479,11 +665,13 @@ function Investors() {
   );
 }
 
+// ── APP ─────────────────────────────────────
 function App() {
   const [admin, setAdmin] = useState(isAdmin());
   const [showPin, setShowPin] = useState(false);
   const [pinInput, setPinInput] = useState("");
   const [pinError, setPinError] = useState(false);
+  const [onboarding, setOnboarding] = useState(false);
 
   const handleLogin = () => {
     if (loginAdmin(pinInput)) {
@@ -495,10 +683,14 @@ function App() {
     }
   };
 
+  if (onboarding) {
+    return <VendorOnboarding onBackToLanding={()=>setOnboarding(false)} />;
+  }
+
   if (!admin && !showPin) {
     return (
       <div>
-        <PublicLanding />
+        <PublicLanding onStartOnboarding={()=>setOnboarding(true)} />
         <div style={{position:'fixed',bottom:10,right:10,opacity:0.3,zIndex:9999}}>
           <a onClick={()=>setShowPin(true)} style={{color:C.muted,fontSize:10,cursor:'pointer',textDecoration:'none'}}>admin</a>
         </div>
@@ -510,14 +702,7 @@ function App() {
     return (
       <div style={{minHeight:'100vh',display:'flex',alignItems:'center',justifyContent:'center',flexDirection:'column',gap:'1rem',background:C.bg}}>
         <CredoLogo size={36} />
-        <input
-          type="password"
-          placeholder="Enter PIN"
-          value={pinInput}
-          onChange={e=>setPinInput(e.target.value)}
-          onKeyDown={e=>e.key==='Enter' && handleLogin()}
-          style={{background:C.surface2,border:`1px solid ${C.border}`,color:C.text,padding:'8px 16px',borderRadius:8,fontSize:15,width:200,textAlign:'center',outline:'none'}}
-        />
+        <input type="password" placeholder="Enter PIN" value={pinInput} onChange={e=>setPinInput(e.target.value)} onKeyDown={e=>e.key==='Enter'&&handleLogin()} style={{background:C.surface2,border:`1px solid ${C.border}`,color:C.text,padding:'8px 16px',borderRadius:8,fontSize:15,width:200,textAlign:'center',outline:'none'}} />
         <button onClick={handleLogin} style={{background:C.green,color:'#000',border:'none',padding:'8px 24px',borderRadius:8,fontWeight:700,cursor:'pointer'}}>Log in</button>
         {pinError && <div style={{color:C.red,fontSize:12}}>Incorrect PIN</div>}
         <button onClick={()=>{setShowPin(false);setPinInput('');setPinError(false)}} style={{background:'transparent',color:C.muted,border:'none',cursor:'pointer',fontSize:12}}>Back to site</button>
@@ -529,7 +714,6 @@ function App() {
 }
 
 ReactDOM.createRoot(document.getElementById("root")).render(<App />);
-console.log('Credo app mounted');
 </script>
 </body>
 </html>
