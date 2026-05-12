@@ -96,107 +96,97 @@ function escapeHtml(t) { if(!t) return ""; const d=document.createElement("div")
 
 function CredoLogo({size=32,showTagline=false}) {
   return (
-    <svg viewBox="0 0 400 120" width={size*(400/120)} height={size} style={{display:'block'}}>
-      <defs><linearGradient id="mg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#00E87A"/><stop offset="100%" stopColor="#3B6EF8"/></linearGradient></defs>
-      <path d="M 85,20 A 40,40 0 1,0 85,100" stroke="url(#mg)" strokeWidth="7" fill="none" strokeLinecap="round"/>
-      <polyline points="52,72 62,62 72,55 80,44" stroke="#00E87A" strokeWidth="3.5" fill="none" strokeLinecap="round"/>
-      <circle cx="80" cy="44" r="4" fill="#00E87A"/>
-      <line x1="78" y1="20" x2="92" y2="20" stroke="#00E87A" strokeWidth="5" strokeLinecap="round"/>
-      <line x1="78" y1="100" x2="92" y2="100" stroke="#00E87A" strokeWidth="5" strokeLinecap="round"/>
-      <text x="118" y="72" fontFamily="Georgia,serif" fontWeight="700" fontSize="48" fill="#F0F4FF" letterSpacing="-1">CREDO</text>
-      {showTagline && <text x="118" y="94" fontFamily="DM Sans,sans-serif" fontWeight="400" fontSize="10" fill="#6B7A99" letterSpacing="3.5">FINANCIAL IDENTITY FOR AFRICA</text>}
-    </svg>
+    React.createElement("svg", { viewBox:"0 0 400 120", width:size*(400/120), height:size, style:{display:'block'} },
+      React.createElement("defs", null,
+        React.createElement("linearGradient", { id:"mg", x1:"0%", y1:"0%", x2:"100%", y2:"100%" },
+          React.createElement("stop", { offset:"0%", stopColor:"#00E87A" }),
+          React.createElement("stop", { offset:"100%", stopColor:"#3B6EF8" })
+        )
+      ),
+      React.createElement("path", { d:"M 85,20 A 40,40 0 1,0 85,100", stroke:"url(#mg)", strokeWidth:"7", fill:"none", strokeLinecap:"round" }),
+      React.createElement("polyline", { points:"52,72 62,62 72,55 80,44", stroke:"#00E87A", strokeWidth:"3.5", fill:"none", strokeLinecap:"round" }),
+      React.createElement("circle", { cx:"80", cy:"44", r:"4", fill:"#00E87A" }),
+      React.createElement("line", { x1:"78", y1:"20", x2:"92", y2:"20", stroke:"#00E87A", strokeWidth:"5", strokeLinecap:"round" }),
+      React.createElement("line", { x1:"78", y1:"100", x2:"92", y2:"100", stroke:"#00E87A", strokeWidth:"5", strokeLinecap:"round" }),
+      React.createElement("text", { x:"118", y:"72", fontFamily:"Georgia,serif", fontWeight:"700", fontSize:"48", fill:"#F0F4FF", letterSpacing:"-1" }, "CREDO"),
+      showTagline && React.createElement("text", { x:"118", y:"94", fontFamily:"DM Sans,sans-serif", fontWeight:"400", fontSize:"10", fill:"#6B7A99", letterSpacing:"3.5" }, "FINANCIAL IDENTITY FOR AFRICA")
+    )
   );
 }
 
-// ── PUBLIC LANDING (original, with all sections kept) ──
+// Public Landing (unchanged)
 function PublicLanding({ onStartOnboarding }) {
-  return (
-    <div>
-      <nav>
-        <div style={{display:'flex',alignItems:'center',gap:10}}>
-          <svg className="nav-logo-svg" viewBox="0 0 400 120">
-            <defs><linearGradient id="navmg"><stop offset="0%" stopColor="#00E87A"/><stop offset="100%" stopColor="#3B6EF8"/></linearGradient></defs>
-            <path d="M 85,20 A 40,40 0 1,0 85,100" stroke="url(#navmg)" strokeWidth="7" fill="none" strokeLinecap="round"/>
-            <polyline points="52,72 62,62 72,55 80,44" stroke="#00E87A" strokeWidth="3.5" fill="none" strokeLinecap="round"/>
-            <circle cx="80" cy="44" r="4" fill="#00E87A"/>
-            <line x1="78" y1="20" x2="92" y2="20" stroke="#00E87A" strokeWidth="5" strokeLinecap="round"/>
-            <line x1="78" y1="100" x2="92" y2="100" stroke="#00E87A" strokeWidth="5" strokeLinecap="round"/>
-            <text x="118" y="72" fontFamily="Georgia,serif" fontWeight="700" fontSize="48" fill="#F0F4FF" letterSpacing="-1">CREDO</text>
-          </svg>
-        </div>
-        <button onClick={onStartOnboarding} style={{background:'transparent',color:C.green,border:`1px solid ${C.green}`,padding:'6px 14px',borderRadius:6,fontWeight:600,fontSize:13,cursor:'pointer'}}>Start Onboarding</button>
-      </nav>
-
-      <div style={{minHeight:'100vh',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',padding:'6rem 2rem 4rem',position:'relative',overflow:'hidden'}}>
-        <div style={{position:'absolute',inset:0,backgroundImage:`linear-gradient(${C.border} 1px,transparent 1px),linear-gradient(90deg,${C.border} 1px,transparent 1px)`,backgroundSize:'64px 64px',opacity:0.25}}></div>
-        <div style={{position:'absolute',top:'20%',left:'50%',transform:'translateX(-50%)',width:700,height:400,borderRadius:'50%',background:'radial-gradient(ellipse,rgba(0,232,122,0.07),transparent 70%)'}}></div>
-        <div style={{position:'relative',zIndex:1,textAlign:'center',maxWidth:820}}>
-          <svg className="hero-logo-svg" viewBox="0 0 400 120">
-            <defs><linearGradient id="hmg"><stop offset="0%" stopColor="#00E87A"/><stop offset="100%" stopColor="#3B6EF8"/></linearGradient></defs>
-            <path d="M 85,20 A 40,40 0 1,0 85,100" stroke="url(#hmg)" strokeWidth="7" fill="none" strokeLinecap="round"/>
-            <polyline points="52,72 62,62 72,55 80,44" stroke="#00E87A" strokeWidth="3.5" fill="none" strokeLinecap="round"/>
-            <circle cx="80" cy="44" r="4" fill="#00E87A"/>
-            <line x1="78" y1="20" x2="92" y2="20" stroke="#00E87A" strokeWidth="5" strokeLinecap="round"/>
-            <line x1="78" y1="100" x2="92" y2="100" stroke="#00E87A" strokeWidth="5" strokeLinecap="round"/>
-            <text x="118" y="72" fontFamily="Georgia,serif" fontWeight="700" fontSize="48" fill="#F0F4FF" letterSpacing="-1">CREDO</text>
-            <text x="118" y="94" fontFamily="DM Sans,sans-serif" fontWeight="400" fontSize="10" fill="#6B7A99" letterSpacing="3.5">FINANCIAL IDENTITY FOR AFRICA</text>
-          </svg>
-          <div style={{display:'inline-flex',alignItems:'center',gap:8,background:C.surface,border:`1px solid ${C.border}`,borderRadius:100,padding:'5px 16px',margin:'1.5rem 0',fontSize:11,color:C.green,fontWeight:600,letterSpacing:'0.1em'}}>
-            <span style={{width:6,height:6,borderRadius:'50%',background:C.green,animation:'pulse 2s infinite'}}/>  BUILDING AFRICA'S FINANCIAL IDENTITY LAYER
-          </div>
-          <h1 style={{fontSize:'clamp(2.4rem,5.5vw,4.2rem)',fontFamily:'DM Serif Display,Georgia,serif',fontWeight:400,lineHeight:1.08,margin:'0 0 1.5rem',letterSpacing:'-0.02em'}}>
-            The infrastructure that<br/><span style={{color:C.green}}>unlocks capital</span> for<br/>Africa's informal economy
-          </h1>
-          <p style={{fontSize:'1.1rem',color:C.muted,maxWidth:560,margin:'0 auto 2.5rem',lineHeight:1.75}}>
-            Credo converts transactional behavior into credit identity — connecting millions of informal SMEs to capital, insurance, and financial services at scale.
-          </p>
-          <div style={{display:'flex',gap:12,justifyContent:'center',flexWrap:'wrap'}}>
-            <button onClick={onStartOnboarding} style={{background:C.green,color:'#000',border:'none',padding:'14px 32px',borderRadius:10,fontWeight:700,fontSize:15,cursor:'pointer'}}>Start Onboarding →</button>
-            <a href="#how" style={{background:'transparent',color:C.text,border:`1px solid ${C.border}`,padding:'14px 32px',borderRadius:10,fontWeight:600,fontSize:15,textDecoration:'none'}}>How It Works</a>
-          </div>
-        </div>
-      </div>
-
-      <div style={{padding:'3rem 2rem',background:C.surface,borderTop:`1px solid ${C.border}`,borderBottom:`1px solid ${C.border}`}}>
-        <div style={{maxWidth:860,margin:'0 auto',display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:'2rem'}}>
-          {[{val:"R3.2T",label:"Informal economy"},{val:"6.4M",label:"Unbanked SMEs"},{val:"82%",label:"Loan rejection rate"},{val:"54",label:"AfCFTA markets"}].map(s=>
-            <div key={s.label} style={{textAlign:'center'}}><div style={{fontSize:'2.4rem',fontFamily:'DM Serif Display,Georgia,serif',color:C.green,marginBottom:4}}>{s.val}</div><div style={{fontSize:13,color:C.muted}}>{s.label}</div></div>
-          )}
-        </div>
-      </div>
-
-      <div id="how" style={{padding:'6rem 2rem',maxWidth:980,margin:'0 auto'}}>
-        <div style={{textAlign:'center',marginBottom:'3.5rem'}}>
-          <div style={{fontSize:11,color:C.green,letterSpacing:'0.12em',marginBottom:'1rem',fontWeight:700}}>SYSTEM ARCHITECTURE</div>
-          <h2 style={{fontFamily:'DM Serif Display,Georgia,serif',fontSize:'2.4rem',fontWeight:400}}>Three layers. One ecosystem.</h2>
-        </div>
-        <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(250px,1fr))',gap:'1.5rem'}}>
-          {[{num:"01",title:"Embedded Finance Tools",desc:"Capture every transaction — payments, invoicing, supplier data — building a live financial footprint without changing how vendors work.",color:C.green},{num:"02",title:"Credit Intelligence Engine",desc:"AI converts behavioral data into risk scores. No pay slips. No branch visits. Pure data-driven creditworthiness updated in real-time.",color:C.gold},{num:"03",title:"Financial Marketplace",desc:"Connect scored SMEs to lenders, insurers, and service providers. Every successful connection earns Credo a commission.",color:C.blue}].map(l=>
-            <div key={l.num} className="card" style={{borderTop:`3px solid ${l.color}`}}>
-              <div style={{fontSize:10,color:l.color,fontWeight:700,letterSpacing:'0.12em',marginBottom:'1rem'}}>LAYER {l.num}</div>
-              <div style={{fontFamily:'DM Serif Display,Georgia,serif',fontSize:'1.15rem',marginBottom:'0.75rem'}}>{l.title}</div>
-              <div style={{fontSize:13,color:C.muted,lineHeight:1.7}}>{l.desc}</div>
-            </div>
-          )}
-        </div>
-      </div>
-
-      <div id="contact" style={{padding:'5rem 2rem',textAlign:'center'}}>
-        <h2 style={{fontFamily:'DM Serif Display,Georgia,serif',fontSize:'2rem',fontWeight:400,marginBottom:'1rem'}}>Ready to build your financial identity?</h2>
-        <p style={{color:C.muted,maxWidth:480,margin:'0 auto 2rem'}}>We're onboarding businesses at Bara Taxi Rank and beyond. Get in touch.</p>
-        <a href="mailto:contact@credo.africa" style={{background:C.green,color:'#000',border:'none',padding:'14px 32px',borderRadius:10,fontWeight:700,fontSize:15,textDecoration:'none'}}>contact@credo.africa</a>
-      </div>
-
-      <div style={{padding:'2rem',textAlign:'center',borderTop:`1px solid ${C.border}`}}>
-        <CredoLogo size={24} />
-        <p style={{fontSize:12,color:C.muted,marginTop:'1rem'}}>© 2026 Credo Africa · Financial Identity Infrastructure · South Africa</p>
-      </div>
-    </div>
+  return React.createElement("div", null,
+    React.createElement("nav", null,
+      React.createElement("div", { style:{display:'flex',alignItems:'center',gap:10} },
+        React.createElement(CredoLogo, { size:28 })
+      ),
+      React.createElement("button", { onClick:onStartOnboarding, style:{background:'transparent',color:C.green,border:`1px solid ${C.green}`,padding:'6px 14px',borderRadius:6,fontWeight:600,fontSize:13,cursor:'pointer'} }, "Start Onboarding")
+    ),
+    // Hero (simplified, but complete)
+    React.createElement("div", { style:{minHeight:'100vh',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',padding:'6rem 2rem 4rem',position:'relative',overflow:'hidden'} },
+      React.createElement("div", { style:{position:'absolute',inset:0,backgroundImage:`linear-gradient(${C.border} 1px,transparent 1px),linear-gradient(90deg,${C.border} 1px,transparent 1px)`,backgroundSize:'64px 64px',opacity:0.25} }),
+      React.createElement("div", { style:{position:'absolute',top:'20%',left:'50%',transform:'translateX(-50%)',width:700,height:400,borderRadius:'50%',background:'radial-gradient(ellipse,rgba(0,232,122,0.07),transparent 70%)'} }),
+      React.createElement("div", { style:{position:'relative',zIndex:1,textAlign:'center',maxWidth:820} },
+        React.createElement(CredoLogo, { size:48, showTagline:true }),
+        React.createElement("div", { style:{display:'inline-flex',alignItems:'center',gap:8,background:C.surface,border:`1px solid ${C.border}`,borderRadius:100,padding:'5px 16px',margin:'1.5rem 0',fontSize:11,color:C.green,fontWeight:600,letterSpacing:'0.1em'} },
+          React.createElement("span", { style:{width:6,height:6,borderRadius:'50%',background:C.green,animation:'pulse 2s infinite'} }),
+          " BUILDING AFRICA'S FINANCIAL IDENTITY LAYER"
+        ),
+        React.createElement("h1", { style:{fontSize:'clamp(2.4rem,5.5vw,4.2rem)',fontFamily:'DM Serif Display,Georgia,serif',fontWeight:400,lineHeight:1.08,margin:'0 0 1.5rem',letterSpacing:'-0.02em'} },
+          "The infrastructure that", React.createElement("br"), React.createElement("span", { style:{color:C.green} }, "unlocks capital"), " for", React.createElement("br"), "Africa's informal economy"
+        ),
+        React.createElement("p", { style:{fontSize:'1.1rem',color:C.muted,maxWidth:560,margin:'0 auto 2.5rem',lineHeight:1.75} }, "Credo converts transactional behavior into credit identity — connecting millions of informal SMEs to capital, insurance, and financial services at scale."),
+        React.createElement("div", { style:{display:'flex',gap:12,justifyContent:'center',flexWrap:'wrap'} },
+          React.createElement("button", { onClick:onStartOnboarding, style:{background:C.green,color:'#000',border:'none',padding:'14px 32px',borderRadius:10,fontWeight:700,fontSize:15,cursor:'pointer'} }, "Start Onboarding →"),
+          React.createElement("a", { href:"#how", style:{background:'transparent',color:C.text,border:`1px solid ${C.border}`,padding:'14px 32px',borderRadius:10,fontWeight:600,fontSize:15,textDecoration:'none'} }, "How It Works")
+        )
+      )
+    ),
+    // Stats bar
+    React.createElement("div", { style:{padding:'3rem 2rem',background:C.surface,borderTop:`1px solid ${C.border}`,borderBottom:`1px solid ${C.border}`} },
+      React.createElement("div", { style:{maxWidth:860,margin:'0 auto',display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:'2rem'} },
+        [{val:"R3.2T",label:"Informal economy"},{val:"6.4M",label:"Unbanked SMEs"},{val:"82%",label:"Loan rejection rate"},{val:"54",label:"AfCFTA markets"}].map(s =>
+          React.createElement("div", { key:s.label, style:{textAlign:'center'} },
+            React.createElement("div", { style:{fontSize:'2.4rem',fontFamily:'DM Serif Display,Georgia,serif',color:C.green,marginBottom:4} }, s.val),
+            React.createElement("div", { style:{fontSize:13,color:C.muted} }, s.label)
+          )
+        )
+      )
+    ),
+    // Architecture (unchanged)
+    React.createElement("div", { id:"how", style:{padding:'6rem 2rem',maxWidth:980,margin:'0 auto'} },
+      React.createElement("div", { style:{textAlign:'center',marginBottom:'3.5rem'} },
+        React.createElement("div", { style:{fontSize:11,color:C.green,letterSpacing:'0.12em',marginBottom:'1rem',fontWeight:700} }, "SYSTEM ARCHITECTURE"),
+        React.createElement("h2", { style:{fontFamily:'DM Serif Display,Georgia,serif',fontSize:'2.4rem',fontWeight:400} }, "Three layers. One ecosystem.")
+      ),
+      React.createElement("div", { style:{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(250px,1fr))',gap:'1.5rem'} },
+        [{num:"01",title:"Embedded Finance Tools",desc:"Capture every transaction — payments, invoicing, supplier data — building a live financial footprint without changing how vendors work.",color:C.green},
+         {num:"02",title:"Credit Intelligence Engine",desc:"AI converts behavioral data into risk scores. No pay slips. No branch visits. Pure data-driven creditworthiness updated in real-time.",color:C.gold},
+         {num:"03",title:"Financial Marketplace",desc:"Connect scored SMEs to lenders, insurers, and service providers. Every successful connection earns Credo a commission.",color:C.blue}].map(l =>
+          React.createElement("div", { key:l.num, className:"card", style:{borderTop:`3px solid ${l.color}`} },
+            React.createElement("div", { style:{fontSize:10,color:l.color,fontWeight:700,letterSpacing:'0.12em',marginBottom:'1rem'} }, "LAYER "+l.num),
+            React.createElement("div", { style:{fontFamily:'DM Serif Display,Georgia,serif',fontSize:'1.15rem',marginBottom:'0.75rem'} }, l.title),
+            React.createElement("div", { style:{fontSize:13,color:C.muted,lineHeight:1.7} }, l.desc)
+          )
+        )
+      )
+    ),
+    // Contact
+    React.createElement("div", { id:"contact", style:{padding:'5rem 2rem',textAlign:'center'} },
+      React.createElement("h2", { style:{fontFamily:'DM Serif Display,Georgia,serif',fontSize:'2rem',fontWeight:400,marginBottom:'1rem'} }, "Ready to build your financial identity?"),
+      React.createElement("p", { style:{color:C.muted,maxWidth:480,margin:'0 auto 2rem'} }, "We're onboarding businesses at Bara Taxi Rank and beyond. Get in touch."),
+      React.createElement("a", { href:"mailto:contact@credo.africa", style:{background:C.green,color:'#000',border:'none',padding:'14px 32px',borderRadius:10,fontWeight:700,fontSize:15,textDecoration:'none'} }, "contact@credo.africa")
+    ),
+    // Footer
+    React.createElement("div", { style:{padding:'2rem',textAlign:'center',borderTop:`1px solid ${C.border}`} },
+      React.createElement(CredoLogo, { size:24 }),
+      React.createElement("p", { style:{fontSize:12,color:C.muted,marginTop:'1rem'} }, "© 2026 Credo Africa · Financial Identity Infrastructure · South Africa")
+    )
   );
 }
 
-// ── NEW ONBOARDING COMPONENTS ────────────
+// Onboarding components (unchanged logic, but using React.createElement)
 function FileUpload({ label, accept, multiple, file, files, onChange }) {
   const [previews, setPreviews] = useState([]);
   const [dragging, setDragging] = useState(false);
@@ -225,26 +215,22 @@ function FileUpload({ label, accept, multiple, file, files, onChange }) {
     }
   }, [file, files, multiple]);
 
-  return (
-    <div style={{marginBottom:'1rem'}}>
-      <label style={{fontSize:13,fontWeight:600,marginBottom:8,display:'block'}}>{label}</label>
-      <div
-        className={`upload-area ${dragging?'dragging':''}`}
-        onDragOver={e=>{e.preventDefault();setDragging(true)}}
-        onDragLeave={()=>setDragging(false)}
-        onDrop={e=>{e.preventDefault();setDragging(false); const dt = e.dataTransfer; if(dt.files.length) { if(multiple) onChange(Array.from(dt.files)); else onChange(dt.files[0]); }}}
-        onClick={()=>inputRef.current.click()}
-      >
-        <input ref={inputRef} type="file" accept={accept} multiple={multiple} onChange={handleFileSelect} style={{display:'none'}} />
-        {previews.length ? (
-          <div className="upload-preview" style={{justifyContent:'center'}}>
-            {previews.map((src,i)=><img key={i} src={src} alt="" />)}
-          </div>
-        ) : (
-          <div style={{color:C.muted}}>📁 Drag & drop or tap to upload</div>
-        )}
-      </div>
-    </div>
+  return React.createElement("div", { style:{marginBottom:'1rem'} },
+    React.createElement("label", { style:{fontSize:13,fontWeight:600,marginBottom:8,display:'block'} }, label),
+    React.createElement("div", {
+      className:`upload-area ${dragging?'dragging':''}`,
+      onDragOver:e=>{e.preventDefault();setDragging(true)},
+      onDragLeave:()=>setDragging(false),
+      onDrop:e=>{e.preventDefault();setDragging(false); const dt = e.dataTransfer; if(dt.files.length) { if(multiple) onChange(Array.from(dt.files)); else onChange(dt.files[0]); }},
+      onClick:()=>inputRef.current.click()
+    },
+      React.createElement("input", { ref:inputRef, type:"file", accept, multiple, onChange:handleFileSelect, style:{display:'none'} }),
+      previews.length ? 
+        React.createElement("div", { className:"upload-preview", style:{justifyContent:'center'} },
+          previews.map((src,i) => React.createElement("img", { key:i, src, alt:"" }))
+        ) :
+        React.createElement("div", { style:{color:C.muted} }, "📁 Drag & drop or tap to upload")
+    )
   );
 }
 
@@ -257,14 +243,14 @@ function VendorOnboarding({ onBackToLanding }) {
   const [formData, setFormData] = useState({
     businessName: '', fullName: '', phone: '', category: '', location: '', yearsOperating: '', socialMedia: '',
     idDoc: null, selfieWithId: null, proofOfAddress: null,
-    stallImage: null, vendorAtStall: null, productImages: [],
-    supplierReceipts: [], additionalInvoices: []
+    stallImage: null, vendorAtStall: null,
+    supplierReceipts: []
   });
   const [verificationStatus, setVerificationStatus] = useState(null);
 
   const handleNext = () => {
     if (step === 4) {
-      setVerificationStatus({ status: 'pending_review', trustLevel: 30, badges: ['Profile Complete'] });
+      setVerificationStatus({ status:'pending_review', trustLevel:30, badges:['Profile Complete'] });
     } else {
       setStep(step+1);
     }
@@ -274,135 +260,90 @@ function VendorOnboarding({ onBackToLanding }) {
     else setStep(step-1);
   };
 
-  return (
-    <div style={{paddingTop:80, maxWidth:720, margin:'0 auto', padding:'2rem 1rem'}}>
-      <CredoLogo size={36} showTagline />
-      <div className="step-indicator">
-        {["Business","Identity","Presence","Supplier"].map((label,i) => (
-          <div key={i} style={{display:'flex',flexDirection:'column',alignItems:'center',gap:4}}>
-            <div className={`step-dot ${step>i+1 ? 'completed' : step===i+1 ? 'active' : ''}`}>{i+1}</div>
-            <span style={{fontSize:10,color:C.muted}}>{label}</span>
-          </div>
-        ))}
-      </div>
-
-      {step === 1 && (
-        <div className="card">
-          <h2 style={{fontFamily:'DM Serif Display',fontSize:'1.5rem',marginBottom:'1.5rem'}}>Step 1 — Basic Business Info</h2>
-          <div style={{display:'flex',flexDirection:'column',gap:'1rem'}}>
-            <input placeholder="Business Name" value={formData.businessName} onChange={e=>setFormData({...formData,businessName:e.target.value})} style={inputStyle} />
-            <input placeholder="Your Full Name" value={formData.fullName} onChange={e=>setFormData({...formData,fullName:e.target.value})} style={inputStyle} />
-            <input placeholder="WhatsApp Phone Number" value={formData.phone} onChange={e=>setFormData({...formData,phone:e.target.value})} style={inputStyle} />
-            <select value={formData.category} onChange={e=>setFormData({...formData,category:e.target.value})} style={inputStyle}>
-              <option value="">Select Category</option>
-              <option>Food & Drinks</option><option>Clothing</option><option>Electronics</option>
-              <option>Hair & Beauty</option><option>Transport</option><option>Hardware</option><option>Other</option>
-            </select>
-            <input placeholder="Trading Location (e.g., Bara Taxi Rank)" value={formData.location} onChange={e=>setFormData({...formData,location:e.target.value})} style={inputStyle} />
-            <input type="number" placeholder="Years Operating" value={formData.yearsOperating} onChange={e=>setFormData({...formData,yearsOperating:e.target.value})} style={inputStyle} />
-            <input placeholder="Instagram / Facebook link (optional)" value={formData.socialMedia} onChange={e=>setFormData({...formData,socialMedia:e.target.value})} style={inputStyle} />
-          </div>
-          <div style={{display:'flex',justifyContent:'space-between',marginTop:'1.5rem'}}>
-            <button onClick={handleBack} style={secondaryBtn}>Back</button>
-            <button onClick={handleNext} style={primaryBtn}>Next →</button>
-          </div>
-        </div>
-      )}
-
-      {step === 2 && (
-        <div className="card">
-          <h2 style={{fontFamily:'DM Serif Display',fontSize:'1.5rem',marginBottom:'1.5rem'}}>Step 2 — Identity Verification</h2>
-          <p style={{color:C.muted,fontSize:13,marginBottom:'1rem'}}>Upload clear photos of your ID and a selfie holding it.</p>
-          <FileUpload label="SA ID / Passport" accept="image/*" file={formData.idDoc} onChange={file=>setFormData({...formData,idDoc:file})} />
-          <FileUpload label="Selfie Holding ID" accept="image/*" file={formData.selfieWithId} onChange={file=>setFormData({...formData,selfieWithId:file})} />
-          <FileUpload label="Proof of Address (optional)" accept="image/*" file={formData.proofOfAddress} onChange={file=>setFormData({...formData,proofOfAddress:file})} />
-          <div style={{display:'flex',justifyContent:'space-between',marginTop:'1.5rem'}}>
-            <button onClick={handleBack} style={secondaryBtn}>← Back</button>
-            <button onClick={handleNext} style={primaryBtn}>Next →</button>
-          </div>
-        </div>
-      )}
-
-      {step === 3 && (
-        <div className="card">
-          <h2 style={{fontFamily:'DM Serif Display',fontSize:'1.5rem',marginBottom:'1.5rem'}}>Step 3 — Business Presence</h2>
-          <p style={{color:C.muted,fontSize:13,marginBottom:'1rem'}}>Show us your stall and you working there.</p>
-          <FileUpload label="Stall / Shop Photo" accept="image/*" file={formData.stallImage} onChange={file=>setFormData({...formData,stallImage:file})} />
-          <FileUpload label="Photo of YOU at the Stall (required)" accept="image/*" file={formData.vendorAtStall} onChange={file=>setFormData({...formData,vendorAtStall:file})} />
-          <div style={{display:'flex',justifyContent:'space-between',marginTop:'1.5rem'}}>
-            <button onClick={handleBack} style={secondaryBtn}>← Back</button>
-            <button onClick={handleNext} style={primaryBtn}>Next →</button>
-          </div>
-        </div>
-      )}
-
-      {step === 4 && (
-        <div className="card">
-          <h2 style={{fontFamily:'DM Serif Display',fontSize:'1.5rem',marginBottom:'1.5rem'}}>Step 4 — Supplier & Activity</h2>
-          <p style={{color:C.muted,fontSize:13,marginBottom:'1rem'}}>Upload recent supplier receipts or invoices.</p>
-          <div style={{display:'flex',gap:'0.5rem',marginBottom:'1rem'}}>
-            <input placeholder="Supplier Name" style={inputStyle} />
-            <input placeholder="Amount" type="number" style={inputStyle} />
-          </div>
-          <FileUpload label="Receipt / Invoice" accept="image/*" multiple files={formData.supplierReceipts} onChange={files=>setFormData({...formData,supplierReceipts:files})} />
-          <div style={{display:'flex',justifyContent:'space-between',marginTop:'1.5rem'}}>
-            <button onClick={handleBack} style={secondaryBtn}>← Back</button>
-            <button onClick={handleNext} style={primaryBtn}>Complete Onboarding →</button>
-          </div>
-        </div>
-      )}
-
-      {verificationStatus && (
-        <div className="card" style={{marginTop:'2rem',textAlign:'center'}}>
-          <h3 style={{fontFamily:'DM Serif Display',fontSize:'1.3rem'}}>Your Credibility Dashboard</h3>
-          <div style={{margin:'1.5rem 0'}}>
-            <div style={{display:'flex',justifyContent:'space-between',fontSize:12}}><span>Trust Level</span><span>{verificationStatus.trustLevel}%</span></div>
-            <div className="trust-bar"><div className="trust-fill" style={{width:`${verificationStatus.trustLevel}%`}} /></div>
-          </div>
-          <div style={{display:'flex',gap:4,flexWrap:'wrap',justifyContent:'center'}}>
-            {verificationStatus.badges.map(b=><span key={b} className="badge badge-green">{b}</span>)}
-            {verificationStatus.status === 'pending_review' && <span className="badge badge-gold">Pending Review</span>}
-          </div>
-          <p style={{fontSize:13,color:C.muted,marginTop:'1rem'}}>We're reviewing your information. Your trust score will increase as verifications are completed.</p>
-        </div>
-      )}
-    </div>
+  return React.createElement("div", { style:{paddingTop:80, maxWidth:720, margin:'0 auto', padding:'2rem 1rem'} },
+    React.createElement(CredoLogo, { size:36, showTagline:true }),
+    React.createElement("div", { className:"step-indicator" },
+      ["Business","Identity","Presence","Supplier"].map((label,i) =>
+        React.createElement("div", { key:i, style:{display:'flex',flexDirection:'column',alignItems:'center',gap:4} },
+          React.createElement("div", { className:`step-dot ${step>i+1?'completed':step===i+1?'active':''}` }, i+1),
+          React.createElement("span", { style:{fontSize:10,color:C.muted} }, label)
+        )
+      )
+    ),
+    step === 1 && React.createElement("div", { className:"card" },
+      React.createElement("h2", { style:{fontFamily:'DM Serif Display',fontSize:'1.5rem',marginBottom:'1.5rem'} }, "Step 1 — Basic Business Info"),
+      React.createElement("input", { placeholder:"Business Name", value:formData.businessName, onChange:e=>setFormData({...formData,businessName:e.target.value}), style:inputStyle }),
+      React.createElement("input", { placeholder:"Your Full Name", value:formData.fullName, onChange:e=>setFormData({...formData,fullName:e.target.value}), style:inputStyle }),
+      React.createElement("input", { placeholder:"Phone Number", value:formData.phone, onChange:e=>setFormData({...formData,phone:e.target.value}), style:inputStyle }),
+      React.createElement("select", { value:formData.category, onChange:e=>setFormData({...formData,category:e.target.value}), style:inputStyle },
+        React.createElement("option", { value:"" }, "Select Category"),
+        React.createElement("option", null, "Food & Drinks"),
+        React.createElement("option", null, "Clothing"),
+        React.createElement("option", null, "Electronics"),
+        React.createElement("option", null, "Hair & Beauty"),
+        React.createElement("option", null, "Transport"),
+        React.createElement("option", null, "Hardware"),
+        React.createElement("option", null, "Other")
+      ),
+      React.createElement("input", { placeholder:"Trading Location (e.g., Bara Taxi Rank)", value:formData.location, onChange:e=>setFormData({...formData,location:e.target.value}), style:inputStyle }),
+      React.createElement("input", { type:"number", placeholder:"Years Operating", value:formData.yearsOperating, onChange:e=>setFormData({...formData,yearsOperating:e.target.value}), style:inputStyle }),
+      React.createElement("input", { placeholder:"Instagram / Facebook (optional)", value:formData.socialMedia, onChange:e=>setFormData({...formData,socialMedia:e.target.value}), style:inputStyle }),
+      React.createElement("div", { style:{display:'flex',justifyContent:'space-between',marginTop:'1.5rem'} },
+        React.createElement("button", { onClick:handleBack, style:secondaryBtn }, "Back"),
+        React.createElement("button", { onClick:handleNext, style:primaryBtn }, "Next →")
+      )
+    ),
+    step === 2 && React.createElement("div", { className:"card" },
+      React.createElement("h2", { style:{fontFamily:'DM Serif Display',fontSize:'1.5rem',marginBottom:'1.5rem'} }, "Step 2 — Identity Verification"),
+      React.createElement("p", { style:{color:C.muted,fontSize:13,marginBottom:'1rem'} }, "Upload clear photos of your ID and a selfie holding it."),
+      React.createElement(FileUpload, { label:"SA ID / Passport", accept:"image/*", file:formData.idDoc, onChange:file=>setFormData({...formData,idDoc:file}) }),
+      React.createElement(FileUpload, { label:"Selfie Holding ID", accept:"image/*", file:formData.selfieWithId, onChange:file=>setFormData({...formData,selfieWithId:file}) }),
+      React.createElement(FileUpload, { label:"Proof of Address (optional)", accept:"image/*", file:formData.proofOfAddress, onChange:file=>setFormData({...formData,proofOfAddress:file}) }),
+      React.createElement("div", { style:{display:'flex',justifyContent:'space-between',marginTop:'1.5rem'} },
+        React.createElement("button", { onClick:handleBack, style:secondaryBtn }, "← Back"),
+        React.createElement("button", { onClick:handleNext, style:primaryBtn }, "Next →")
+      )
+    ),
+    step === 3 && React.createElement("div", { className:"card" },
+      React.createElement("h2", { style:{fontFamily:'DM Serif Display',fontSize:'1.5rem',marginBottom:'1.5rem'} }, "Step 3 — Business Presence"),
+      React.createElement("p", { style:{color:C.muted,fontSize:13,marginBottom:'1rem'} }, "Show us your stall and you working there."),
+      React.createElement(FileUpload, { label:"Stall / Shop Photo", accept:"image/*", file:formData.stallImage, onChange:file=>setFormData({...formData,stallImage:file}) }),
+      React.createElement(FileUpload, { label:"Photo of YOU at the Stall (required)", accept:"image/*", file:formData.vendorAtStall, onChange:file=>setFormData({...formData,vendorAtStall:file}) }),
+      React.createElement("div", { style:{display:'flex',justifyContent:'space-between',marginTop:'1.5rem'} },
+        React.createElement("button", { onClick:handleBack, style:secondaryBtn }, "← Back"),
+        React.createElement("button", { onClick:handleNext, style:primaryBtn }, "Next →")
+      )
+    ),
+    step === 4 && React.createElement("div", { className:"card" },
+      React.createElement("h2", { style:{fontFamily:'DM Serif Display',fontSize:'1.5rem',marginBottom:'1.5rem'} }, "Step 4 — Supplier & Activity"),
+      React.createElement("p", { style:{color:C.muted,fontSize:13,marginBottom:'1rem'} }, "Upload recent supplier receipts or invoices."),
+      React.createElement(FileUpload, { label:"Receipt / Invoice", accept:"image/*", multiple:true, files:formData.supplierReceipts, onChange:files=>setFormData({...formData,supplierReceipts:files}) }),
+      React.createElement("div", { style:{display:'flex',justifyContent:'space-between',marginTop:'1.5rem'} },
+        React.createElement("button", { onClick:handleBack, style:secondaryBtn }, "← Back"),
+        React.createElement("button", { onClick:handleNext, style:primaryBtn }, "Complete Onboarding →")
+      )
+    ),
+    verificationStatus && React.createElement("div", { className:"card", style:{marginTop:'2rem',textAlign:'center'} },
+      React.createElement("h3", { style:{fontFamily:'DM Serif Display',fontSize:'1.3rem'} }, "Your Credibility Dashboard"),
+      React.createElement("div", { style:{margin:'1.5rem 0'} },
+        React.createElement("div", { style:{display:'flex',justifyContent:'space-between',fontSize:12} },
+          React.createElement("span", null, "Trust Level"),
+          React.createElement("span", null, verificationStatus.trustLevel+"%")
+        ),
+        React.createElement("div", { className:"trust-bar" },
+          React.createElement("div", { className:"trust-fill", style:{width:`${verificationStatus.trustLevel}%`} })
+        )
+      ),
+      React.createElement("div", { style:{display:'flex',gap:4,flexWrap:'wrap',justifyContent:'center'} },
+        verificationStatus.badges.map(b => React.createElement("span", { key:b, className:"badge badge-green" }, b)),
+        verificationStatus.status === 'pending_review' && React.createElement("span", { className:"badge badge-gold" }, "Pending Review")
+      ),
+      React.createElement("p", { style:{fontSize:13,color:C.muted,marginTop:'1rem'} }, "We're reviewing your information. Your trust score will increase as verifications are completed.")
+    )
   );
 }
 
-// ── ADMIN APP (unchanged) ─────────────────
-function AdminApp() {
-  const [adminView, setAdminView] = useState("Dashboard");
-  return (
-    <div style={{paddingTop:80}}>
-      <nav>
-        <div style={{display:'flex',alignItems:'center',gap:10}}>
-          <svg className="nav-logo-svg" viewBox="0 0 400 120">
-            <defs><linearGradient id="anavmg"><stop offset="0%" stopColor="#00E87A"/><stop offset="100%" stopColor="#3B6EF8"/></linearGradient></defs>
-            <path d="M 85,20 A 40,40 0 1,0 85,100" stroke="url(#anavmg)" strokeWidth="7" fill="none" strokeLinecap="round"/>
-            <polyline points="52,72 62,62 72,55 80,44" stroke="#00E87A" strokeWidth="3.5" fill="none" strokeLinecap="round"/>
-            <circle cx="80" cy="44" r="4" fill="#00E87A"/>
-            <line x1="78" y1="20" x2="92" y2="20" stroke="#00E87A" strokeWidth="5" strokeLinecap="round"/>
-            <line x1="78" y1="100" x2="92" y2="100" stroke="#00E87A" strokeWidth="5" strokeLinecap="round"/>
-            <text x="118" y="72" fontFamily="Georgia,serif" fontWeight="700" fontSize="48" fill="#F0F4FF" letterSpacing="-1">CREDO</text>
-          </svg>
-          <span style={{fontSize:11,color:C.muted,letterSpacing:'0.1em'}}>ADMIN</span>
-        </div>
-        <div style={{display:'flex',gap:4}}>
-          {["Dashboard","Credit Engine","Investors"].map(t=>
-            <button key={t} onClick={()=>setAdminView(t)} style={{background:adminView===t?C.surface2:'transparent',border:adminView===t?`1px solid ${C.border}`:'1px solid transparent',color:adminView===t?C.green:C.muted,padding:'6px 14px',borderRadius:7,cursor:'pointer',fontSize:13,fontWeight:500}}>{t}</button>
-          )}
-        </div>
-        <button onClick={logoutAdmin} style={{background:C.red,color:'#fff',border:'none',padding:'6px 14px',borderRadius:6,cursor:'pointer',fontSize:12}}>Logout</button>
-      </nav>
-      {adminView === "Dashboard" && <AdminDashboard />}
-      {adminView === "Credit Engine" && <CreditEngine />}
-      {adminView === "Investors" && <Investors />}
-    </div>
-  );
-}
-
-// ── DASHBOARD / CREDIT ENGINE / INVESTORS (same as before) ──
+// Admin Dashboard (unchanged)
 function AdminDashboard() {
   const [businesses, setBusinesses] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -413,12 +354,7 @@ function AdminDashboard() {
     try {
       const { data, error } = await supabaseClient
         .from("businesses")
-        .select(`
-          id, business_name, business_type, location, monthly_revenue,
-          age_years, employee_count, has_bank_account, created_at,
-          owners:owner_id(full_name, phone),
-          credit_scores(*)
-        `)
+        .select(`id, business_name, business_type, location, monthly_revenue, age_years, employee_count, has_bank_account, created_at, owners:owner_id(full_name, phone), credit_scores(*)`)
         .order("created_at", { ascending: false });
       if (error) throw error;
       setBusinesses(data || []);
@@ -465,7 +401,7 @@ function AdminDashboard() {
       { label: "Excellent (750+)", count: scores.filter(s=>s>=750).length, color: C.green },
       { label: "Good (700–749)", count: scores.filter(s=>s>=700&&s<750).length, color: "#80C87A" },
       { label: "Fair (600–699)", count: scores.filter(s=>s>=600&&s<700).length, color: C.gold },
-      { label: "Poor (<600)", count: scores.filter(s=>s<600).length, color: C.red },
+      { label: "Poor (<600)", count: scores.filter(s=>s<600).length, color: C.red }
     ];
     const max = Math.max(...tiers.map(t=>t.count), 1);
     return tiers.map(t => ({ ...t, widthPercent: (t.count/max)*100 }));
@@ -473,199 +409,241 @@ function AdminDashboard() {
 
   const recent = useMemo(() => businesses.slice(0,5), [businesses]);
 
-  return (
-    <div style={{padding:'2rem',maxWidth:1200,margin:'0 auto'}}>
-      <div style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:'1rem',marginBottom:'1.5rem'}}>
-        <div className="card"><div style={{fontSize:12,color:C.muted,marginBottom:4}}>Total SMEs</div><div className="kpi-val">{kpis.total||0}</div><div className="kpi-sub">onboarded</div></div>
-        <div className="card"><div style={{fontSize:12,color:C.muted,marginBottom:4}}>Avg Credo Score</div><div className="kpi-val">{kpis.avg??"—"}</div><div className="kpi-sub">/ 850</div></div>
-        <div className="card"><div style={{fontSize:12,color:C.muted,marginBottom:4}}>Loan-Ready (700+)</div><div className="kpi-val">{kpis.loanReady}</div><div className="kpi-sub">businesses</div></div>
-        <div className="card"><div style={{fontSize:12,color:C.muted,marginBottom:4}}>Total Monthly Rev</div><div className="kpi-val">{formatCurrency(kpis.totalRev)}</div><div className="kpi-sub">across all SMEs</div></div>
-      </div>
-
-      <div style={{display:'grid',gridTemplateColumns:'1fr 340px',gap:'1.5rem'}}>
-        <div className="card" style={{padding:0,overflow:'hidden'}}>
-          <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',padding:'1.25rem 1.5rem',borderBottom:`1px solid ${C.border}`}}>
-            <div>
-              <div style={{fontWeight:700,fontSize:15}}>SME Profiles</div>
-              <div style={{fontSize:12,color:C.muted,marginTop:2}}>Latest credit score shown</div>
-            </div>
-            <input placeholder="Search..." value={searchQuery} onChange={e=>setSearchQuery(e.target.value)} style={{background:C.surface2,border:`1px solid ${C.border}`,color:C.text,padding:'7px 14px',borderRadius:8,fontSize:13,width:220}} />
-          </div>
-          {loading ? (
-            <div className="empty-state" style={{padding:'3rem'}}><div className="spin" style={{width:32,height:32,borderRadius:'50%',border:`3px solid ${C.border}`,borderTopColor:C.green,margin:'0 auto 1rem'}}/><p>Loading...</p></div>
-          ) : businesses.length === 0 ? (
-            <div className="empty-state">
-              <div style={{fontSize:'2.5rem',marginBottom:'1rem'}}>📭</div>
-              <h3>No SMEs yet</h3>
-              <p>When a business owner completes WhatsApp onboarding, their real profile appears here automatically.</p>
-            </div>
-          ) : (
-            <table>
-              <thead><tr><th>BUSINESS</th><th>TYPE</th><th>LOCATION</th><th>SCORE</th><th>REVENUE</th><th>STATUS</th><th>PROFILE</th><th>JOINED</th></tr></thead>
-              <tbody>
-                {filtered.map(b => {
-                  const latest = latestScore(b.credit_scores);
-                  const score = latest?.score ?? null;
-                  const owner = b.owners;
-                  const pct = score ? Math.round(((score - 300) / 550) * 100) : 0;
-                  return (
-                    <tr key={b.id}>
-                      <td><div style={{fontWeight:600}}>{escapeHtml(b.business_name)}</div><div style={{fontSize:11,color:C.muted}}>{owner?.full_name || "—"}</div></td>
-                      <td style={{color:C.muted}}>{b.business_type || "—"}</td>
-                      <td style={{color:C.muted}}>{b.location || "—"}</td>
-                      <td>{score ? <><div style={{fontWeight:800,color:scoreColor(score),fontSize:15}}>{score}</div><div className="score-bar-bg"><div className="score-bar" style={{width:`${pct}%`,background:scoreColor(score)}}/></div></> : <span style={{color:C.muted}}>Pending</span>}</td>
-                      <td style={{color:C.text}}>{b.monthly_revenue ? formatCurrency(b.monthly_revenue) : "—"}</td>
-                      <td><span className={`badge ${score>=700?'badge-green':score>=600?'badge-gold':'badge-red'}`}>{score>=700?'Loan Ready':score>=600?'Fair':'Building'}</span></td>
-                      <td><div style={{display:'flex',flexWrap:'wrap',gap:4}}>{b.age_years && <span className="badge badge-blue">{b.age_years}y</span>}{b.employee_count && <span className="badge badge-blue">{b.employee_count} emp</span>}{b.has_bank_account ? <span className="badge badge-green">Banked</span> : <span className="badge badge-gold">No Bank</span>}</div></td>
-                      <td style={{color:C.muted,fontSize:11}}>{new Date(b.created_at).toLocaleDateString("en-ZA")}</td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          )}
-        </div>
-        <div style={{display:'flex',flexDirection:'column',gap:'1rem'}}>
-          <div className="card">
-            <div style={{fontSize:13,fontWeight:700,marginBottom:'1rem'}}>Score Distribution</div>
-            {scoreDistribution.length ? scoreDistribution.map(t => (
-              <div key={t.label} style={{display:'flex',alignItems:'center',gap:8,marginBottom:10}}>
-                <div style={{width:8,height:8,borderRadius:'50%',background:t.color,flexShrink:0}}/>
-                <div style={{flex:1,fontSize:12,color:C.muted}}>{t.label}</div>
-                <div style={{width:60,height:5,background:C.border,borderRadius:3}}><div className="dist-bar" style={{width:`${t.widthPercent}%`,height:'100%',background:t.color,borderRadius:3}}/></div>
-                <div style={{fontSize:13,fontWeight:700,color:t.color,width:20,textAlign:'right'}}>{t.count}</div>
-              </div>
-            )) : <div className="empty-state" style={{padding:'1rem 0'}}>No scores yet</div>}
-          </div>
-          <div className="card">
-            <div style={{fontSize:13,fontWeight:700,marginBottom:'1rem'}}>Recent Onboardings</div>
-            {recent.length ? recent.map(b => {
-              const latest = latestScore(b.credit_scores);
-              return (
-                <div key={b.id} style={{display:'flex',justifyContent:'space-between',padding:'8px 0',borderBottom:`1px solid ${C.border}`}}>
-                  <div><div style={{fontSize:13,fontWeight:600}}>{escapeHtml(b.business_name)}</div><div style={{fontSize:11,color:C.muted}}>{b.location||""}</div></div>
-                  {latest?.score ? <div style={{fontWeight:800,color:scoreColor(latest.score)}}>{latest.score}</div> : <span style={{fontSize:11,color:C.muted}}>—</span>}
-                </div>
-              );
-            }) : <div className="empty-state" style={{padding:'1rem 0'}}>Waiting...</div>}
-          </div>
-        </div>
-      </div>
-      <div style={{display:'flex',alignItems:'center',gap:8,marginTop:'1rem'}}>
-        <span style={{width:7,height:7,borderRadius:'50%',background:C.green,animation:'pulse 2s infinite'}}/>
-        <span style={{fontSize:12,color:C.muted}}>Live · {lastRefresh || '—'}</span>
-      </div>
-    </div>
+  // Return JSX with React.createElement
+  return React.createElement("div", { style:{padding:'2rem',maxWidth:1200,margin:'0 auto'} },
+    // KPIs
+    React.createElement("div", { style:{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:'1rem',marginBottom:'1.5rem'} },
+      React.createElement("div", { className:"card" }, React.createElement("div", { style:{fontSize:12,color:C.muted,marginBottom:4} }, "Total SMEs"), React.createElement("div", { className:"kpi-val" }, kpis.total||0), React.createElement("div", { className:"kpi-sub" }, "onboarded")),
+      React.createElement("div", { className:"card" }, React.createElement("div", { style:{fontSize:12,color:C.muted,marginBottom:4} }, "Avg Credo Score"), React.createElement("div", { className:"kpi-val" }, kpis.avg??"—"), React.createElement("div", { className:"kpi-sub" }, "/ 850")),
+      React.createElement("div", { className:"card" }, React.createElement("div", { style:{fontSize:12,color:C.muted,marginBottom:4} }, "Loan-Ready (700+)"), React.createElement("div", { className:"kpi-val" }, kpis.loanReady), React.createElement("div", { className:"kpi-sub" }, "businesses")),
+      React.createElement("div", { className:"card" }, React.createElement("div", { style:{fontSize:12,color:C.muted,marginBottom:4} }, "Total Monthly Rev"), React.createElement("div", { className:"kpi-val" }, formatCurrency(kpis.totalRev)), React.createElement("div", { className:"kpi-sub" }, "across all SMEs"))
+    ),
+    // Table + Sidebar
+    React.createElement("div", { style:{display:'grid',gridTemplateColumns:'1fr 340px',gap:'1.5rem'} },
+      React.createElement("div", { className:"card", style:{padding:0,overflow:'hidden'} },
+        React.createElement("div", { style:{display:'flex',justifyContent:'space-between',alignItems:'center',padding:'1.25rem 1.5rem',borderBottom:`1px solid ${C.border}`} },
+          React.createElement("div", null,
+            React.createElement("div", { style:{fontWeight:700,fontSize:15} }, "SME Profiles"),
+            React.createElement("div", { style:{fontSize:12,color:C.muted,marginTop:2} }, "Latest credit score shown")
+          ),
+          React.createElement("input", { placeholder:"Search...", value:searchQuery, onChange:e=>setSearchQuery(e.target.value), style:{background:C.surface2,border:`1px solid ${C.border}`,color:C.text,padding:'7px 14px',borderRadius:8,fontSize:13,width:220} })
+        ),
+        loading ? 
+          React.createElement("div", { className:"empty-state", style:{padding:'3rem'} }, React.createElement("div", { className:"spin", style:{width:32,height:32,borderRadius:'50%',border:`3px solid ${C.border}`,borderTopColor:C.green,margin:'0 auto 1rem'} }), React.createElement("p", null, "Loading...")) :
+        businesses.length === 0 ?
+          React.createElement("div", { className:"empty-state" },
+            React.createElement("div", { style:{fontSize:'2.5rem',marginBottom:'1rem'} }, "📭"),
+            React.createElement("h3", null, "No SMEs yet"),
+            React.createElement("p", null, "When a business owner completes WhatsApp onboarding, their real profile appears here automatically.")
+          ) :
+          React.createElement("table", null,
+            React.createElement("thead", null, React.createElement("tr", null, React.createElement("th", null, "BUSINESS"), React.createElement("th", null, "TYPE"), React.createElement("th", null, "LOCATION"), React.createElement("th", null, "SCORE"), React.createElement("th", null, "REVENUE"), React.createElement("th", null, "STATUS"), React.createElement("th", null, "PROFILE"), React.createElement("th", null, "JOINED"))),
+            React.createElement("tbody", null,
+              filtered.map(b => {
+                const latest = latestScore(b.credit_scores);
+                const score = latest?.score ?? null;
+                const owner = b.owners;
+                const pct = score ? Math.round(((score - 300) / 550) * 100) : 0;
+                return React.createElement("tr", { key:b.id },
+                  React.createElement("td", null, React.createElement("div", { style:{fontWeight:600} }, escapeHtml(b.business_name)), React.createElement("div", { style:{fontSize:11,color:C.muted} }, owner?.full_name || "—")),
+                  React.createElement("td", { style:{color:C.muted} }, b.business_type || "—"),
+                  React.createElement("td", { style:{color:C.muted} }, b.location || "—"),
+                  React.createElement("td", null, score ? 
+                    React.createElement(React.Fragment, null, React.createElement("div", { style:{fontWeight:800,color:scoreColor(score),fontSize:15} }, score), React.createElement("div", { className:"score-bar-bg" }, React.createElement("div", { className:"score-bar", style:{width:`${pct}%`,background:scoreColor(score)} }))) :
+                    React.createElement("span", { style:{color:C.muted} }, "Pending")),
+                  React.createElement("td", { style:{color:C.text} }, b.monthly_revenue ? formatCurrency(b.monthly_revenue) : "—"),
+                  React.createElement("td", null, React.createElement("span", { className:`badge ${score>=700?'badge-green':score>=600?'badge-gold':'badge-red'}` }, score>=700?'Loan Ready':score>=600?'Fair':'Building')),
+                  React.createElement("td", null, React.createElement("div", { style:{display:'flex',flexWrap:'wrap',gap:4} },
+                    b.age_years && React.createElement("span", { className:"badge badge-blue" }, b.age_years+"y"),
+                    b.employee_count && React.createElement("span", { className:"badge badge-blue" }, b.employee_count+" emp"),
+                    b.has_bank_account ? React.createElement("span", { className:"badge badge-green" }, "Banked") : React.createElement("span", { className:"badge badge-gold" }, "No Bank")
+                  )),
+                  React.createElement("td", { style:{color:C.muted,fontSize:11} }, new Date(b.created_at).toLocaleDateString("en-ZA"))
+                );
+              })
+            )
+          )
+      ),
+      React.createElement("div", { style:{display:'flex',flexDirection:'column',gap:'1rem'} },
+        React.createElement("div", { className:"card" },
+          React.createElement("div", { style:{fontSize:13,fontWeight:700,marginBottom:'1rem'} }, "Score Distribution"),
+          scoreDistribution.length ? scoreDistribution.map(t =>
+            React.createElement("div", { key:t.label, style:{display:'flex',alignItems:'center',gap:8,marginBottom:10} },
+              React.createElement("div", { style:{width:8,height:8,borderRadius:'50%',background:t.color,flexShrink:0} }),
+              React.createElement("div", { style:{flex:1,fontSize:12,color:C.muted} }, t.label),
+              React.createElement("div", { style:{width:60,height:5,background:C.border,borderRadius:3} },
+                React.createElement("div", { className:"dist-bar", style:{width:`${t.widthPercent}%`,height:'100%',background:t.color,borderRadius:3} })
+              ),
+              React.createElement("div", { style:{fontSize:13,fontWeight:700,color:t.color,width:20,textAlign:'right'} }, t.count)
+            )
+          ) : React.createElement("div", { className:"empty-state", style:{padding:'1rem 0'} }, "No scores yet")
+        ),
+        React.createElement("div", { className:"card" },
+          React.createElement("div", { style:{fontSize:13,fontWeight:700,marginBottom:'1rem'} }, "Recent Onboardings"),
+          recent.length ? recent.map(b => {
+            const latest = latestScore(b.credit_scores);
+            return React.createElement("div", { key:b.id, style:{display:'flex',justifyContent:'space-between',padding:'8px 0',borderBottom:`1px solid ${C.border}`} },
+              React.createElement("div", null,
+                React.createElement("div", { style:{fontSize:13,fontWeight:600} }, escapeHtml(b.business_name)),
+                React.createElement("div", { style:{fontSize:11,color:C.muted} }, b.location||"")
+              ),
+              latest?.score ? React.createElement("div", { style:{fontWeight:800,color:scoreColor(latest.score)} }, latest.score) : React.createElement("span", { style:{fontSize:11,color:C.muted} }, "—")
+            );
+          }) : React.createElement("div", { className:"empty-state", style:{padding:'1rem 0'} }, "Waiting...")
+        )
+      )
+    ),
+    React.createElement("div", { style:{display:'flex',alignItems:'center',gap:8,marginTop:'1rem'} },
+      React.createElement("span", { style:{width:7,height:7,borderRadius:'50%',background:C.green,animation:'pulse 2s infinite'} }),
+      React.createElement("span", { style:{fontSize:12,color:C.muted} }, "Live · " + (lastRefresh || '—'))
+    )
   );
 }
 
+// Credit Engine (unchanged)
 function CreditEngine() {
   const [inputs, setInputs] = useState({revenue:45000,txns:220,age:4,consistency:87,suppliers:12,digital:3});
   const [score, setScore] = useState(null);
   const [loading, setLoading] = useState(false);
-  const fields = [
-    {k:"revenue",l:"Monthly Revenue (ZAR)",min:1000,max:500000,step:1000,fmt:v=>`R${v.toLocaleString()}`},
-    {k:"txns",l:"Monthly Transactions",min:1,max:1000,step:1,fmt:v=>v},
-    {k:"age",l:"Business Age (years)",min:0,max:30,step:1,fmt:v=>`${v} yr${v!==1?'s':''}`},
-    {k:"consistency",l:"Payment Consistency (%)",min:0,max:100,step:1,fmt:v=>`${v}%`},
-    {k:"suppliers",l:"Supplier Relationships",min:0,max:100,step:1,fmt:v=>v},
-    {k:"digital",l:"Digital Channels Active",min:0,max:10,step:1,fmt:v=>v},
-  ];
   const calc = () => { setLoading(true); setTimeout(()=>{ const sc = Math.round(Math.min(300 + Math.min(inputs.revenue/500000,1)*200 + Math.min(inputs.txns/500,1)*150 + Math.min(inputs.age/10,1)*120 + (inputs.consistency/100)*200 + Math.min(inputs.suppliers/30,1)*100 + Math.min(inputs.digital/5,1)*80, 850)); setScore(sc); setLoading(false); }, 1400); };
   const sc = score;
   const scoreColorVal = !sc?C.muted:sc>=700?C.green:sc>=600?C.gold:C.red;
   const tier = !sc?'—':sc>=750?'Excellent':sc>=700?'Good':sc>=600?'Fair':'Poor';
   const loan = !sc?'—':sc>=700?'R500K–R2M':sc>=600?'R50K–R500K':'R10K–R50K';
-  return (
-    <div style={{padding:'2rem',maxWidth:980,margin:'0 auto'}}>
-      <h2 style={{fontFamily:'DM Serif Display',Georgia,serif',fontSize:'1.8rem',fontWeight:400}}>Credit Intelligence Engine</h2>
-      <p style={{color:C.muted,fontSize:14,marginBottom:'1.5rem'}}>Input SME behavioral data — Credo outputs a bankable credit profile</p>
-      <div style={{display:'grid',gridTemplateColumns:'1fr 320px',gap:'1.5rem'}}>
-        <div className="card" style={{padding:'2rem'}}>
-          <div style={{fontSize:11,color:C.muted,letterSpacing:'0.1em',fontWeight:600,marginBottom:'1.5rem'}}>SME BEHAVIORAL DATA INPUTS</div>
-          <div style={{display:'flex',flexDirection:'column',gap:'1.5rem'}}>
-            {fields.map(f=>(
-              <div key={f.k}>
-                <div style={{display:'flex',justifyContent:'space-between',marginBottom:8}}><label style={{fontSize:13,fontWeight:500}}>{f.l}</label><span style={{fontSize:13,color:C.green,fontWeight:700}}>{f.fmt(inputs[f.k])}</span></div>
-                <input type="range" min={f.min} max={f.max} step={f.step} value={inputs[f.k]} onChange={e=>setInputs(p=>({...p,[f.k]:+e.target.value}))}/>
-              </div>
-            ))}
-          </div>
-          <button onClick={calc} disabled={loading} style={{marginTop:'2rem',width:'100%',background:loading?C.surface2:C.green,color:loading?C.muted:'#000',border:'none',padding:14,borderRadius:10,fontWeight:700,fontSize:15,cursor:loading?'not-allowed':'pointer'}}>{loading?'Calculating…':'Generate Credo Score →'}</button>
-        </div>
-        <div style={{display:'flex',flexDirection:'column',gap:'1rem'}}>
-          <div className="card" style={{padding:'2rem',textAlign:'center',flex:1}}>
-            <div style={{fontSize:11,color:C.muted,letterSpacing:'0.1em',marginBottom:'1rem'}}>CREDO CREDIT SCORE</div>
-            <div style={{fontSize:'5.5rem',fontFamily:'DM Serif Display',Georgia,serif',color:scoreColorVal,lineHeight:1}}>{sc??'—'}</div>
-            <div style={{fontSize:'1rem',color:scoreColorVal,fontWeight:700,marginBottom:'1.5rem'}}>{tier}</div>
-            <div style={{width:'100%',height:7,background:C.border,borderRadius:4}}><div style={{width:sc?`${((sc-300)/550)*100}%`:'0%',height:'100%',background:`linear-gradient(90deg,${C.red},${C.gold},${C.green})`,borderRadius:4}}/></div>
-            {sc && <div style={{display:'flex',flexDirection:'column',gap:'0.75rem',textAlign:'left',marginTop:'1.5rem'}}>
-              {[{l:"Loan Eligibility",v:loan},{l:"Risk Class",v:sc>=700?'Low Risk':sc>=600?'Medium Risk':'High Risk'},{l:"Insurance",v:sc>=600?'Eligible':'Conditional'},{l:"API Tier",v:sc>=700?'Premium':sc>=600?'Standard':'Basic'}].map(r=>
-                <div key={r.l} style={{display:'flex',justifyContent:'space-between',padding:'8px 12px',background:C.surface2,borderRadius:8,fontSize:13}}><span style={{color:C.muted}}>{r.l}</span><span style={{fontWeight:700}}>{r.v}</span></div>
-              )}
-            </div>}
-            {!sc && <div style={{color:C.muted,fontSize:13,padding:'2rem 0'}}>Adjust sliders and click Generate.</div>}
-          </div>
-          <div className="card">
-            <div style={{fontSize:11,color:C.muted,fontWeight:600,marginBottom:10}}>SCORE SCALE</div>
-            {[{r:"750–850",t:"Excellent",c:C.green},{r:"700–749",t:"Good",c:"#80C87A"},{r:"600–699",t:"Fair",c:C.gold},{r:"300–599",t:"Poor",c:C.red}].map(s=>
-              <div key={s.r} style={{display:'flex',alignItems:'center',gap:8,marginBottom:6}}><div style={{width:7,height:7,borderRadius:'50%',background:s.c,flexShrink:0}}/><span style={{fontSize:12,flex:1,color:C.muted}}>{s.r}</span><span style={{fontSize:12,color:s.c,fontWeight:600}}>{s.t}</span></div>
-            )}
-          </div>
-        </div>
-      </div>
-    </div>
+  return React.createElement("div", { style:{padding:'2rem',maxWidth:980,margin:'0 auto'} },
+    React.createElement("h2", { style:{fontFamily:'DM Serif Display,Georgia,serif',fontSize:'1.8rem',fontWeight:400} }, "Credit Intelligence Engine"),
+    React.createElement("p", { style:{color:C.muted,fontSize:14,marginBottom:'1.5rem'} }, "Input SME behavioral data — Credo outputs a bankable credit profile"),
+    React.createElement("div", { style:{display:'grid',gridTemplateColumns:'1fr 320px',gap:'1.5rem'} },
+      React.createElement("div", { className:"card", style:{padding:'2rem'} },
+        React.createElement("div", { style:{fontSize:11,color:C.muted,letterSpacing:'0.1em',fontWeight:600,marginBottom:'1.5rem'} }, "SME BEHAVIORAL DATA INPUTS"),
+        [{k:"revenue",l:"Monthly Revenue (ZAR)",min:1000,max:500000,step:1000,fmt:v=>`R${v.toLocaleString()}`},
+         {k:"txns",l:"Monthly Transactions",min:1,max:1000,step:1,fmt:v=>v},
+         {k:"age",l:"Business Age (years)",min:0,max:30,step:1,fmt:v=>`${v} yr${v!==1?'s':''}`},
+         {k:"consistency",l:"Payment Consistency (%)",min:0,max:100,step:1,fmt:v=>`${v}%`},
+         {k:"suppliers",l:"Supplier Relationships",min:0,max:100,step:1,fmt:v=>v},
+         {k:"digital",l:"Digital Channels Active",min:0,max:10,step:1,fmt:v=>v}].map(f =>
+          React.createElement("div", { key:f.k },
+            React.createElement("div", { style:{display:'flex',justifyContent:'space-between',marginBottom:8} },
+              React.createElement("label", { style:{fontSize:13,fontWeight:500} }, f.l),
+              React.createElement("span", { style:{fontSize:13,color:C.green,fontWeight:700} }, f.fmt(inputs[f.k]))
+            ),
+            React.createElement("input", { type:"range", min:f.min, max:f.max, step:f.step, value:inputs[f.k], onChange:e=>setInputs(p=>({...p,[f.k]:+e.target.value})) })
+          )
+        ),
+        React.createElement("button", { onClick:calc, disabled:loading, style:{marginTop:'2rem',width:'100%',background:loading?C.surface2:C.green,color:loading?C.muted:'#000',border:'none',padding:14,borderRadius:10,fontWeight:700,fontSize:15,cursor:loading?'not-allowed':'pointer'} }, loading?'Calculating…':'Generate Credo Score →')
+      ),
+      React.createElement("div", { style:{display:'flex',flexDirection:'column',gap:'1rem'} },
+        React.createElement("div", { className:"card", style:{padding:'2rem',textAlign:'center',flex:1} },
+          React.createElement("div", { style:{fontSize:11,color:C.muted,letterSpacing:'0.1em',marginBottom:'1rem'} }, "CREDO CREDIT SCORE"),
+          React.createElement("div", { style:{fontSize:'5.5rem',fontFamily:'DM Serif Display,Georgia,serif',color:scoreColorVal,lineHeight:1} }, sc??'—'),
+          React.createElement("div", { style:{fontSize:'1rem',color:scoreColorVal,fontWeight:700,marginBottom:'1.5rem'} }, tier),
+          React.createElement("div", { style:{width:'100%',height:7,background:C.border,borderRadius:4} },
+            React.createElement("div", { style:{width:sc?`${((sc-300)/550)*100}%`:'0%',height:'100%',background:`linear-gradient(90deg,${C.red},${C.gold},${C.green})`,borderRadius:4} })
+          ),
+          sc && React.createElement("div", { style:{display:'flex',flexDirection:'column',gap:'0.75rem',textAlign:'left',marginTop:'1.5rem'} },
+            [{l:"Loan Eligibility",v:loan},{l:"Risk Class",v:sc>=700?'Low Risk':sc>=600?'Medium Risk':'High Risk'},{l:"Insurance",v:sc>=600?'Eligible':'Conditional'},{l:"API Tier",v:sc>=700?'Premium':sc>=600?'Standard':'Basic'}].map(r =>
+              React.createElement("div", { key:r.l, style:{display:'flex',justifyContent:'space-between',padding:'8px 12px',background:C.surface2,borderRadius:8,fontSize:13} },
+                React.createElement("span", { style:{color:C.muted} }, r.l),
+                React.createElement("span", { style:{fontWeight:700} }, r.v)
+              )
+            )
+          ),
+          !sc && React.createElement("div", { style:{color:C.muted,fontSize:13,padding:'2rem 0'} }, "Adjust sliders and click Generate.")
+        ),
+        React.createElement("div", { className:"card" },
+          React.createElement("div", { style:{fontSize:11,color:C.muted,fontWeight:600,marginBottom:10} }, "SCORE SCALE"),
+          [{r:"750–850",t:"Excellent",c:C.green},{r:"700–749",t:"Good",c:"#80C87A"},{r:"600–699",t:"Fair",c:C.gold},{r:"300–599",t:"Poor",c:C.red}].map(s =>
+            React.createElement("div", { key:s.r, style:{display:'flex',alignItems:'center',gap:8,marginBottom:6} },
+              React.createElement("div", { style:{width:7,height:7,borderRadius:'50%',background:s.c,flexShrink:0} }),
+              React.createElement("span", { style:{fontSize:12,flex:1,color:C.muted} }, s.r),
+              React.createElement("span", { style:{fontSize:12,color:s.c,fontWeight:600} }, s.t)
+            )
+          )
+        )
+      )
+    )
   );
 }
 
+// Investors (unchanged)
 function Investors() {
   const proj = [
     {yr:"Year 1",u:"1,000",r:"R300K",v:"Pre-seed",s:"Validation",c:C.blue},
     {yr:"Year 2",u:"10,000",r:"R5M",v:"Seed",s:"Growth",c:C.gold},
-    {yr:"Year 3",u:"50,000+",r:"R25M+",v:"Series A+",s:"Scale",c:C.green},
+    {yr:"Year 3",u:"50,000+",r:"R25M+",v:"Series A+",s:"Scale",c:C.green}
   ];
   const moats = [
     {t:"Proprietary Data Moat",d:"Years of African SME behavioral data. Competitors cannot buy this.",c:C.gold},
     {t:"Network Effects",d:"More SMEs attract more lenders. The flywheel is self-reinforcing.",c:C.green},
     {t:"Switching Costs",d:"A business's Credo credit history is their most valuable asset.",c:C.blue},
-    {t:"API Infrastructure Lock-In",d:"Deep bank and fintech integrations create distribution channels.",c:C.gold},
+    {t:"API Infrastructure Lock-In",d:"Deep bank and fintech integrations create distribution channels.",c:C.gold}
   ];
-  return (
-    <div style={{padding:'2rem',maxWidth:1000,margin:'0 auto'}}>
-      <h2 style={{fontFamily:'DM Serif Display,Georgia,serif',fontSize:'1.8rem',fontWeight:400}}>Investor Overview</h2>
-      <p style={{color:C.muted,fontSize:14,marginBottom:'2rem'}}>This is not a startup idea — it is a financial system redesign for Africa.</p>
-      <div style={{background:`linear-gradient(135deg,rgba(0,232,122,0.07),rgba(59,110,248,0.07))`,border:`1px solid ${C.green}`,borderRadius:12,padding:'2rem',marginBottom:'2rem'}}>
-        <p style={{fontFamily:'DM Serif Display,Georgia,serif',fontSize:'1.2rem',lineHeight:1.75}}>"The company that controls <span style={{color:C.green}}>financial identity in Africa</span> will control the flow of capital. Credo is building that company — starting in South Africa, expanding via AfCFTA across 54 markets."</p>
-      </div>
-      <h3 style={{fontSize:11,color:C.muted,fontWeight:700,letterSpacing:'0.1em',marginBottom:'1rem'}}>FINANCIAL PROJECTIONS</h3>
-      <div style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:'1rem',marginBottom:'2rem'}}>
-        {proj.map((p,i)=>(
-          <div key={i} className="card" style={{borderTop:`3px solid ${p.c}`}}>
-            <div style={{fontSize:10,color:C.muted,letterSpacing:'0.1em',marginBottom:12}}>{p.yr.toUpperCase()} · {p.s.toUpperCase()}</div>
-            <div style={{fontSize:'1.8rem',fontFamily:'DM Serif Display,Georgia,serif',color:p.c,marginBottom:8}}>{p.r}</div>
-            <div style={{fontSize:13,color:C.muted}}>{p.u} SMEs</div>
-            <div style={{fontSize:12,color:p.c,marginTop:8,fontWeight:600}}>{p.v}</div>
-          </div>
-        ))}
-      </div>
-      <h3 style={{fontSize:11,color:C.muted,fontWeight:700,letterSpacing:'0.1em',marginBottom:'1rem'}}>DEFENSIBILITY MOATS</h3>
-      <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'1rem',marginBottom:'2rem'}}>
-        {moats.map(m=>(
-          <div key={m.t} className="card">
-            <div style={{fontWeight:700,marginBottom:8,display:'flex',alignItems:'center',gap:8}}><span style={{color:m.c}}>◆</span>{m.t}</div>
-            <div style={{fontSize:13,color:C.muted,lineHeight:1.65}}>{m.d}</div>
-          </div>
-        ))}
-      </div>
-      <div className="card" style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'2rem'}}>
-        <div><div style={{fontWeight:700}}>Exit Strategy</div><div style={{fontSize:13,color:C.muted}}>Acquisition target for banks, telecoms, or global fintechs.</div></div>
-        <div style={{textAlign:'right'}}><div style={{fontFamily:'DM Serif Display,Georgia,serif',fontSize:'2rem',color:C.green}}>Billions</div><div style={{fontSize:11,color:C.muted}}>ZAR valuation potential</div></div>
-      </div>
-    </div>
+  return React.createElement("div", { style:{padding:'2rem',maxWidth:1000,margin:'0 auto'} },
+    React.createElement("h2", { style:{fontFamily:'DM Serif Display,Georgia,serif',fontSize:'1.8rem',fontWeight:400} }, "Investor Overview"),
+    React.createElement("p", { style:{color:C.muted,fontSize:14,marginBottom:'2rem'} }, "This is not a startup idea — it is a financial system redesign for Africa."),
+    React.createElement("div", { style:{background:`linear-gradient(135deg,rgba(0,232,122,0.07),rgba(59,110,248,0.07))`,border:`1px solid ${C.green}`,borderRadius:12,padding:'2rem',marginBottom:'2rem'} },
+      React.createElement("p", { style:{fontFamily:'DM Serif Display,Georgia,serif',fontSize:'1.2rem',lineHeight:1.75} },
+        "\"The company that controls ", React.createElement("span", { style:{color:C.green} }, "financial identity in Africa"), " will control the flow of capital. Credo is building that company — starting in South Africa, expanding via AfCFTA across 54 markets.\""
+      )
+    ),
+    React.createElement("h3", { style:{fontSize:11,color:C.muted,fontWeight:700,letterSpacing:'0.1em',marginBottom:'1rem'} }, "FINANCIAL PROJECTIONS"),
+    React.createElement("div", { style:{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:'1rem',marginBottom:'2rem'} },
+      proj.map((p,i) =>
+        React.createElement("div", { key:i, className:"card", style:{borderTop:`3px solid ${p.c}`} },
+          React.createElement("div", { style:{fontSize:10,color:C.muted,letterSpacing:'0.1em',marginBottom:12} }, p.yr.toUpperCase()+" · "+p.s.toUpperCase()),
+          React.createElement("div", { style:{fontSize:'1.8rem',fontFamily:'DM Serif Display,Georgia,serif',color:p.c,marginBottom:8} }, p.r),
+          React.createElement("div", { style:{fontSize:13,color:C.muted} }, p.u+" SMEs"),
+          React.createElement("div", { style:{fontSize:12,color:p.c,marginTop:8,fontWeight:600} }, p.v)
+        )
+      )
+    ),
+    React.createElement("h3", { style:{fontSize:11,color:C.muted,fontWeight:700,letterSpacing:'0.1em',marginBottom:'1rem'} }, "DEFENSIBILITY MOATS"),
+    React.createElement("div", { style:{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'1rem',marginBottom:'2rem'} },
+      moats.map(m =>
+        React.createElement("div", { key:m.t, className:"card" },
+          React.createElement("div", { style:{fontWeight:700,marginBottom:8,display:'flex',alignItems:'center',gap:8} },
+            React.createElement("span", { style:{color:m.c} }, "◆"), m.t
+          ),
+          React.createElement("div", { style:{fontSize:13,color:C.muted,lineHeight:1.65} }, m.d)
+        )
+      )
+    ),
+    React.createElement("div", { className:"card", style:{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'2rem'} },
+      React.createElement("div", null,
+        React.createElement("div", { style:{fontWeight:700} }, "Exit Strategy"),
+        React.createElement("div", { style:{fontSize:13,color:C.muted} }, "Acquisition target for banks, telecoms, or global fintechs.")
+      ),
+      React.createElement("div", { style:{textAlign:'right'} },
+        React.createElement("div", { style:{fontFamily:'DM Serif Display,Georgia,serif',fontSize:'2rem',color:C.green} }, "Billions"),
+        React.createElement("div", { style:{fontSize:11,color:C.muted} }, "ZAR valuation potential")
+      )
+    )
   );
 }
 
-// ── APP ─────────────────────────────────────
+// Admin App (unchanged)
+function AdminApp() {
+  const [adminView, setAdminView] = useState("Dashboard");
+  return React.createElement("div", { style:{paddingTop:80} },
+    React.createElement("nav", null,
+      React.createElement("div", { style:{display:'flex',alignItems:'center',gap:10} },
+        React.createElement(CredoLogo, { size:28 }),
+        React.createElement("span", { style:{fontSize:11,color:C.muted,letterSpacing:'0.1em'} }, "ADMIN")
+      ),
+      React.createElement("div", { style:{display:'flex',gap:4} },
+        ["Dashboard","Credit Engine","Investors"].map(t =>
+          React.createElement("button", { key:t, onClick:()=>setAdminView(t), style:{background:adminView===t?C.surface2:'transparent',border:adminView===t?`1px solid ${C.border}`:'1px solid transparent',color:adminView===t?C.green:C.muted,padding:'6px 14px',borderRadius:7,cursor:'pointer',fontSize:13,fontWeight:500} }, t)
+        )
+      ),
+      React.createElement("button", { onClick:logoutAdmin, style:{background:C.red,color:'#fff',border:'none',padding:'6px 14px',borderRadius:6,cursor:'pointer',fontSize:12} }, "Logout")
+    ),
+    adminView === "Dashboard" && React.createElement(AdminDashboard),
+    adminView === "Credit Engine" && React.createElement(CreditEngine),
+    adminView === "Investors" && React.createElement(Investors)
+  );
+}
+
+// App root
 function App() {
   const [admin, setAdmin] = useState(isAdmin());
   const [showPin, setShowPin] = useState(false);
@@ -684,36 +662,33 @@ function App() {
   };
 
   if (onboarding) {
-    return <VendorOnboarding onBackToLanding={()=>setOnboarding(false)} />;
+    return React.createElement(VendorOnboarding, { onBackToLanding:()=>setOnboarding(false) });
   }
 
   if (!admin && !showPin) {
-    return (
-      <div>
-        <PublicLanding onStartOnboarding={()=>setOnboarding(true)} />
-        <div style={{position:'fixed',bottom:10,right:10,opacity:0.3,zIndex:9999}}>
-          <a onClick={()=>setShowPin(true)} style={{color:C.muted,fontSize:10,cursor:'pointer',textDecoration:'none'}}>admin</a>
-        </div>
-      </div>
+    return React.createElement("div", null,
+      React.createElement(PublicLanding, { onStartOnboarding:()=>setOnboarding(true) }),
+      React.createElement("div", { style:{position:'fixed',bottom:10,right:10,opacity:0.3,zIndex:9999} },
+        React.createElement("a", { onClick:()=>setShowPin(true), style:{color:C.muted,fontSize:10,cursor:'pointer',textDecoration:'none'} }, "admin")
+      )
     );
   }
 
   if (!admin && showPin) {
-    return (
-      <div style={{minHeight:'100vh',display:'flex',alignItems:'center',justifyContent:'center',flexDirection:'column',gap:'1rem',background:C.bg}}>
-        <CredoLogo size={36} />
-        <input type="password" placeholder="Enter PIN" value={pinInput} onChange={e=>setPinInput(e.target.value)} onKeyDown={e=>e.key==='Enter'&&handleLogin()} style={{background:C.surface2,border:`1px solid ${C.border}`,color:C.text,padding:'8px 16px',borderRadius:8,fontSize:15,width:200,textAlign:'center',outline:'none'}} />
-        <button onClick={handleLogin} style={{background:C.green,color:'#000',border:'none',padding:'8px 24px',borderRadius:8,fontWeight:700,cursor:'pointer'}}>Log in</button>
-        {pinError && <div style={{color:C.red,fontSize:12}}>Incorrect PIN</div>}
-        <button onClick={()=>{setShowPin(false);setPinInput('');setPinError(false)}} style={{background:'transparent',color:C.muted,border:'none',cursor:'pointer',fontSize:12}}>Back to site</button>
-      </div>
+    return React.createElement("div", { style:{minHeight:'100vh',display:'flex',alignItems:'center',justifyContent:'center',flexDirection:'column',gap:'1rem',background:C.bg} },
+      React.createElement(CredoLogo, { size:36 }),
+      React.createElement("input", { type:"password", placeholder:"Enter PIN", value:pinInput, onChange:e=>setPinInput(e.target.value), onKeyDown:e=>e.key==='Enter'&&handleLogin(), style:{background:C.surface2,border:`1px solid ${C.border}`,color:C.text,padding:'8px 16px',borderRadius:8,fontSize:15,width:200,textAlign:'center',outline:'none'} }),
+      React.createElement("button", { onClick:handleLogin, style:{background:C.green,color:'#000',border:'none',padding:'8px 24px',borderRadius:8,fontWeight:700,cursor:'pointer'} }, "Log in"),
+      pinError && React.createElement("div", { style:{color:C.red,fontSize:12} }, "Incorrect PIN"),
+      React.createElement("button", { onClick:()=>{setShowPin(false);setPinInput('');setPinError(false)}, style:{background:'transparent',color:C.muted,border:'none',cursor:'pointer',fontSize:12} }, "Back to site")
     );
   }
 
-  return <AdminApp />;
+  return React.createElement(AdminApp);
 }
 
-ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+ReactDOM.createRoot(document.getElementById("root")).render(React.createElement(App));
+console.log("Credo app mounted successfully");
 </script>
 </body>
 </html>
