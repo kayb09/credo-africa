@@ -67,6 +67,12 @@ input[type=range]{accent-color:#00E87A;height:4px;cursor:pointer;width:100%}
 .main-footer{border-top:1px solid #1E2535;padding:1rem 2rem;display:flex;flex-wrap:wrap;gap:1.5rem;justify-content:center;align-items:center;font-size:11px;color:#6B7A99}
 .main-footer a{color:#6B7A99;text-decoration:none;transition:color 0.2s}
 .main-footer a:hover{color:#00E87A}
+.transaction-row{cursor:pointer}
+.transaction-row.selected td{background:#0F1A1A}
+.activity-panel{background:#0F1219;border:1px solid #1E2535;border-radius:12px;padding:1.5rem;margin-top:1rem}
+.activity-panel h3{font-family:'DM Serif Display',Georgia,serif;font-size:1.2rem;margin-bottom:1rem}
+.activity-list{max-height:300px;overflow-y:auto;font-size:0.8rem}
+.activity-item{padding:0.5rem 0;border-bottom:1px solid #1E2535;display:flex;justify-content:space-between;align-items:center}
 </style>
 </head>
 <body>
@@ -80,7 +86,6 @@ const C = {
   blue:"#3B6EF8", text:"#F0F4FF", muted:"#6B7A99", red:"#FF6B6B"
 };
 
-// ── NEW SUPABASE CREDENTIALS ─────────────
 const SUPABASE_URL = "https://mfvhurvsgnzltkwvmoki.supabase.co";
 const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1mdmh1cnZzZ256bHRrd3Ztb2tpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA0NTI1MTAsImV4cCI6MjA5NjAyODUxMH0.pTQJ7WXXGMxbsMLSey5JDBV3go10XUhWJXqUBJW2gBo";
 const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
@@ -131,7 +136,7 @@ function ConsentBanner() {
   );
 }
 
-// ── LEGAL PAGES (kept, unchanged) ────────
+// ── LEGAL PAGES (kept) ────────────────────
 function PrivacyPage() {
   const goHome = () => window.location.hash = '';
   return (
@@ -141,27 +146,15 @@ function PrivacyPage() {
       <p><strong>Effective Date:</strong> 1 June 2026</p>
       <p><strong>Data Controller:</strong> K2026333209 T/a Credo Africa (Pty) Ltd, Reg No. K2026/333209/07, South Africa. Contact:{" "}<a href="mailto:credoafricaidentity@gmail.com">credoafricaidentity@gmail.com</a>, +27 70 515 1771.</p>
       <h2>1. Information We Collect</h2>
-      <ul>
-        <li><strong>Identity & business data:</strong> full name, phone number, business name, category, location, years operating, social media links, South African ID/passport photos, selfies, proof of address.</li>
-        <li><strong>Transactional & behavioural data:</strong> weekly revenue figures, supplier receipts, inventory purchase slips, invoices, stall/product images.</li>
-        <li><strong>Technical data:</strong> device information, browser logs, IP address, approximate location (derived from IP), page interactions, timestamps.</li>
-      </ul>
-      <h2>2. Purpose of Processing</h2>
-      <p>Your data is used solely to create and maintain your Credo trust profile, assess and update your credibility score, provide personalised insights, connect you with financial service providers (with your consent), improve platform security, prevent fraud, and comply with legal obligations.</p>
-      <h2>3. Legal Basis (POPIA)</h2>
-      <p>We process your data based on your explicit consent (Section 11 of POPIA). You may withdraw consent at any time.</p>
-      <h2>4. Data Retention</h2>
-      <p>We retain your personal data for as long as your account is active. Transactional data may be retained for up to 5 years after account closure for auditing and legal compliance.</p>
-      <h2>5. Your Rights</h2>
-      <p>You have the right to access, correct, delete, or port your data. Email{" "}<a href="mailto:credoafricaidentity@gmail.com">credoafricaidentity@gmail.com</a>. We respond within 30 days.</p>
-      <h2>6. Data Sharing</h2>
-      <p>We do not sell your data. We may share anonymised, aggregated data with lenders or partners only with your explicit consent.</p>
-      <h2>7. Security</h2>
-      <p>We implement technical and organisational measures to protect your data against unauthorised access, loss, or misuse.</p>
-      <h2>8. Cookies & Tracking</h2>
-      <p>We use essential cookies and local storage to remember your preferences and consent. No third‑party advertising trackers are used.</p>
-      <h2>9. Changes</h2>
-      <p>We will notify you of any changes to this policy by updating the date above and, where appropriate, via WhatsApp or email.</p>
+      <ul><li><strong>Identity & business data:</strong> full name, phone number, business name, category, location, years operating, social media links, South African ID/passport photos, selfies, proof of address.</li><li><strong>Transactional & behavioural data:</strong> weekly revenue figures, supplier receipts, inventory purchase slips, invoices, stall/product images.</li><li><strong>Technical data:</strong> device information, browser logs, IP address, approximate location (derived from IP), page interactions, timestamps.</li></ul>
+      <h2>2. Purpose of Processing</h2><p>Your data is used solely to create and maintain your Credo trust profile, assess and update your credibility score, provide personalised insights, connect you with financial service providers (with your consent), improve platform security, prevent fraud, and comply with legal obligations.</p>
+      <h2>3. Legal Basis (POPIA)</h2><p>We process your data based on your explicit consent (Section 11 of POPIA). You may withdraw consent at any time.</p>
+      <h2>4. Data Retention</h2><p>We retain your personal data for as long as your account is active. Transactional data may be retained for up to 5 years after account closure for auditing and legal compliance.</p>
+      <h2>5. Your Rights</h2><p>You have the right to access, correct, delete, or port your data. Email{" "}<a href="mailto:credoafricaidentity@gmail.com">credoafricaidentity@gmail.com</a>. We respond within 30 days.</p>
+      <h2>6. Data Sharing</h2><p>We do not sell your data. We may share anonymised, aggregated data with lenders or partners only with your explicit consent.</p>
+      <h2>7. Security</h2><p>We implement technical and organisational measures to protect your data against unauthorised access, loss, or misuse.</p>
+      <h2>8. Cookies & Tracking</h2><p>We use essential cookies and local storage to remember your preferences and consent. No third‑party advertising trackers are used.</p>
+      <h2>9. Changes</h2><p>We will notify you of any changes to this policy by updating the date above and, where appropriate, via WhatsApp or email.</p>
     </div>
   );
 }
@@ -173,26 +166,16 @@ function TermsPage() {
       <h1>Terms of Service</h1>
       <p><strong>Last updated:</strong> 1 June 2026</p>
       <p>These Terms govern your use of the Credo Africa platform, operated by K2026333209 T/a Credo Africa (Pty) Ltd (Reg. K2026/333209/07). Contact:{" "}<a href="mailto:credoafricaidentity@gmail.com">credoafricaidentity@gmail.com</a>.</p>
-      <h2>1. Eligibility</h2>
-      <p>You must be at least 18 years old and own/operate a business in South Africa.</p>
-      <h2>2. Account & Verification</h2>
-      <p>You agree to provide accurate and complete information during onboarding. You must not impersonate others or submit fraudulent documents.</p>
-      <h2>3. Platform Use</h2>
-      <p>Credo provides a trust infrastructure service — not a lending or credit product. Your trust score is an indicator based on the data you provide.</p>
-      <h2>4. Data & Privacy</h2>
-      <p>Your use is subject to our{" "}<a href="#privacy">Privacy Policy</a>. You grant us a limited license to process your uploaded data for providing the service.</p>
-      <h2>5. Prohibited Conduct</h2>
-      <p>You may not upload false, misleading, or malicious content. We reserve the right to suspend or terminate accounts that violate these terms.</p>
-      <h2>6. Intellectual Property</h2>
-      <p>The Credo brand, logo, and platform are owned by Credo Africa (Pty) Ltd. You may not copy, modify, or redistribute them without permission.</p>
-      <h2>7. Limitation of Liability</h2>
-      <p>To the fullest extent permitted by law, Credo Africa shall not be liable for any indirect or consequential damages arising from your use. Our total liability is limited to the amount you have paid us (currently zero — this service is free).</p>
-      <h2>8. Termination</h2>
-      <p>You may stop using the service at any time. We may terminate or suspend access if you breach these Terms.</p>
-      <h2>9. Governing Law</h2>
-      <p>These Terms are governed by the laws of the Republic of South Africa.</p>
-      <h2>10. Changes</h2>
-      <p>We may update these Terms. Continued use after changes constitutes acceptance.</p>
+      <h2>1. Eligibility</h2><p>You must be at least 18 years old and own/operate a business in South Africa.</p>
+      <h2>2. Account & Verification</h2><p>You agree to provide accurate and complete information during onboarding. You must not impersonate others or submit fraudulent documents.</p>
+      <h2>3. Platform Use</h2><p>Credo provides a trust infrastructure service — not a lending or credit product. Your trust score is an indicator based on the data you provide.</p>
+      <h2>4. Data & Privacy</h2><p>Your use is subject to our{" "}<a href="#privacy">Privacy Policy</a>. You grant us a limited license to process your uploaded data for providing the service.</p>
+      <h2>5. Prohibited Conduct</h2><p>You may not upload false, misleading, or malicious content. We reserve the right to suspend or terminate accounts that violate these terms.</p>
+      <h2>6. Intellectual Property</h2><p>The Credo brand, logo, and platform are owned by Credo Africa (Pty) Ltd. You may not copy, modify, or redistribute them without permission.</p>
+      <h2>7. Limitation of Liability</h2><p>To the fullest extent permitted by law, Credo Africa shall not be liable for any indirect or consequential damages arising from your use. Our total liability is limited to the amount you have paid us (currently zero — this service is free).</p>
+      <h2>8. Termination</h2><p>You may stop using the service at any time. We may terminate or suspend access if you breach these Terms.</p>
+      <h2>9. Governing Law</h2><p>These Terms are governed by the laws of the Republic of South Africa.</p>
+      <h2>10. Changes</h2><p>We may update these Terms. Continued use after changes constitutes acceptance.</p>
     </div>
   );
 }
@@ -204,27 +187,14 @@ function DataCompliancePage() {
       <h1>Data Compliance Declaration</h1>
       <p><strong>In compliance with POPIA (Protection of Personal Information Act, 2013)</strong></p>
       <p>This declaration is issued by K2026333209 T/a Credo Africa (Pty) Ltd, Reg. K2026/333209/07, South Africa.</p>
-      <h2>1. Responsible Party</h2>
-      <p>Credo Africa (Pty) Ltd is the responsible party for all personal data processed through the Credo platform. Contact:{" "}<a href="mailto:credoafricaidentity@gmail.com">credoafricaidentity@gmail.com</a>.</p>
-      <h2>2. Data Collection Summary</h2>
-      <ul>
-        <li><strong>Categories:</strong> identity, contact, business, transactional, technical.</li>
-        <li><strong>Purposes:</strong> financial identity building, credibility scoring, service improvement, fraud prevention.</li>
-        <li><strong>Retention:</strong> active account + 5 years post‑closure.</li>
-        <li><strong>Legal basis:</strong> consent (POPIA Section 11).</li>
-      </ul>
-      <h2>3. Analytics & Logging</h2>
-      <p>We collect server logs (IP address, timestamp, URL accessed) for security and performance monitoring. Retained for 12 months.</p>
-      <h2>4. Location Data</h2>
-      <p>We derive approximate location from your IP address. No precise GPS location is collected without explicit permission.</p>
-      <h2>5. Cross‑Border Transfer</h2>
-      <p>Data is stored on secure servers in the European Union. Adequate safeguards are in place per POPIA.</p>
-      <h2>6. Security Measures</h2>
-      <p>Encryption in transit (TLS) and at rest, strict access controls, regular security assessments.</p>
-      <h2>7. Data Subject Rights</h2>
-      <p>Request access, rectification, deletion, or restriction via{" "}<a href="mailto:credoafricaidentity@gmail.com">credoafricaidentity@gmail.com</a>.</p>
-      <h2>8. Complaints</h2>
-      <p>Lodge complaints with the Information Regulator of South Africa:{" "}<a href="https://www.justice.gov.za/inforeg/" target="_blank">justice.gov.za/inforeg</a>.</p>
+      <h2>1. Responsible Party</h2><p>Credo Africa (Pty) Ltd is the responsible party for all personal data processed through the Credo platform. Contact:{" "}<a href="mailto:credoafricaidentity@gmail.com">credoafricaidentity@gmail.com</a>.</p>
+      <h2>2. Data Collection Summary</h2><ul><li><strong>Categories:</strong> identity, contact, business, transactional, technical.</li><li><strong>Purposes:</strong> financial identity building, credibility scoring, service improvement, fraud prevention.</li><li><strong>Retention:</strong> active account + 5 years post‑closure.</li><li><strong>Legal basis:</strong> consent (POPIA Section 11).</li></ul>
+      <h2>3. Analytics & Logging</h2><p>We collect server logs (IP address, timestamp, URL accessed) for security and performance monitoring. Retained for 12 months.</p>
+      <h2>4. Location Data</h2><p>We derive approximate location from your IP address. No precise GPS location is collected without explicit permission.</p>
+      <h2>5. Cross‑Border Transfer</h2><p>Data is stored on secure servers in the European Union. Adequate safeguards are in place per POPIA.</p>
+      <h2>6. Security Measures</h2><p>Encryption in transit (TLS) and at rest, strict access controls, regular security assessments.</p>
+      <h2>7. Data Subject Rights</h2><p>Request access, rectification, deletion, or restriction via{" "}<a href="mailto:credoafricaidentity@gmail.com">credoafricaidentity@gmail.com</a>.</p>
+      <h2>8. Complaints</h2><p>Lodge complaints with the Information Regulator of South Africa:{" "}<a href="https://www.justice.gov.za/inforeg/" target="_blank">justice.gov.za/inforeg</a>.</p>
     </div>
   );
 }
@@ -311,7 +281,7 @@ function PublicLanding({ onStartOnboarding }) {
   );
 }
 
-// ── FILE UPLOAD WITH SUPABASE STORAGE ─────
+// ── FILE UPLOAD ──────────────────────────
 function FileUpload({ label, accept, multiple, file, files, onChange }) {
   const [previews, setPreviews] = useState([]);
   const [dragging, setDragging] = useState(false);
@@ -356,7 +326,7 @@ const inputStyle = { background:C.surface2, border:`1px solid ${C.border}`, colo
 const primaryBtn = { background:C.green, color:'#000', border:'none', padding:'10px 24px', borderRadius:8, fontWeight:700, cursor:'pointer' };
 const secondaryBtn = { background:'transparent', color:C.muted, border:`1px solid ${C.border}`, padding:'10px 24px', borderRadius:8, cursor:'pointer' };
 
-// ── ONBOARDING THAT SAVES TO SUPABASE ────
+// ── VENDOR ONBOARDING (saves to Supabase) ─
 function VendorOnboarding({ onBackToLanding }) {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
@@ -387,7 +357,6 @@ function VendorOnboarding({ onBackToLanding }) {
   const handleFinalSubmit = async () => {
     setSaving(true);
     try {
-      // 1. Insert owner
       const { data: owner, error: ownerError } = await supabaseClient
         .from('owners')
         .insert({ full_name: formData.fullName, phone: formData.phone })
@@ -395,7 +364,6 @@ function VendorOnboarding({ onBackToLanding }) {
         .single();
       if (ownerError) throw ownerError;
 
-      // 2. Insert business
       const { data: business, error: businessError } = await supabaseClient
         .from('businesses')
         .insert({
@@ -412,7 +380,6 @@ function VendorOnboarding({ onBackToLanding }) {
         .single();
       if (businessError) throw businessError;
 
-      // 3. Upload files to storage
       const uploads = [];
       if (formData.idDoc) uploads.push(uploadFile(formData.idDoc, 'identity'));
       if (formData.selfieWithId) uploads.push(uploadFile(formData.selfieWithId, 'identity'));
@@ -423,6 +390,12 @@ function VendorOnboarding({ onBackToLanding }) {
         uploads.push(uploadFile(receipt, 'supplier'));
       }
       await Promise.all(uploads);
+
+      await supabaseClient.from('activity_history').insert({
+        business_id: business.id,
+        activity_type: 'onboarding_completed',
+        metadata: { phone: formData.phone }
+      });
 
       setSuccess(true);
     } catch (err) {
@@ -542,12 +515,15 @@ function VendorOnboarding({ onBackToLanding }) {
   );
 }
 
-// ── ADMIN DASHBOARD ──────────────────────
+// ── ADMIN DASHBOARD (with activity details) ─
 function AdminDashboard() {
   const [businesses, setBusinesses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const [lastRefresh, setLastRefresh] = useState(null);
+  const [selectedBusiness, setSelectedBusiness] = useState(null);
+  const [activityData, setActivityData] = useState({ revenue: [], expenses: [], receipts: [], activity: [] });
+
   const loadData = useCallback(async () => {
     try {
       const { data, error } = await supabaseClient.from("businesses").select(`id, business_name, business_type, location, monthly_revenue, age_years, employee_count, has_bank_account, created_at, owners:owner_id(full_name, phone), credit_scores(*)`).order("created_at",{ascending:false});
@@ -557,16 +533,22 @@ function AdminDashboard() {
     } catch(err){ console.error("Failed to load:",err); }
     finally { setLoading(false); }
   },[]);
+
   useEffect(()=>{
     loadData();
-    const channel = supabaseClient.channel("admin-realtime").on("postgres_changes",{event:"*",schema:"public",table:"businesses"},()=>loadData()).on("postgres_changes",{event:"*",schema:"public",table:"credit_scores"},()=>loadData()).subscribe();
+    const channel = supabaseClient.channel("admin-realtime")
+      .on("postgres_changes",{event:"*",schema:"public",table:"businesses"},()=>loadData())
+      .on("postgres_changes",{event:"*",schema:"public",table:"credit_scores"},()=>loadData())
+      .subscribe();
     const interval = setInterval(loadData,30000);
     return ()=>{ supabaseClient.removeChannel(channel); clearInterval(interval); };
   },[loadData]);
+
   const filtered = useMemo(()=>{
     const q = searchQuery.toLowerCase();
     return businesses.filter(b=>{const owner=b.owners;const latest=latestScore(b.credit_scores);return((b.business_name||"").toLowerCase().includes(q)||(b.location||"").toLowerCase().includes(q)||(b.business_type||"").toLowerCase().includes(q)||(owner?.full_name||"").toLowerCase().includes(q)||(latest?.score?.toString()||"").includes(q));});
   },[businesses,searchQuery]);
+
   const kpis = useMemo(()=>{
     const total=businesses.length;
     const scores=businesses.map(b=>latestScore(b.credit_scores)?.score).filter(Boolean);
@@ -575,13 +557,44 @@ function AdminDashboard() {
     const totalRev=businesses.reduce((sum,b)=>sum+(b.monthly_revenue||0),0);
     return {total,avg,loanReady,totalRev};
   },[businesses]);
+
   const scoreDistribution = useMemo(()=>{
     const scores=businesses.map(b=>latestScore(b.credit_scores)?.score).filter(Boolean);
     const tiers=[{label:"Excellent (750+)",count:scores.filter(s=>s>=750).length,color:C.green},{label:"Good (700–749)",count:scores.filter(s=>s>=700&&s<750).length,color:"#80C87A"},{label:"Fair (600–699)",count:scores.filter(s=>s>=600&&s<700).length,color:C.gold},{label:"Poor (<600)",count:scores.filter(s=>s<600).length,color:C.red}];
     const max=Math.max(...tiers.map(t=>t.count),1);
     return tiers.map(t=>({...t,widthPercent:(t.count/max)*100}));
   },[businesses]);
+
   const recent = useMemo(()=>businesses.slice(0,5),[businesses]);
+
+  // Load activity for selected business
+  useEffect(() => {
+    if (!selectedBusiness) return;
+    const fetchActivity = async () => {
+      try {
+        const [revRes, expRes, recRes, actRes] = await Promise.all([
+          supabaseClient.from("revenue_entries").select("*").eq("business_id", selectedBusiness).order("entry_date",{ascending:false}).limit(10),
+          supabaseClient.from("expense_entries").select("*").eq("business_id", selectedBusiness).order("expense_date",{ascending:false}).limit(10),
+          supabaseClient.from("supplier_records").select("*").eq("business_id", selectedBusiness).order("created_at",{ascending:false}).limit(10),
+          supabaseClient.from("activity_history").select("*").eq("business_id", selectedBusiness).order("created_at",{ascending:false}).limit(20)
+        ]);
+        setActivityData({
+          revenue: revRes.data || [],
+          expenses: expRes.data || [],
+          receipts: recRes.data || [],
+          activity: actRes.data || []
+        });
+      } catch (err) { console.error(err); }
+    };
+    fetchActivity();
+  }, [selectedBusiness]);
+
+  const handleRowClick = (businessId) => {
+    setSelectedBusiness(businessId === selectedBusiness ? null : businessId);
+  };
+
+  const selectedBiz = businesses.find(b => b.id === selectedBusiness);
+
   return (
     <div style={{padding:'2rem',maxWidth:1200,margin:'0 auto'}}>
       <div style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:'1rem',marginBottom:'1.5rem'}}>
@@ -593,7 +606,7 @@ function AdminDashboard() {
       <div style={{display:'grid',gridTemplateColumns:'1fr 340px',gap:'1.5rem'}}>
         <div className="card" style={{padding:0,overflow:'hidden'}}>
           <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',padding:'1.25rem 1.5rem',borderBottom:`1px solid ${C.border}`}}>
-            <div><div style={{fontWeight:700,fontSize:15}}>SME Profiles</div><div style={{fontSize:12,color:C.muted,marginTop:2}}>Latest credit score shown</div></div>
+            <div><div style={{fontWeight:700,fontSize:15}}>SME Profiles</div><div style={{fontSize:12,color:C.muted,marginTop:2}}>Click a row to see activity</div></div>
             <input placeholder="Search..." value={searchQuery} onChange={e=>setSearchQuery(e.target.value)} style={{background:C.surface2,border:`1px solid ${C.border}`,color:C.text,padding:'7px 14px',borderRadius:8,fontSize:13,width:220}} />
           </div>
           {loading ? (
@@ -610,7 +623,7 @@ function AdminDashboard() {
                   const owner = b.owners;
                   const pct = score ? Math.round(((score - 300) / 550) * 100) : 0;
                   return (
-                    <tr key={b.id}>
+                    <tr key={b.id} onClick={()=>handleRowClick(b.id)} className={`transaction-row ${selectedBusiness===b.id ? 'selected' : ''}`}>
                       <td><div style={{fontWeight:600}}>{escapeHtml(b.business_name)}</div><div style={{fontSize:11,color:C.muted}}>{owner?.full_name || "—"}</div></td>
                       <td style={{color:C.muted}}>{b.business_type || "—"}</td>
                       <td style={{color:C.muted}}>{b.location || "—"}</td>
@@ -652,6 +665,48 @@ function AdminDashboard() {
           </div>
         </div>
       </div>
+
+      {/* Activity Panel */}
+      {selectedBusiness && selectedBiz && (
+        <div className="activity-panel">
+          <h3>{selectedBiz.business_name} — Activity</h3>
+          <div className="activity-list">
+            <h4 style={{color:C.green, marginBottom: '0.5rem'}}>Revenue Entries</h4>
+            {activityData.revenue.length === 0 && <p style={{color:C.muted}}>None</p>}
+            {activityData.revenue.map(e => (
+              <div key={e.id} className="activity-item">
+                <span>{e.entry_date}</span>
+                <span style={{color:C.green}}>R{e.amount}</span>
+              </div>
+            ))}
+            <h4 style={{color:C.gold, margin: '1rem 0 0.5rem'}}>Expenses</h4>
+            {activityData.expenses.length === 0 && <p style={{color:C.muted}}>None</p>}
+            {activityData.expenses.map(e => (
+              <div key={e.id} className="activity-item">
+                <span>{e.expense_date} – {e.category}</span>
+                <span style={{color:C.gold}}>R{e.amount}</span>
+              </div>
+            ))}
+            <h4 style={{color:C.blue, margin: '1rem 0 0.5rem'}}>Supplier Receipts</h4>
+            {activityData.receipts.length === 0 && <p style={{color:C.muted}}>None</p>}
+            {activityData.receipts.map(r => (
+              <div key={r.id} className="activity-item">
+                <span>{r.purchase_date || 'No date'}</span>
+                <span>{r.receipt_image_path ? '📎' : 'No image'}</span>
+              </div>
+            ))}
+            <h4 style={{color:C.muted, margin: '1rem 0 0.5rem'}}>Activity Log</h4>
+            {activityData.activity.length === 0 && <p style={{color:C.muted}}>None</p>}
+            {activityData.activity.map(a => (
+              <div key={a.id} className="activity-item">
+                <span>{new Date(a.created_at).toLocaleString()}</span>
+                <span>{a.activity_type}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
       <div style={{display:'flex',alignItems:'center',gap:8,marginTop:'1rem'}}>
         <span style={{width:7,height:7,borderRadius:'50%',background:C.green,animation:'pulse 2s infinite'}}></span>
         <span style={{fontSize:12,color:C.muted}}>Live · {lastRefresh || '—'}</span>
