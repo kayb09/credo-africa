@@ -55,7 +55,6 @@ input[type=range]{accent-color:#00E87A;height:4px;cursor:pointer;width:100%}
 .step-dot.completed{background:#00E87A80;border-color:#00E87A}
 .trust-bar{height:8px;background:#1E2535;border-radius:4px;margin:0.5rem 0;overflow:hidden}
 .trust-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,#FF6B6B,#F0B429,#00E87A);transition:width 0.5s}
-/* Legal pages */
 .legal-page{max-width:760px;margin:0 auto;padding:5rem 1.5rem 3rem;line-height:1.8;font-size:14px;color:#C0C8D9}
 .legal-page h1{font-family:'DM Serif Display',Georgia,serif;font-size:2rem;font-weight:400;color:#F0F4FF;margin-bottom:1.5rem}
 .legal-page h2{font-family:'DM Serif Display',Georgia,serif;font-size:1.3rem;font-weight:400;color:#00E87A;margin:2rem 0 0.75rem}
@@ -81,8 +80,9 @@ const C = {
   blue:"#3B6EF8", text:"#F0F4FF", muted:"#6B7A99", red:"#FF6B6B"
 };
 
-const SUPABASE_URL = "https://rbttcuigrrakkbunzyce.supabase.co";
-const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJidHRjdWlncnJha2tidW56eWNlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc2ODA1MTYsImV4cCI6MjA5MzI1NjUxNn0.oDSDQ6DPO-WdtS25b4or89zHNxnhmqpkml_ckbv5R7c";
+// ── NEW SUPABASE CREDENTIALS ─────────────
+const SUPABASE_URL = "https://mfvhurvsgnzltkwvmoki.supabase.co";
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1mdmh1cnZzZ256bHRrd3Ztb2tpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA0NTI1MTAsImV4cCI6MjA5NjAyODUxMH0.pTQJ7WXXGMxbsMLSey5JDBV3go10XUhWJXqUBJW2gBo";
 const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 const ADMIN_PIN = "credo2026";
@@ -141,43 +141,26 @@ function PrivacyPage() {
       <h1>Privacy Policy</h1>
       <p><strong>Effective Date:</strong> 1 June 2026</p>
       <p><strong>Data Controller:</strong> K2026333209 T/a Credo Africa (Pty) Ltd, Reg No. K2026/333209/07, South Africa. Contact:{" "}<a href="mailto:credoafricaidentity@gmail.com">credoafricaidentity@gmail.com</a>, +27 70 515 1771.</p>
-
       <h2>1. Information We Collect</h2>
-      <p>We collect the following personal data to build your financial identity and improve our services:</p>
       <ul>
         <li><strong>Identity & business data:</strong> full name, phone number, business name, category, location, years operating, social media links, South African ID/passport photos, selfies, proof of address.</li>
         <li><strong>Transactional & behavioural data:</strong> weekly revenue figures, supplier receipts, inventory purchase slips, invoices, stall/product images.</li>
         <li><strong>Technical data:</strong> device information, browser logs, IP address, approximate location (derived from IP), page interactions, timestamps.</li>
       </ul>
-
       <h2>2. Purpose of Processing</h2>
-      <p>Your data is used solely to:</p>
-      <ul>
-        <li>Create and maintain your Credo trust profile (financial identity).</li>
-        <li>Assess and update your credibility score.</li>
-        <li>Provide you with personalised insights, badges, and recommendations.</li>
-        <li>Connect you (with your consent) with financial service providers.</li>
-        <li>Improve platform security, prevent fraud, and comply with legal obligations.</li>
-      </ul>
-
+      <p>Your data is used solely to create and maintain your Credo trust profile, assess and update your credibility score, provide personalised insights, connect you with financial service providers (with your consent), improve platform security, prevent fraud, and comply with legal obligations.</p>
       <h2>3. Legal Basis (POPIA)</h2>
-      <p>We process your data based on your explicit consent (Section 11 of POPIA). You may withdraw consent at any time, but this may affect your ability to maintain your trust profile.</p>
-
+      <p>We process your data based on your explicit consent (Section 11 of POPIA). You may withdraw consent at any time.</p>
       <h2>4. Data Retention</h2>
-      <p>We retain your personal data for as long as your account is active or as needed to provide services. Transactional data may be retained for up to 5 years after account closure for auditing and legal compliance.</p>
-
+      <p>We retain your personal data for as long as your account is active. Transactional data may be retained for up to 5 years after account closure for auditing and legal compliance.</p>
       <h2>5. Your Rights</h2>
-      <p>You have the right to access, correct, delete, or port your data. To exercise any right, email us at{" "}<a href="mailto:credoafricaidentity@gmail.com">credoafricaidentity@gmail.com</a>. We will respond within 30 days.</p>
-
+      <p>You have the right to access, correct, delete, or port your data. Email{" "}<a href="mailto:credoafricaidentity@gmail.com">credoafricaidentity@gmail.com</a>. We respond within 30 days.</p>
       <h2>6. Data Sharing</h2>
       <p>We do not sell your data. We may share anonymised, aggregated data with lenders or partners only with your explicit consent.</p>
-
       <h2>7. Security</h2>
       <p>We implement technical and organisational measures to protect your data against unauthorised access, loss, or misuse.</p>
-
       <h2>8. Cookies & Tracking</h2>
       <p>We use essential cookies and local storage to remember your preferences and consent. No third‑party advertising trackers are used.</p>
-
       <h2>9. Changes</h2>
       <p>We will notify you of any changes to this policy by updating the date above and, where appropriate, via WhatsApp or email.</p>
     </div>
@@ -192,34 +175,24 @@ function TermsPage() {
       <h1>Terms of Service</h1>
       <p><strong>Last updated:</strong> 1 June 2026</p>
       <p>These Terms govern your use of the Credo Africa platform, operated by K2026333209 T/a Credo Africa (Pty) Ltd (Reg. K2026/333209/07). Contact:{" "}<a href="mailto:credoafricaidentity@gmail.com">credoafricaidentity@gmail.com</a>.</p>
-
       <h2>1. Eligibility</h2>
-      <p>You must be at least 18 years old and own/operate a business in South Africa to use our services.</p>
-
+      <p>You must be at least 18 years old and own/operate a business in South Africa.</p>
       <h2>2. Account & Verification</h2>
-      <p>You agree to provide accurate and complete information during onboarding. You are responsible for maintaining the confidentiality of any credentials. You must not impersonate others or submit fraudulent documents.</p>
-
+      <p>You agree to provide accurate and complete information during onboarding. You must not impersonate others or submit fraudulent documents.</p>
       <h2>3. Platform Use</h2>
-      <p>Credo provides a trust infrastructure service — not a lending or credit product. We do not guarantee loan approvals or specific financial outcomes. Your trust score is an indicator based on the data you provide.</p>
-
+      <p>Credo provides a trust infrastructure service — not a lending or credit product. Your trust score is an indicator based on the data you provide.</p>
       <h2>4. Data & Privacy</h2>
-      <p>Your use is subject to our{" "}<a href="#privacy">Privacy Policy</a>. You grant us a limited license to process your uploaded data solely for the purpose of providing and improving the service.</p>
-
+      <p>Your use is subject to our{" "}<a href="#privacy">Privacy Policy</a>. You grant us a limited license to process your uploaded data for providing the service.</p>
       <h2>5. Prohibited Conduct</h2>
-      <p>You may not upload false, misleading, or malicious content. We reserve the right to suspend or terminate accounts that violate these terms or attempt to manipulate the trust system.</p>
-
+      <p>You may not upload false, misleading, or malicious content. We reserve the right to suspend or terminate accounts that violate these terms.</p>
       <h2>6. Intellectual Property</h2>
       <p>The Credo brand, logo, and platform are owned by Credo Africa (Pty) Ltd. You may not copy, modify, or redistribute them without permission.</p>
-
       <h2>7. Limitation of Liability</h2>
-      <p>To the fullest extent permitted by law, Credo Africa shall not be liable for any indirect or consequential damages arising from your use of the platform. Our total liability is limited to the amount you have paid us (which is currently zero — this service is free).</p>
-
+      <p>To the fullest extent permitted by law, Credo Africa shall not be liable for any indirect or consequential damages arising from your use. Our total liability is limited to the amount you have paid us (currently zero — this service is free).</p>
       <h2>8. Termination</h2>
-      <p>You may stop using the service at any time. We may terminate or suspend access if you breach these Terms. Upon termination, your right to use the platform ceases, but data retention will follow our Privacy Policy.</p>
-
+      <p>You may stop using the service at any time. We may terminate or suspend access if you breach these Terms.</p>
       <h2>9. Governing Law</h2>
-      <p>These Terms are governed by the laws of the Republic of South Africa. Any disputes shall be resolved in the courts of Gauteng.</p>
-
+      <p>These Terms are governed by the laws of the Republic of South Africa.</p>
       <h2>10. Changes</h2>
       <p>We may update these Terms. Continued use after changes constitutes acceptance.</p>
     </div>
@@ -234,10 +207,8 @@ function DataCompliancePage() {
       <h1>Data Compliance Declaration</h1>
       <p><strong>In compliance with POPIA (Protection of Personal Information Act, 2013)</strong></p>
       <p>This declaration is issued by K2026333209 T/a Credo Africa (Pty) Ltd, Reg. K2026/333209/07, South Africa.</p>
-
       <h2>1. Responsible Party</h2>
       <p>Credo Africa (Pty) Ltd is the responsible party for all personal data processed through the Credo platform. Contact:{" "}<a href="mailto:credoafricaidentity@gmail.com">credoafricaidentity@gmail.com</a>.</p>
-
       <h2>2. Data Collection Summary</h2>
       <ul>
         <li><strong>Categories:</strong> identity, contact, business, transactional, technical.</li>
@@ -245,24 +216,18 @@ function DataCompliancePage() {
         <li><strong>Retention:</strong> active account + 5 years post‑closure.</li>
         <li><strong>Legal basis:</strong> consent (POPIA Section 11).</li>
       </ul>
-
       <h2>3. Analytics & Logging</h2>
-      <p>We collect server logs (IP address, timestamp, URL accessed) for security and performance monitoring. These logs are retained for 12 months and are not used for marketing purposes.</p>
-
+      <p>We collect server logs (IP address, timestamp, URL accessed) for security and performance monitoring. Retained for 12 months.</p>
       <h2>4. Location Data</h2>
-      <p>We derive approximate location from your IP address to ensure regional compliance and to personalise your experience (e.g., language, local lender suggestions). No precise GPS location is collected without explicit permission.</p>
-
+      <p>We derive approximate location from your IP address. No precise GPS location is collected without explicit permission.</p>
       <h2>5. Cross‑Border Transfer</h2>
-      <p>Data is stored on secure servers located in the European Union (Supabase). We ensure that adequate safeguards are in place as required by POPIA.</p>
-
+      <p>Data is stored on secure servers in the European Union. Adequate safeguards are in place per POPIA.</p>
       <h2>6. Security Measures</h2>
-      <p>We employ encryption in transit (TLS) and at rest, strict access controls, and regular security assessments.</p>
-
+      <p>Encryption in transit (TLS) and at rest, strict access controls, regular security assessments.</p>
       <h2>7. Data Subject Rights</h2>
-      <p>You can request access, rectification, deletion, or restriction of your personal data at any time via{" "}<a href="mailto:credoafricaidentity@gmail.com">credoafricaidentity@gmail.com</a>. We will respond within 30 days.</p>
-
+      <p>Request access, rectification, deletion, or restriction via{" "}<a href="mailto:credoafricaidentity@gmail.com">credoafricaidentity@gmail.com</a>.</p>
       <h2>8. Complaints</h2>
-      <p>If you believe your data has been mishandled, you have the right to lodge a complaint with the Information Regulator of South Africa:{" "}<a href="https://www.justice.gov.za/inforeg/" target="_blank">justice.gov.za/inforeg</a>.</p>
+      <p>Lodge complaints with the Information Regulator of South Africa:{" "}<a href="https://www.justice.gov.za/inforeg/" target="_blank">justice.gov.za/inforeg</a>.</p>
     </div>
   );
 }
@@ -297,7 +262,6 @@ function PublicLanding({ onStartOnboarding }) {
           </div>
         </div>
       </div>
-      {/* Benefits section */}
       <div style={{padding:'3rem 2rem',background:C.surface,borderTop:`1px solid ${C.border}`,borderBottom:`1px solid ${C.border}`}}>
         <h2 style={{textAlign:'center',fontFamily:'DM Serif Display',fontSize:'2rem',fontWeight:400,marginBottom:'2rem'}}>For Your Business</h2>
         <div style={{maxWidth:900,margin:'0 auto',display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(220px,1fr))',gap:'1.5rem'}}>
@@ -341,19 +305,16 @@ function PublicLanding({ onStartOnboarding }) {
         <p style={{color:C.muted,maxWidth:480,margin:'0 auto 2rem'}}>We're onboarding businesses at Bara Taxi Rank and beyond. Get in touch.</p>
         <a href="https://wa.me/27705151771" target="_blank" style={{background:C.green,color:'#000',border:'none',padding:'14px 32px',borderRadius:10,fontWeight:700,fontSize:15,textDecoration:'none'}}>WhatsApp 070 515 1771</a>
       </div>
-      {/* Main Footer */}
       <div className="main-footer">
         <span>© 2026 K2026333209 T/a Credo Africa (Pty) Ltd — Reg. K2026/333209/07</span>
-        <span>
-          <a href="#privacy">Privacy</a> · <a href="#terms">Terms</a> · <a href="#data-compliance">Data Compliance</a>
-        </span>
+        <span><a href="#privacy">Privacy</a> · <a href="#terms">Terms</a> · <a href="#data-compliance">Data Compliance</a></span>
         <span><a href="mailto:credoafricaidentity@gmail.com">credoafricaidentity@gmail.com</a> · +27 70 515 1771</span>
       </div>
     </div>
   );
 }
 
-// ── FILE UPLOAD (unchanged) ───────────────
+// ── FILE UPLOAD ──────────────────────────
 function FileUpload({ label, accept, multiple, file, files, onChange }) {
   const [previews, setPreviews] = useState([]);
   const [dragging, setDragging] = useState(false);
@@ -398,7 +359,7 @@ const inputStyle = { background:C.surface2, border:`1px solid ${C.border}`, colo
 const primaryBtn = { background:C.green, color:'#000', border:'none', padding:'10px 24px', borderRadius:8, fontWeight:700, cursor:'pointer' };
 const secondaryBtn = { background:'transparent', color:C.muted, border:`1px solid ${C.border}`, padding:'10px 24px', borderRadius:8, cursor:'pointer' };
 
-// ── VENDOR ONBOARDING (unchanged) ─────────
+// ── VENDOR ONBOARDING ────────────────────
 function VendorOnboarding({ onBackToLanding }) {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
@@ -501,7 +462,7 @@ function VendorOnboarding({ onBackToLanding }) {
           <div style={{marginTop:'2rem', display:'flex', alignItems:'flex-start', gap:'0.5rem'}}>
             <input type="checkbox" id="terms" checked={termsAccepted} onChange={e=>setTermsAccepted(e.target.checked)} style={{marginTop:'3px', accentColor: C.green}} />
             <label htmlFor="terms" style={{fontSize:13, color:C.muted, lineHeight:1.5}}>
-              I agree to Credo's <a href="#terms" target="_blank" style={{color:C.green}}>Terms of Service</a> and <a href="#privacy" target="_blank" style={{color:C.green}}>Privacy Policy</a>. I consent to Credo collecting and processing my business data to build my financial identity.
+              I agree to Credo's <a href="#terms" target="_blank" style={{color:C.green}}>Terms of Service</a> and <a href="#privacy" target="_blank" style={{color:C.green}}>Privacy Policy</a>.
             </label>
           </div>
           <div style={{display:'flex',justifyContent:'space-between',marginTop:'1.5rem'}}>
@@ -521,7 +482,7 @@ function VendorOnboarding({ onBackToLanding }) {
           <h3 style={{fontFamily:'DM Serif Display',fontSize:'1.3rem'}}>Your Credibility Dashboard</h3>
           {trustPill}
           <div style={{margin:'0.75rem 0'}}><span className="badge badge-gold">Pending Review</span></div>
-          <p style={{fontSize:13,color:C.muted}}>We're reviewing your information. Your trust score will increase as verifications are completed.</p>
+          <p style={{fontSize:13,color:C.muted}}>Your trust score will increase as verifications are completed.</p>
           <button onClick={onBackToLanding} style={{...secondaryBtn, marginTop:'1rem'}}>← Back to Home</button>
         </div>
       )}
@@ -529,7 +490,7 @@ function VendorOnboarding({ onBackToLanding }) {
   );
 }
 
-// ── ADMIN DASHBOARD (unchanged) ──────────
+// ── ADMIN DASHBOARD ──────────────────────
 function AdminDashboard() {
   const [businesses, setBusinesses] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -647,7 +608,7 @@ function AdminDashboard() {
   );
 }
 
-// ── CREDIT ENGINE (unchanged) ─────────────
+// ── CREDIT ENGINE ────────────────────────
 function CreditEngine() {
   const [inputs, setInputs] = useState({revenue:45000,txns:220,age:4,consistency:87,suppliers:12,digital:3});
   const [score, setScore] = useState(null);
@@ -709,7 +670,7 @@ function CreditEngine() {
   );
 }
 
-// ── INVESTORS (unchanged) ─────────────────
+// ── INVESTORS ────────────────────────────
 function Investors() {
   const proj = [
     {yr:"Year 1",u:"1,000",r:"R300K",v:"Pre-seed",s:"Validation",c:C.blue},
@@ -759,7 +720,7 @@ function Investors() {
   );
 }
 
-// ── ADMIN APP ─────────────────────────────
+// ── ADMIN APP ────────────────────────────
 function AdminApp() {
   const [adminView, setAdminView] = useState("Dashboard");
   return (
@@ -783,7 +744,7 @@ function AdminApp() {
   );
 }
 
-// ── HASH ROUTING ──────────────────────────
+// ── HASH ROUTING ─────────────────────────
 function useHash() {
   const [hash, setHash] = useState(window.location.hash);
   useEffect(() => {
@@ -794,7 +755,7 @@ function useHash() {
   return hash;
 }
 
-// ── APP ───────────────────────────────────
+// ── APP ──────────────────────────────────
 function App() {
   const [admin, setAdmin] = useState(isAdmin());
   const [showPin, setShowPin] = useState(false);
@@ -807,7 +768,6 @@ function App() {
     else { setPinError(true); }
   };
 
-  // Legal pages via hash routing
   if (hash === '#privacy') return <><ConsentBanner /><PrivacyPage /></>;
   if (hash === '#terms') return <><ConsentBanner /><TermsPage /></>;
   if (hash === '#data-compliance') return <><ConsentBanner /><DataCompliancePage /></>;
