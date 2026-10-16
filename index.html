@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Credo Africa — Financial Identity Platform</title>
+<title>Credo Africa: Financial Identity Platform</title>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
@@ -168,11 +168,11 @@ function TermsPage() {
       <p>These Terms govern your use of the Credo Africa platform, operated by K2026333209 T/a Credo Africa (Pty) Ltd (Reg. K2026/333209/07). Contact:{" "}<a href="mailto:credoafricaidentity@gmail.com">credoafricaidentity@gmail.com</a>.</p>
       <h2>1. Eligibility</h2><p>You must be at least 18 years old and own/operate a business in South Africa.</p>
       <h2>2. Account & Verification</h2><p>You agree to provide accurate and complete information during onboarding. You must not impersonate others or submit fraudulent documents.</p>
-      <h2>3. Platform Use</h2><p>Credo provides a trust infrastructure service — not a lending or credit product. Your trust score is an indicator based on the data you provide.</p>
+      <h2>3. Platform Use</h2><p>Credo provides a trust infrastructure service. It is not a lending or credit product. Your trust score is an indicator based on the data you provide.</p>
       <h2>4. Data & Privacy</h2><p>Your use is subject to our{" "}<a href="#privacy">Privacy Policy</a>. You grant us a limited license to process your uploaded data for providing the service.</p>
       <h2>5. Prohibited Conduct</h2><p>You may not upload false, misleading, or malicious content. We reserve the right to suspend or terminate accounts that violate these terms.</p>
       <h2>6. Intellectual Property</h2><p>The Credo brand, logo, and platform are owned by Credo Africa (Pty) Ltd. You may not copy, modify, or redistribute them without permission.</p>
-      <h2>7. Limitation of Liability</h2><p>To the fullest extent permitted by law, Credo Africa shall not be liable for any indirect or consequential damages arising from your use. Our total liability is limited to the amount you have paid us (currently zero — this service is free).</p>
+      <h2>7. Limitation of Liability</h2><p>To the fullest extent permitted by law, Credo Africa shall not be liable for any indirect or consequential damages arising from your use. Our total liability is limited to the amount you have paid us (currently zero, because this service is free).</p>
       <h2>8. Termination</h2><p>You may stop using the service at any time. We may terminate or suspend access if you breach these Terms.</p>
       <h2>9. Governing Law</h2><p>These Terms are governed by the laws of the Republic of South Africa.</p>
       <h2>10. Changes</h2><p>We may update these Terms. Continued use after changes constitutes acceptance.</p>
@@ -221,7 +221,7 @@ function PublicLanding({ onStartOnboarding }) {
             The infrastructure that<br/><span style={{color:C.green}}>unlocks capital</span> for<br/>Africa's informal economy
           </h1>
           <p style={{fontSize:'1.1rem',color:C.muted,maxWidth:560,margin:'0 auto 2.5rem',lineHeight:1.75}}>
-            Credo converts transactional behavior into credit identity — connecting millions of informal SMEs to capital, insurance, and financial services at scale.
+            Credo turns everyday transactions into a credit identity. That connects millions of informal SMEs to capital, insurance and financial services.
           </p>
           <div style={{display:'flex',gap:12,justifyContent:'center',flexWrap:'wrap'}}>
             <button onClick={onStartOnboarding} style={{background:C.green,color:'#000',border:'none',padding:'14px 32px',borderRadius:10,fontWeight:700,fontSize:15,cursor:'pointer'}}>Start Onboarding →</button>
@@ -258,7 +258,7 @@ function PublicLanding({ onStartOnboarding }) {
           <h2 style={{fontFamily:'DM Serif Display,Georgia,serif',fontSize:'2.4rem',fontWeight:400}}>Three layers. One ecosystem.</h2>
         </div>
         <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(250px,1fr))',gap:'1.5rem'}}>
-          {[{num:"01",title:"Embedded Finance Tools",desc:"Capture every transaction — payments, invoicing, supplier data — building a live financial footprint without changing how vendors work.",color:C.green},{num:"02",title:"Credit Intelligence Engine",desc:"AI converts behavioral data into risk scores. No pay slips. No branch visits. Pure data-driven creditworthiness updated in real-time.",color:C.gold},{num:"03",title:"Financial Marketplace",desc:"Connect scored SMEs to lenders, insurers, and service providers. Every successful connection earns Credo a commission.",color:C.blue}].map(l=>(
+          {[{num:"01",title:"Embedded Finance Tools",desc:"Capture every transaction, from payments to invoicing to supplier data, and build a live financial footprint without changing how vendors work.",color:C.green},{num:"02",title:"Credit Intelligence Engine",desc:"AI converts behavioral data into risk scores. No pay slips. No branch visits. Pure data-driven creditworthiness updated in real-time.",color:C.gold},{num:"03",title:"Financial Marketplace",desc:"Connect scored SMEs to lenders, insurers, and service providers. Every successful connection earns Credo a commission.",color:C.blue}].map(l=>(
             <div key={l.num} className="card" style={{borderTop:`3px solid ${l.color}`}}>
               <div style={{fontSize:10,color:l.color,fontWeight:700,letterSpacing:'0.12em',marginBottom:'1rem'}}>LAYER {l.num}</div>
               <div style={{fontFamily:'DM Serif Display,Georgia,serif',fontSize:'1.15rem',marginBottom:'0.75rem'}}>{l.title}</div>
@@ -273,7 +273,7 @@ function PublicLanding({ onStartOnboarding }) {
         <a href="https://wa.me/27705151771" target="_blank" style={{background:C.green,color:'#000',border:'none',padding:'14px 32px',borderRadius:10,fontWeight:700,fontSize:15,textDecoration:'none'}}>WhatsApp 070 515 1771</a>
       </div>
       <div className="main-footer">
-        <span>© 2026 K2026333209 T/a Credo Africa (Pty) Ltd — Reg. K2026/333209/07</span>
+        <span>© 2026 K2026333209 T/a Credo Africa (Pty) Ltd | Reg. K2026/333209/07</span>
         <span><a href="#privacy">Privacy</a> · <a href="#terms">Terms</a> · <a href="#data-compliance">Data Compliance</a></span>
         <span><a href="mailto:credoafricaidentity@gmail.com">credoafricaidentity@gmail.com</a> · +27 70 515 1771</span>
       </div>
@@ -447,7 +447,7 @@ function VendorOnboarding({ onBackToLanding }) {
       </div>
       {step===1 && (
         <div className="card">
-          <h2 style={{fontFamily:'DM Serif Display',fontSize:'1.5rem',marginBottom:'1.5rem'}}>Step 1 — Basic Business Info</h2>
+          <h2 style={{fontFamily:'DM Serif Display',fontSize:'1.5rem',marginBottom:'1.5rem'}}>Step 1: Basic Business Info</h2>
           <div style={{display:'flex',flexDirection:'column',gap:'1rem'}}>
             <input placeholder="Business Name *" value={formData.businessName} onChange={e=>setFormData({...formData,businessName:e.target.value})} style={inputStyle} />
             <input placeholder="Your Full Name *" value={formData.fullName} onChange={e=>setFormData({...formData,fullName:e.target.value})} style={inputStyle} />
@@ -469,7 +469,7 @@ function VendorOnboarding({ onBackToLanding }) {
       )}
       {step===2 && (
         <div className="card">
-          <h2 style={{fontFamily:'DM Serif Display',fontSize:'1.5rem',marginBottom:'1.5rem'}}>Step 2 — Identity Verification</h2>
+          <h2 style={{fontFamily:'DM Serif Display',fontSize:'1.5rem',marginBottom:'1.5rem'}}>Step 2: Identity Verification</h2>
           <p style={{color:C.muted,fontSize:13,marginBottom:'1rem'}}>Upload clear photos of your ID and a selfie holding it.</p>
           <FileUpload label="SA ID / Passport *" accept="image/*" file={formData.idDoc} onChange={file=>setFormData({...formData,idDoc:file})} />
           <FileUpload label="Selfie Holding ID *" accept="image/*" file={formData.selfieWithId} onChange={file=>setFormData({...formData,selfieWithId:file})} />
@@ -482,7 +482,7 @@ function VendorOnboarding({ onBackToLanding }) {
       )}
       {step===3 && (
         <div className="card">
-          <h2 style={{fontFamily:'DM Serif Display',fontSize:'1.5rem',marginBottom:'1.5rem'}}>Step 3 — Business Presence</h2>
+          <h2 style={{fontFamily:'DM Serif Display',fontSize:'1.5rem',marginBottom:'1.5rem'}}>Step 3: Business Presence</h2>
           <p style={{color:C.muted,fontSize:13,marginBottom:'1rem'}}>Show us your stall and you working there.</p>
           <FileUpload label="Stall / Shop Photo *" accept="image/*" file={formData.stallImage} onChange={file=>setFormData({...formData,stallImage:file})} />
           <FileUpload label="Photo of YOU at the Stall (required) *" accept="image/*" file={formData.vendorAtStall} onChange={file=>setFormData({...formData,vendorAtStall:file})} />
@@ -494,7 +494,7 @@ function VendorOnboarding({ onBackToLanding }) {
       )}
       {step===4 && (
         <div className="card">
-          <h2 style={{fontFamily:'DM Serif Display',fontSize:'1.5rem',marginBottom:'1.5rem'}}>Step 4 — Supplier & Activity</h2>
+          <h2 style={{fontFamily:'DM Serif Display',fontSize:'1.5rem',marginBottom:'1.5rem'}}>Step 4: Supplier & Activity</h2>
           <p style={{color:C.muted,fontSize:13,marginBottom:'1rem'}}>Upload recent supplier receipts or invoices.</p>
           <FileUpload label="Receipt / Invoice" accept="image/*" multiple={true} files={formData.supplierReceipts} onChange={files=>setFormData({...formData,supplierReceipts:files})} />
           <div style={{marginTop:'2rem', display:'flex', alignItems:'flex-start', gap:'0.5rem'}}>
@@ -560,7 +560,7 @@ function AdminDashboard() {
 
   const scoreDistribution = useMemo(()=>{
     const scores=businesses.map(b=>latestScore(b.credit_scores)?.score).filter(Boolean);
-    const tiers=[{label:"Excellent (750+)",count:scores.filter(s=>s>=750).length,color:C.green},{label:"Good (700–749)",count:scores.filter(s=>s>=700&&s<750).length,color:"#80C87A"},{label:"Fair (600–699)",count:scores.filter(s=>s>=600&&s<700).length,color:C.gold},{label:"Poor (<600)",count:scores.filter(s=>s<600).length,color:C.red}];
+    const tiers=[{label:"Excellent (750+)",count:scores.filter(s=>s>=750).length,color:C.green},{label:"Good (700 to 749)",count:scores.filter(s=>s>=700&&s<750).length,color:"#80C87A"},{label:"Fair (600 to 699)",count:scores.filter(s=>s>=600&&s<700).length,color:C.gold},{label:"Poor (<600)",count:scores.filter(s=>s<600).length,color:C.red}];
     const max=Math.max(...tiers.map(t=>t.count),1);
     return tiers.map(t=>({...t,widthPercent:(t.count/max)*100}));
   },[businesses]);
@@ -599,7 +599,7 @@ function AdminDashboard() {
     <div style={{padding:'2rem',maxWidth:1200,margin:'0 auto'}}>
       <div style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:'1rem',marginBottom:'1.5rem'}}>
         <div className="card"><div style={{fontSize:12,color:C.muted,marginBottom:4}}>Total SMEs</div><div className="kpi-val">{kpis.total||0}</div><div className="kpi-sub">onboarded</div></div>
-        <div className="card"><div style={{fontSize:12,color:C.muted,marginBottom:4}}>Avg Credo Score</div><div className="kpi-val">{kpis.avg??"—"}</div><div className="kpi-sub">/ 850</div></div>
+        <div className="card"><div style={{fontSize:12,color:C.muted,marginBottom:4}}>Avg Credo Score</div><div className="kpi-val">{kpis.avg??"N/A"}</div><div className="kpi-sub">/ 850</div></div>
         <div className="card"><div style={{fontSize:12,color:C.muted,marginBottom:4}}>Loan-Ready (700+)</div><div className="kpi-val">{kpis.loanReady}</div><div className="kpi-sub">businesses</div></div>
         <div className="card"><div style={{fontSize:12,color:C.muted,marginBottom:4}}>Total Monthly Rev</div><div className="kpi-val">{formatCurrency(kpis.totalRev)}</div><div className="kpi-sub">across all SMEs</div></div>
       </div>
@@ -624,11 +624,11 @@ function AdminDashboard() {
                   const pct = score ? Math.round(((score - 300) / 550) * 100) : 0;
                   return (
                     <tr key={b.id} onClick={()=>handleRowClick(b.id)} className={`transaction-row ${selectedBusiness===b.id ? 'selected' : ''}`}>
-                      <td><div style={{fontWeight:600}}>{escapeHtml(b.business_name)}</div><div style={{fontSize:11,color:C.muted}}>{owner?.full_name || "—"}</div></td>
-                      <td style={{color:C.muted}}>{b.business_type || "—"}</td>
-                      <td style={{color:C.muted}}>{b.location || "—"}</td>
+                      <td><div style={{fontWeight:600}}>{escapeHtml(b.business_name)}</div><div style={{fontSize:11,color:C.muted}}>{owner?.full_name || "N/A"}</div></td>
+                      <td style={{color:C.muted}}>{b.business_type || "N/A"}</td>
+                      <td style={{color:C.muted}}>{b.location || "N/A"}</td>
                       <td>{score ? <><div style={{fontWeight:800,color:scoreColor(score),fontSize:15}}>{score}</div><div className="score-bar-bg"><div className="score-bar" style={{width:`${pct}%`,background:scoreColor(score)}}></div></div></> : <span style={{color:C.muted}}>Pending</span>}</td>
-                      <td style={{color:C.text}}>{b.monthly_revenue ? formatCurrency(b.monthly_revenue) : "—"}</td>
+                      <td style={{color:C.text}}>{b.monthly_revenue ? formatCurrency(b.monthly_revenue) : "N/A"}</td>
                       <td><span className={`badge ${score>=700?'badge-green':score>=600?'badge-gold':'badge-red'}`}>{score>=700?'Loan Ready':score>=600?'Fair':'Building'}</span></td>
                       <td><div style={{display:'flex',flexWrap:'wrap',gap:4}}>{b.age_years && <span className="badge badge-blue">{b.age_years}y</span>}{b.employee_count && <span className="badge badge-blue">{b.employee_count} emp</span>}{b.has_bank_account ? <span className="badge badge-green">Banked</span> : <span className="badge badge-gold">No Bank</span>}</div></td>
                       <td style={{color:C.muted,fontSize:11}}>{new Date(b.created_at).toLocaleDateString("en-ZA")}</td>
@@ -658,7 +658,7 @@ function AdminDashboard() {
               return (
                 <div key={b.id} style={{display:'flex',justifyContent:'space-between',padding:'8px 0',borderBottom:`1px solid ${C.border}`}}>
                   <div><div style={{fontSize:13,fontWeight:600}}>{escapeHtml(b.business_name)}</div><div style={{fontSize:11,color:C.muted}}>{b.location||""}</div></div>
-                  {latest?.score ? <div style={{fontWeight:800,color:scoreColor(latest.score)}}>{latest.score}</div> : <span style={{fontSize:11,color:C.muted}}>—</span>}
+                  {latest?.score ? <div style={{fontWeight:800,color:scoreColor(latest.score)}}>{latest.score}</div> : <span style={{fontSize:11,color:C.muted}}>N/A</span>}
                 </div>
               );
             }) : <div className="empty-state" style={{padding:'1rem 0'}}>Waiting...</div>}
@@ -669,7 +669,7 @@ function AdminDashboard() {
       {/* Activity Panel */}
       {selectedBusiness && selectedBiz && (
         <div className="activity-panel">
-          <h3>{selectedBiz.business_name} — Activity</h3>
+          <h3>{selectedBiz.business_name}: Activity</h3>
           <div className="activity-list">
             <h4 style={{color:C.green, marginBottom: '0.5rem'}}>Revenue Entries</h4>
             {activityData.revenue.length === 0 && <p style={{color:C.muted}}>None</p>}
@@ -683,7 +683,7 @@ function AdminDashboard() {
             {activityData.expenses.length === 0 && <p style={{color:C.muted}}>None</p>}
             {activityData.expenses.map(e => (
               <div key={e.id} className="activity-item">
-                <span>{e.expense_date} – {e.category}</span>
+                <span>{e.expense_date} | {e.category}</span>
                 <span style={{color:C.gold}}>R{e.amount}</span>
               </div>
             ))}
@@ -709,7 +709,7 @@ function AdminDashboard() {
 
       <div style={{display:'flex',alignItems:'center',gap:8,marginTop:'1rem'}}>
         <span style={{width:7,height:7,borderRadius:'50%',background:C.green,animation:'pulse 2s infinite'}}></span>
-        <span style={{fontSize:12,color:C.muted}}>Live · {lastRefresh || '—'}</span>
+        <span style={{fontSize:12,color:C.muted}}>Live · {lastRefresh || "N/A"}</span>
       </div>
     </div>
   );
@@ -731,12 +731,12 @@ function CreditEngine() {
   const calc = () => { setLoading(true); setTimeout(()=>{ const sc = Math.round(Math.min(300 + Math.min(inputs.revenue/500000,1)*200 + Math.min(inputs.txns/500,1)*150 + Math.min(inputs.age/10,1)*120 + (inputs.consistency/100)*200 + Math.min(inputs.suppliers/30,1)*100 + Math.min(inputs.digital/5,1)*80, 850)); setScore(sc); setLoading(false); }, 1400); };
   const sc = score;
   const scoreColorVal = !sc?C.muted:sc>=700?C.green:sc>=600?C.gold:C.red;
-  const tier = !sc?'—':sc>=750?'Excellent':sc>=700?'Good':sc>=600?'Fair':'Poor';
-  const loan = !sc?'—':sc>=700?'R500K–R2M':sc>=600?'R50K–R500K':'R10K–R50K';
+  const tier = !sc?"N/A":sc>=750?'Excellent':sc>=700?'Good':sc>=600?'Fair':'Poor';
+  const loan = !sc?"N/A":sc>=700?'R500K to R2M':sc>=600?'R50K to R500K':'R10K to R50K';
   return (
     <div style={{padding:'2rem',maxWidth:980,margin:'0 auto'}}>
       <h2 style={{fontFamily:'DM Serif Display,Georgia,serif',fontSize:'1.8rem',fontWeight:400}}>Credit Intelligence Engine</h2>
-      <p style={{color:C.muted,fontSize:14,marginBottom:'1.5rem'}}>Input SME behavioral data — Credo outputs a bankable credit profile</p>
+      <p style={{color:C.muted,fontSize:14,marginBottom:'1.5rem'}}>Enter an SME's behavioral data and Credo returns a bankable credit profile</p>
       <div style={{display:'grid',gridTemplateColumns:'1fr 320px',gap:'1.5rem'}}>
         <div className="card" style={{padding:'2rem'}}>
           <div style={{fontSize:11,color:C.muted,letterSpacing:'0.1em',fontWeight:600,marginBottom:'1.5rem'}}>SME BEHAVIORAL DATA INPUTS</div>
@@ -753,7 +753,7 @@ function CreditEngine() {
         <div style={{display:'flex',flexDirection:'column',gap:'1rem'}}>
           <div className="card" style={{padding:'2rem',textAlign:'center',flex:1}}>
             <div style={{fontSize:11,color:C.muted,letterSpacing:'0.1em',marginBottom:'1rem'}}>CREDO CREDIT SCORE</div>
-            <div style={{fontSize:'5.5rem',fontFamily:'DM Serif Display,Georgia,serif',color:scoreColorVal,lineHeight:1}}>{sc??'—'}</div>
+            <div style={{fontSize:'5.5rem',fontFamily:'DM Serif Display,Georgia,serif',color:scoreColorVal,lineHeight:1}}>{sc??"N/A"}</div>
             <div style={{fontSize:'1rem',color:scoreColorVal,fontWeight:700,marginBottom:'1.5rem'}}>{tier}</div>
             <div style={{width:'100%',height:7,background:C.border,borderRadius:4}}><div style={{width:sc?`${((sc-300)/550)*100}%`:'0%',height:'100%',background:`linear-gradient(90deg,${C.red},${C.gold},${C.green})`,borderRadius:4}}></div></div>
             {sc && (
@@ -767,7 +767,7 @@ function CreditEngine() {
           </div>
           <div className="card">
             <div style={{fontSize:11,color:C.muted,fontWeight:600,marginBottom:10}}>SCORE SCALE</div>
-            {[{r:"750–850",t:"Excellent",c:C.green},{r:"700–749",t:"Good",c:"#80C87A"},{r:"600–699",t:"Fair",c:C.gold},{r:"300–599",t:"Poor",c:C.red}].map(s=>(
+            {[{r:"750 to 850",t:"Excellent",c:C.green},{r:"700 to 749",t:"Good",c:"#80C87A"},{r:"600 to 699",t:"Fair",c:C.gold},{r:"300 to 599",t:"Poor",c:C.red}].map(s=>(
               <div key={s.r} style={{display:'flex',alignItems:'center',gap:8,marginBottom:6}}><div style={{width:7,height:7,borderRadius:'50%',background:s.c,flexShrink:0}}></div><span style={{fontSize:12,flex:1,color:C.muted}}>{s.r}</span><span style={{fontSize:12,color:s.c,fontWeight:600}}>{s.t}</span></div>
             ))}
           </div>
@@ -793,10 +793,10 @@ function Investors() {
   return (
     <div style={{padding:'2rem',maxWidth:1000,margin:'0 auto'}}>
       <h2 style={{fontFamily:'DM Serif Display,Georgia,serif',fontSize:'1.8rem',fontWeight:400}}>Investor Overview</h2>
-      <p style={{color:C.muted,fontSize:14,marginBottom:'2rem'}}>This is not a startup idea — it is a financial system redesign for Africa.</p>
+      <p style={{color:C.muted,fontSize:14,marginBottom:'2rem'}}>This is not a startup idea. It is a financial system redesign for Africa.</p>
       <div style={{background:`linear-gradient(135deg,rgba(0,232,122,0.07),rgba(59,110,248,0.07))`,border:`1px solid ${C.green}`,borderRadius:12,padding:'2rem',marginBottom:'2rem'}}>
         <p style={{fontFamily:'DM Serif Display,Georgia,serif',fontSize:'1.2rem',lineHeight:1.75}}>
-          "The company that controls <span style={{color:C.green}}>financial identity in Africa</span> will control the flow of capital. Credo is building that company — starting in South Africa, expanding via AfCFTA across 54 markets."
+          "The company that controls <span style={{color:C.green}}>financial identity in Africa</span> will control the flow of capital. Credo is building that company. We start in South Africa and expand across 54 markets through AfCFTA."
         </p>
       </div>
       <h3 style={{fontSize:11,color:C.muted,fontWeight:700,letterSpacing:'0.1em',marginBottom:'1rem'}}>FINANCIAL PROJECTIONS</h3>
