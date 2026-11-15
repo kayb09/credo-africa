@@ -1,0 +1,82 @@
+NOTICE:  database "credo_stock_t3" does not exist, skipping
+PASS | T01 opening>0 creates exactly one opening movement | 
+PASS | T02 opening=0 creates no movement | 
+PASS | T17 item with no movements shows 0 and below_minimum when min 0 | 
+PASS | T03a merchant cannot insert manual opening movement | 
+PASS | T03b opening_quantity cannot be updated by merchant | 
+PASS | T03c negative opening quantity rejected | 
+PASS | T04/T05 purchase posts exactly one matching purchase movement | 
+PASS | T06 second purchase movement for same purchase rejected (owner path) | 
+PASS | T06b purchase movement with wrong quantity rejected | 
+PASS | T06c purchase movement without purchase record rejected | 
+PASS | T06d non purchase movement referencing a purchase rejected | 
+PASS | T07 reductions reduce balance (15-6=9) and are separate buckets | 
+PASS | T07b sale with positive sign rejected | 
+PASS | T07c zero quantity rejected | 
+PASS | T07d unknown movement type rejected | 
+PASS | T08 adjustments in and out (9+2-1=10) | 
+PASS | T08b adjustment without reason rejected | 
+PASS | T09 positive variance +2 and one correction movement | 
+PASS | T10 negative variance -3 | 
+PASS | T11 zero variance creates no movement | 
+PASS | T11b client cannot set expected_quantity (no column privilege) | 
+PASS | T11c two counts in one statement: second sees first correction (variance 0) | 
+PASS | T14a merchant A sees no B rows | 
+PASS | T14b A cannot read B item, movement or balance | 
+PASS | T14c A cannot insert item for B | 
+PASS | T14d A cannot insert purchase for B item (own business id) | 
+PASS | T14e A cannot insert movement on B item | 
+PASS | T14f A cannot post a purchase with business B id | 
+PASS | T14g A cannot count B item | 
+PASS | T14h A update of B item changes 0 rows | 
+PASS | T15a merchant cannot insert count_correction directly | 
+PASS | T15b merchant cannot set purchase_record_id (no column privilege) | 
+PASS | T15c admin can read all items | 
+PASS | T15d admin cannot insert into merchant ledger | 
+PASS | T15e anon cannot read stock tables | 
+PASS | T15f anon cannot read view | 
+PASS | T15g anon cannot write | 
+PASS | T15h merchant cannot execute posting function | 
+PASS | T16a merchant cannot update ledger | 
+PASS | T16b merchant cannot delete ledger | 
+PASS | T16c owner update of ledger blocked by trigger | 
+PASS | T16d owner delete of purchase blocked | 
+PASS | T16e owner truncate of ledger blocked | 
+PASS | T16f owner update of snapshot blocked | 
+PASS | T16g owner cannot change opening_quantity | 
+PASS | T16h owner cannot move item to another business | 
+PASS | T16i correction not equal to snapshot variance rejected | 
+PASS | T18a purchase for inactive item fails | 
+PASS | T18b failed purchase left no purchase row and no movement | 
+PASS | T18c multi row purchase with one bad row rolls back whole statement | 
+PASS | T18d no partial rows from T18c | 
+PASS | T05b replayed request id does not duplicate | 
+PASS | T-view formula: opening+purchases+reductions+adjustments = current | 
+PASS | T-view security_invoker set | 
+SUMMARY: 54 passed, 0 failed
+== C1: purchase holds lock 3s, count in second session must wait and then include the purchase
+
+count waited 2.054690468 s (expected about 2 s or more)
+expected=150.000 variance=-10.000
+(correct if expected=150 variance=-10: the count saw the committed purchase)
+== C2: count holds lock 3s, purchase in second session must wait; final balance must reconcile
+
+balance=155.000
+(correct: 150 after count of 150 on top of 140, then +5 purchase = 155)
+== C3: 16 clients hammer the same item for 8 s with purchases, sales and counts (pgbench), then reconcile
+number of transactions actually processed: 5083
+number of failed transactions: 0 (0.000%)
+deadlock/ERROR lines in server log during C3:
+0
+ledger_sum=154.473  view_balance=154.473  movements=5088
+purchases_without_movement=0  snapshots_with_wrong_correction=0
+Replay check: each snapshot's expected_quantity must equal the ledger sum of movements created before it (by creation order inside lock).
+snapshots_total=780 ; snapshots_whose_post_count_balance_equals_counted=780
+--- rerun on already migrated DB:
+psql:/tmp/claude-0/-home-claude/200ea8e4-ebae-5608-b6c0-51409b287a0e/scratchpad/v1work/supabase/drafts/006_stock_purchasing_v1_DRAFT.sql:65: ERROR:  Stock V1 preflight failed. Problems: NO existing inventory_items, purchase_records, stock_movements, stock_snapshots or stock_balances (already present)
+CONTEXT:  PL/pgSQL function inline_code_block line 35 at RAISE
+--- DB without helper functions (only businesses table):
+psql:/tmp/claude-0/-home-claude/200ea8e4-ebae-5608-b6c0-51409b287a0e/scratchpad/v1work/supabase/drafts/006_stock_purchasing_v1_DRAFT.sql:65: ERROR:  Stock V1 preflight failed. Problems: public.current_business_ids() returning SETOF uuid; public.is_admin() returning boolean
+CONTEXT:  PL/pgSQL function inline_code_block line 35 at RAISE
+--- rollback then reapply:
+OK

@@ -1,0 +1,23 @@
+== M-purchase: session A item1 then item2, session B item2 then item1 (each statement in the same transaction, 2 s apart)
+A: A exit=0 
+B: ERROR:  deadlock detected B exit=1 
+== M-movement: session A item1 then item2, session B item2 then item1 (each statement in the same transaction, 2 s apart)
+A: ERROR:  deadlock detected A exit=1 
+B: B exit=0 
+== M-count: session A item1 then item2, session B item2 then item1 (each statement in the same transaction, 2 s apart)
+A: ERROR:  deadlock detected A exit=1 
+B: B exit=0 
+== reconciliation after the multi item runs
+item e1000000-0000-0000-0000-000000000001 balance=90.000 ledger=90.000
+item e1000000-0000-0000-0000-000000000002 balance=90.000 ledger=90.000
+== M-ascending: both sessions use the SAME order item1 then item2 (must always work)
+A: A exit=0 
+B: B exit=0 
+== I1: REPEATABLE READ stale snapshot. Session RR takes its snapshot, then another session commits a purchase of +50, then RR posts a count
+isolation 'repeatable read': exit=0 
+   after: expected_quantity of latest count=100.000  true ledger sum=150.000
+isolation 'serializable': exit=0 
+   after: expected_quantity of latest count=150.000  true ledger sum=150.000
+isolation 'read committed': exit=0 
+   after: expected_quantity of latest count=200.000  true ledger sum=100.000
+== E1: attempts to evade the one item rule inside one transaction

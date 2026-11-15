@@ -1,9 +1,5 @@
-# Credo Stock and Purchasing Intelligence V1 — Development Draft
-
-This package contains the initial design, SQL schema draft and verification plan for Credo's Stock and Purchasing Intelligence capability.
-
-**This is not a production release. Do not apply the SQL to the live Supabase project.**
-
-Before execution, verify the existing database schema and the definitions/return types of `public.current_business_ids()` and `public.is_admin()` in an isolated development database. The SQL is a starting draft and still requires real PostgreSQL execution, RLS tests, concurrency testing and review.
-
-The current Credo application is a single-file React app in `index.html`. This package deliberately does not modify it.
+# Stock and Purchasing V1, revision 3 (development only)
+Nothing here is committed or applied to production. Run tests only on a throwaway PostgreSQL you control, never Supabase production.
+Order: tests/run.sh <db> ; tests/20_concurrency.sh <db> ; tests/30_multi_item.sh <db>
+Real output: tests/OUTPUT_rev3_pg16.15_2026-11-14.txt. Revision 2 reproduction of the multi item deadlock and the stale snapshot: tests/history/.
+Tested on PostgreSQL 16.15 only (production is 17.6). Test helper functions are stubs, not Credo's definitions.
