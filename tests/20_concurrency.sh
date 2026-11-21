@@ -34,7 +34,6 @@ SQL
 DL0=$($P -c "select deadlocks from pg_stat_database where datname=current_database()")
 pgbench -h ${PGHOST:-/tmp} -p ${PGPORT:-5499} -U postgres -d $DB -c 16 -j 4 -T 8 -n -f /tmp/conc_bench.sql 2>&1 | grep -E "number of transactions|number of failed|deadlock|error" 
 DL1=$($P -c "select deadlocks from pg_stat_database where datname=current_database()")
-DL1=$($P -c "select deadlocks from pg_stat_database where datname=current_database()")
 echo "deadlocks DURING C3: $((DL1 - DL0))"
 $P -c "select 'ledger_sum='||sum(quantity_delta)||'  view_balance='||(select current_quantity from public.stock_balances where inventory_item_id='$ITEM')||'  movements='||count(*) from public.stock_movements where inventory_item_id='$ITEM'"
 $P -c "select 'purchases_without_movement='||(select count(*) from public.purchase_records p where p.inventory_item_id='$ITEM' and not exists (select 1 from public.stock_movements m where m.purchase_record_id=p.id))||'  snapshots_with_wrong_correction='||(select count(*) from public.stock_snapshots s where s.inventory_item_id='$ITEM' and s.variance <> coalesce((select m.quantity_delta from public.stock_movements m where m.stock_snapshot_id=s.id),0))"
