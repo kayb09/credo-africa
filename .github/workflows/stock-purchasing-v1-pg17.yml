@@ -1,0 +1,110 @@
+name: Stock and Purchasing V1 PostgreSQL 17
+
+on:
+  push:
+    branches:
+      - credo-business-intelligence-v1
+    paths:
+      - tests/run.sh
+      - tests/20_concurrency.sh
+      - tests/30_multi_item.sh
+      - tests/00_fixtures.sql
+      - tests/10_functional.sql
+      - supabase/drafts/006_stock_purchasing_v1_DRAFT.sql
+      - .github/workflows/stock-purchasing-v1-pg17.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  stock-purchasing-v1:
+    runs-on: ubuntu-24.04
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d postgres"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 12
+    env:
+      PGHOST: 127.0.0.1
+      PGPORT: 5432
+      PGUSER: postgres
+      PGPASSWORD: postgres
+      LOG_DIR: ${{ runner.temp }}/stock-purchasing-v1-logs
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install PostgreSQL 17 client tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ca-certificates curl gnupg
+          sudo install -d /usr/share/postgresql-common/pgdg
+          curl --fail --silent --show-error https://www.postgresql.org/media/keys/ACCC4CF8.asc \
+            | sudo gpg --dearmor --yes -o /usr/share/postgresql-common/pgdg/apt.postgresql.org.gpg
+          echo "deb [signed-by=/usr/share/postgresql-common/pgdg/apt.postgresql.org.gpg] https://apt.postgresql.org/pub/repos/apt $(. /etc/os-release && echo "$VERSION_CODENAME")-pgdg main" \
+            | sudo tee /etc/apt/sources.list.d/pgdg.list
+          sudo apt-get update
+          sudo apt-get install -y postgresql-client-17 postgresql-contrib-17
+          psql --version
+          pgbench --version
+
+      - name: Prepare log directory and validate scripts
+        run: |
+          mkdir -p "$LOG_DIR"
+          bash -n tests/run.sh tests/20_concurrency.sh tests/30_multi_item.sh
+          server_major=$(psql -X -h "$PGHOST" -p "$PGPORT" -U "$PGUSER" -d postgres -Atc \
+            "select current_setting('server_version_num')::integer / 10000")
+          echo "PostgreSQL server major version: $server_major"
+          test "$server_major" = 17
+
+      - name: Run stock and purchasing test stages
+        shell: bash
+        run: |
+          set -uo pipefail
+          overall_status=0
+
+          if bash tests/run.sh credo_stock_v1_test >"$LOG_DIR/functional.log" 2>&1; then
+            functional_status=0
+          else
+            functional_status=$?
+            overall_status=1
+          fi
+          echo "Functional stage exit status: $functional_status"
+          cat "$LOG_DIR/functional.log"
+
+          if bash tests/20_concurrency.sh credo_stock_v1_test >"$LOG_DIR/concurrency.log" 2>&1; then
+            concurrency_status=0
+          else
+            concurrency_status=$?
+            overall_status=1
+          fi
+          echo "Concurrency stage exit status: $concurrency_status"
+          cat "$LOG_DIR/concurrency.log"
+
+          if bash tests/30_multi_item.sh credo_stock_v1_test >"$LOG_DIR/multi-item.log" 2>&1; then
+            multi_item_status=0
+          else
+            multi_item_status=$?
+            overall_status=1
+          fi
+          echo "Multi-item stage exit status: $multi_item_status"
+          cat "$LOG_DIR/multi-item.log"
+
+          exit "$overall_status"
+
+      - name: Upload stage logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: stock-purchasing-v1-pg17-logs
+          path: ${{ runner.temp }}/stock-purchasing-v1-logs/
+          if-no-files-found: error
