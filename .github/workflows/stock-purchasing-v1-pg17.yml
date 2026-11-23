@@ -39,7 +39,6 @@ jobs:
       PGPORT: 5432
       PGUSER: postgres
       PGPASSWORD: postgres
-      LOG_DIR: ${{ runner.temp }}/stock-purchasing-v1-logs
     steps:
       - uses: actions/checkout@v4
 
@@ -58,6 +57,8 @@ jobs:
           pgbench --version
 
       - name: Prepare log directory and validate scripts
+        env:
+          LOG_DIR: ${{ runner.temp }}/stock-purchasing-v1-logs
         run: |
           mkdir -p "$LOG_DIR"
           bash -n tests/run.sh tests/20_concurrency.sh tests/30_multi_item.sh
@@ -68,6 +69,8 @@ jobs:
 
       - name: Run stock and purchasing test stages
         shell: bash
+        env:
+          LOG_DIR: ${{ runner.temp }}/stock-purchasing-v1-logs
         run: |
           set -uo pipefail
           overall_status=0
