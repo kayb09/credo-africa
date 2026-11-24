@@ -1,7 +1,18 @@
 # Production schema snapshot recovery
 
-**Status: recovered.** A schema-only dump of the live `public` schema was saved at [`live-public-schema.sql`](./live-public-schema.sql). It was captured from project `mfvhurvsgnzltkwvmoki` with the Supabase CLI `db dump --schema=public` command on 2026-11-24.
+**Status: recovered from the previously authorized Credo project; not refreshed
+in this documentation task.**
 
-The snapshot contains definitions for nine tables, twelve policies, and row-level security enabled on all nine tables. It contains no table rows (`INSERT` or `COPY` data statements). It is structural evidence, not a migration, and was not applied to production.
+The schema-only `public` snapshot is
+[live-public-schema.sql](./live-public-schema.sql). The prior recovery report
+says it was captured from project `mfvhurvsgnzltkwvmoki` on 2026-11-24. It
+contains nine currently identified Credo public application tables, twelve
+policies, and RLS enabled on those nine tables. It contains no table rows
+(`INSERT` or `COPY` data statements).
 
-The snapshot is limited to the Credo `public` schema. The Credo-only catalog access/RLS audit for 58 verified non-system tables and three views is documented in [milestone-2-security-audit.md](./milestone-2-security-audit.md). No table data was retrieved. See [`database.types.ts`](../../supabase/types/database.types.ts) for TypeScript types generated from the live public schema.
+This is structural evidence at capture time, not a current database check or
+a claim that the database contains no other legitimate Credo resources. The
+broader earlier catalog count does not establish ownership; see
+[milestone-2-security-audit.md](./milestone-2-security-audit.md).
+Generated public types are in
+[`database.types.ts`](../../supabase/types/database.types.ts).

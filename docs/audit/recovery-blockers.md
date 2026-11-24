@@ -1,19 +1,41 @@
 # Recovery status and scope
 
-**Status: the requested read-only recovery is complete.** Supabase authentication was available in this Codespaces workspace, and project `mfvhurvsgnzltkwvmoki` was confirmed as active.
+**Status:** repository recovery documentation is reconciled; live migration
+ledger and database state were not accessed in this task.
 
-## Recovered and verified
+## Recovered evidence
 
-- Exact deployed source for `whatsapp-bot` active version 5 and `keep-alive` active version 1. Both local candidates were byte-for-byte compared with fresh Supabase API downloads.
-- Eight live migration identities and the corresponding SQL text stored in the authoritative migration ledger. The recovered statements were reviewed for data-changing statements and sensitive markers; none were found.
-- A schema-only dump of the live `public` schema, with no table rows.
-- TypeScript database types generated from the live `public` schema.
+- The prior recovery report records seven Credo migration files plus an eighth
+  historical ledger entry, version `20260627101525`. The eighth entry is
+  excluded from active migrations and documented in
+  [historical-migration-provenance.md](./historical-migration-provenance.md).
+- The currently identified Credo public application inventory consists of
+  nine tables. The previous 58-table catalog count is not an ownership count;
+  other schemas are classified separately in
+  [milestone-2-security-audit.md](./milestone-2-security-audit.md).
+- The recovered public schema snapshot is structural evidence only and
+  contains no table rows.
+- Prior catalog and deployment findings are labeled as captured or previously
+  observed. Current API exposure, Storage behavior, and deployed function
+  configuration remain unverified in this task.
 
 ## Scope and safeguards
 
-- Recovery used read-only Supabase operations. No production schema, policy, function, or merchant record was changed.
-- No merchant rows, personal information, function secrets, API keys, or access tokens were retrieved into repository artifacts.
-- Milestone 1's schema snapshot covers Credo `public`; Milestone 2 inspected only verified Credo components and live storage policy/bucket metadata. See [milestone-2-security-audit.md](./milestone-2-security-audit.md).
-- The corrected Milestone 2 catalog sweep covers 58 verified Credo-owned non-system tables and three views. It excludes any resource that may belong to another application. The database session could not establish the external PostgREST exposed-schema configuration; confirm whether `net`, `realtime`, and `extensions` are API-exposed before considering the related draft-only ACL remediations.
-- The historical SQL is retained for audit/provenance only. In particular, one stored migration drops and recreates tables with `CASCADE`; do not replay or deploy these artifacts as part of this recovery.
+- No database, production system, migration, function, credential, or
+  deployment was accessed or changed during this documentation reconciliation.
+- No separate Mzansi Tax App repository or project resource was accessed or
+  modified. Repository-local historical evidence is retained only as
+  provenance and is not treated as Credo application functionality.
 - The four protected PostgreSQL 17 checkpoint files remain unchanged.
+- Security remediation SQL remains draft-only. Do not apply or deploy it as
+  part of this recovery.
+
+## Remaining blockers
+
+1. Reconcile the reported eight-entry historical ledger against the live
+   authorized Credo ledger through a separate approved read-only check.
+2. Verify current catalog privileges and PostgREST exposed schemas.
+3. Validate Storage API behavior and deployed webhook settings without
+   changing production.
+4. Resolve ownership questions for catalog objects not identified as Credo
+   application tables before including them in Credo audit conclusions.
