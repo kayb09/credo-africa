@@ -1,5 +1,5 @@
-# Deployed function source not recovered
+# Recovered deployed function source
 
-This directory is intentionally not a deployable function. The exact deployed `whatsapp-bot` source and configuration could not be downloaded because no authorized Supabase access token was available. No approximation or replacement source is provided.
+`index.ts` and `deno.json` were downloaded from project `mfvhurvsgnzltkwvmoki` on 2026-11-24. Supabase reported active version 5, `verify_jwt=false`, and an import map; the downloaded files match the existing candidates byte-for-byte.
 
-The task reports active version 5, `verify_jwt=false`, service-role key use, and no visible Twilio signature validation. Recover and review the deployed source before making changes. Do not simply enable JWT verification for the Twilio webhook.
+The source reads the service-role key from the function environment; no secret values were retrieved. Review and approve any future change separately. Do not simply enable JWT verification for the Twilio webhook.

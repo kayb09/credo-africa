@@ -1,19 +1,7 @@
-# Production schema snapshot recovery status
+# Production schema snapshot recovery
 
-**No production schema snapshot was generated.** A safe, structural-only snapshot requires read-only access to the live PostgreSQL catalog. No database connection or Supabase access token was available, so creating a purported snapshot from the supplied table names would be incomplete and misleading.
+**Status: recovered.** A schema-only dump of the live `public` schema was saved at [`live-public-schema.sql`](./live-public-schema.sql). It was captured from project `mfvhurvsgnzltkwvmoki` with the Supabase CLI `db dump --schema=public` command on 2026-11-24.
 
-The task-supplied table inventory is:
+The snapshot contains definitions for nine tables, twelve policies, and row-level security enabled on all nine tables. It contains no table rows (`INSERT` or `COPY` data statements). It is structural evidence, not a migration, and was not applied to production.
 
-- `owners`
-- `businesses`
-- `activity_history`
-- `credit_scores`
-- `bot_sessions`
-- `revenue_entries`
-- `expense_entries`
-- `supplier_records`
-- `trust_signals`
-
-The actual columns, types, defaults, primary keys, foreign keys, unique and other indexes, RLS-enabled status, policy expressions and role targets remain unverified. Do not treat this list as a schema snapshot.
-
-When authorized read-only access is available, capture catalog/schema DDL only. Exclude all table rows, sequence values, comments or definitions that disclose personal information or secrets, and any credentials. Include the table/column definitions, primary and foreign keys, indexes, RLS status, and policy metadata. Record the PostgreSQL version and capture time, review the output for sensitive material, and keep it separate from the migration history.
+The snapshot is limited to the `public` schema. It does not include storage bucket/object policy configuration or data from any table. See [`database.types.ts`](../../supabase/types/database.types.ts) for TypeScript types generated from the same live public schema.

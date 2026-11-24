@@ -1,21 +1,18 @@
 # Migration recovery inventory
 
-**Status: blocked; no live migration identities or original SQL were recovered.**
+**Status: recovered from the live migration ledger.**
 
-The task-supplied live-environment fact is that the project records eight application migrations. The exact versions and names are not available in the repository, and could not be read from the project because the Supabase CLI reported that an access token is required. No migration identity has been inferred or invented.
+Read-only queries to `supabase_migrations.schema_migrations` on project `mfvhurvsgnzltkwvmoki` returned the following eight version/name pairs and their stored `statements` arrays. Each array contained one semicolon-terminated SQL statement. The files below preserve that statement text exactly as recorded by the live ledger; they were not reconstructed from the current schema or inferred from local drafts.
 
-| Live history | Version | Name | Original SQL in this repository |
-|---|---|---|---|
-| 8 recorded entries | Not retrieved | Not retrieved | Not found |
+| Version | Name | Recovered file |
+|---|---|---|
+| `20260603080701` | `create_owners_table` | `supabase/migrations/20260603080701_create_owners_table.sql` |
+| `20260603080707` | `create_businesses_table` | `supabase/migrations/20260603080707_create_businesses_table.sql` |
+| `20260603082036` | `update_schema_for_new_bot` | `supabase/migrations/20260603082036_update_schema_for_new_bot.sql` |
+| `20260603114635` | `ensure_schema_policies_and_test_data` | `supabase/migrations/20260603114635_ensure_schema_policies_and_test_data.sql` |
+| `20260604181157` | `create_new_tables` | `supabase/migrations/20260604181157_create_new_tables.sql` |
+| `20260627101525` | `create_mzanzi_schema_and_tables` | `supabase/migrations/20260627101525_create_mzanzi_schema_and_tables.sql` |
+| `20260715032923` | `setup_keepalive_cron` | `supabase/migrations/20260715032923_setup_keepalive_cron.sql` |
+| `20261016053445` | `onboarding_upload_and_activity_policies` | `supabase/migrations/20261016053445_onboarding_upload_and_activity_policies.sql` |
 
-The eight entries must be enumerated from the live migration history before this inventory can be completed. Then each exact original SQL file should be recovered from an authoritative source (for example, the original source-control history or a verified backup) and compared with the deployed schema.
-
-## Local SQL files are not original application migrations
-
-The repository has no `supabase/migrations/` directory at the checkpoint. The files below are development or test artifacts and must not be relabelled as any of the eight live migrations:
-
-- `supabase/drafts/006_stock_purchasing_v1_DRAFT.sql` — explicitly a one-shot development draft; not reported as applied to production.
-- `supabase/drafts/006_ROLLBACK_DRAFT.sql` — destructive rollback for that draft; not a historical migration.
-- `tests/history/006_rev2_for_reproduction.sql` — historical test/reproduction artifact for Stock and Purchasing V1; not an original application migration.
-
-No schema snapshot should be placed in this directory or represented as a migration. Populate this directory only with verified original migration files after their version and name have been confirmed against the live migration history.
+The recovered SQL contains schema operations only; no row data was retrieved. The `20260603082036` record drops and recreates tables with `CASCADE`. These are historical artifacts for audit and provenance, not instructions to replay or deploy. The Stock and Purchasing V1 files under `supabase/drafts/` and `tests/history/` remain development/test artifacts, not part of this live migration history.

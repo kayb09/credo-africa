@@ -1,6 +1,6 @@
 # Security remediation plan
 
-This plan is ordered by severity and is based on the live-environment facts supplied for this recovery. Verify each finding against the deployed configuration before changing production. No production changes are authorized or performed by this branch.
+This plan is ordered by severity and distinguishes recovered read-only evidence from work still requiring verification. No production changes are authorized or performed by this branch.
 
 ## P0 — Contain anonymous data access
 
@@ -37,7 +37,7 @@ This plan is ordered by severity and is based on the live-environment facts supp
 
 ## P2 — Recover and reconcile platform source of truth
 
-1. Recover the eight migration identities and original SQL from an authoritative source. Do not synthesize historical migrations from the current schema.
-2. Generate a structural-only schema snapshot and current database types from the verified live project; review differences against the recovered migrations.
-3. Recover both deployed Edge Functions and configuration exactly, compare deployed and repository revisions, and add function-specific authentication and regression tests.
+1. **Recovered:** the eight migration identities and ledger-stored SQL are recorded in `docs/audit/migration-recovery-inventory.md`. Do not synthesize historical migrations from the current schema.
+2. **Recovered:** a structural-only public schema snapshot and current public database types were generated from the live project. Review differences against the recovered migrations before any deployment.
+3. **Recovered:** both deployed Edge Function sources were downloaded and compared byte-for-byte with the existing candidates. Function-specific authentication and regression tests remain future work.
 4. Add CI checks for type drift, migration replay on a disposable PostgreSQL instance, policy tests, and Edge Function tests. Keep production credentials out of CI logs and source control.

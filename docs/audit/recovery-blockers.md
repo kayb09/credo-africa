@@ -1,19 +1,18 @@
-# Recovery blockers and missing artifacts
+# Recovery status and scope
 
-## Access blocker
+**Status: the requested read-only recovery is complete.** Supabase authentication was available in this Codespaces workspace, and project `mfvhurvsgnzltkwvmoki` was confirmed as active.
 
-The Supabase CLI was run in read-only function-download mode against project `mfvhurvsgnzltkwvmoki`. It returned `AccessTokenRequiredError`: no access token was available, and the CLI did not authenticate. No project access token, database password, API key, function secret, merchant data, or personal information was requested or exported. No production operation was performed.
+## Recovered and verified
 
-## Not recovered
+- Exact deployed source for `whatsapp-bot` active version 5 and `keep-alive` active version 1. Both local candidates were byte-for-byte compared with fresh Supabase API downloads.
+- Eight live migration identities and the corresponding SQL text stored in the authoritative migration ledger. The recovered statements were reviewed for data-changing statements and sensitive markers; none were found.
+- A schema-only dump of the live `public` schema, with no table rows.
+- TypeScript database types generated from the live `public` schema.
 
-- Original deployed source and configuration for `whatsapp-bot` (reported active version 5).
-- Original deployed source and configuration for `keep-alive` (reported active version 1).
-- The eight live migration version/name pairs and their verified original SQL files.
-- A structural-only production schema snapshot.
-- Current generated TypeScript database types.
+## Scope and safeguards
 
-## Needed to complete recovery
-
-Provide an approved, read-only Supabase project access path with the minimum permissions required to read Edge Function source and migration metadata, inspect database catalogs/policies, and generate types. Access must not expose or export function environment secrets, API keys, merchant records, or personal information. If database access requires credentials, use an authorized secure mechanism without placing them in source, command output, or artifacts.
-
-Until then, the names and versions of the migrations, exact function source/configuration, schema details, types, and effective policy definitions remain unresolved. The function directories and documentation in this branch are recovery status markers, not deployable Edge Functions.
+- Recovery used read-only Supabase operations. No production schema, policy, function, or merchant record was changed.
+- No merchant rows, personal information, function secrets, API keys, or access tokens were retrieved into repository artifacts.
+- The schema snapshot covers `public` only; storage bucket/object policy configuration was not part of this recovery.
+- The historical SQL is retained for audit/provenance only. In particular, one stored migration drops and recreates tables with `CASCADE`; do not replay or deploy these artifacts as part of this recovery.
+- The four protected PostgreSQL 17 checkpoint files remain unchanged.

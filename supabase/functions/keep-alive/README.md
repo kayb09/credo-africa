@@ -1,5 +1,5 @@
-# Deployed function source not recovered
+# Recovered deployed function source
 
-This directory is intentionally not a deployable function. The exact deployed `keep-alive` source and configuration could not be downloaded because no authorized Supabase access token was available. No approximation or replacement source is provided.
+`index.ts` was downloaded from project `mfvhurvsgnzltkwvmoki` on 2026-11-24. Supabase reported active version 1, `verify_jwt=false`, and no import map; the downloaded source matches the existing candidate byte-for-byte.
 
-The task reports active version 1 and `verify_jwt=false`. Confirm the intended public behavior and its abuse protections from the deployed source before proposing a change.
+No deployment or configuration change was made. Confirm the intended public behavior and abuse protections before proposing a change.
