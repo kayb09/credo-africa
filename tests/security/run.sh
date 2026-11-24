@@ -206,14 +206,6 @@ assert_value "service role bypasses RLS for backend reads" 2 \
 assert_value "service role can perform backend writes" t \
   "SET ROLE service_role; UPDATE public.businesses SET location = 'Backend Updated' WHERE id = '20000000-0000-4000-8000-000000000002'; SELECT EXISTS (SELECT 1 FROM public.businesses WHERE id = '20000000-0000-4000-8000-000000000002' AND location = 'Backend Updated')"
 
-assert_denied "anon has no mzanzi schema access" \
-  "SET ROLE anon; SELECT * FROM mzanzi.users"
-assert_denied "authenticated has no mzanzi schema access" \
-  "SET ROLE authenticated; SELECT * FROM mzanzi.users"
-assert_denied "service role has no mzanzi schema access" \
-  "SET ROLE service_role; SELECT * FROM mzanzi.users"
-assert_value "mzanzi RLS remains enabled without client policies" t \
-  "SELECT bool_and(c.relrowsecurity) FROM pg_class c JOIN pg_namespace n ON n.oid = c.relnamespace WHERE n.nspname = 'mzanzi' AND c.relkind = 'r'"
 assert_value "public defaults no longer grant anon/authenticated" t \
   "SELECT NOT EXISTS (SELECT 1 FROM pg_default_acl d JOIN pg_namespace n ON n.oid = d.defaclnamespace CROSS JOIN LATERAL aclexplode(d.defaclacl) x WHERE n.nspname = 'public' AND x.grantee IN (0, (SELECT oid FROM pg_roles WHERE rolname = 'anon'), (SELECT oid FROM pg_roles WHERE rolname = 'authenticated')))"
 

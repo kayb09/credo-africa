@@ -4,4 +4,4 @@
 
 The snapshot contains definitions for nine tables, twelve policies, and row-level security enabled on all nine tables. It contains no table rows (`INSERT` or `COPY` data statements). It is structural evidence, not a migration, and was not applied to production.
 
-The snapshot is limited to the `public` schema. A separate [mzanzi schema snapshot](./mzanzi-schema.sql) and the full catalog access/RLS audit for 63 non-system tables and three views are documented in [milestone-2-security-audit.md](./milestone-2-security-audit.md). No table data was retrieved. See [`database.types.ts`](../../supabase/types/database.types.ts) for TypeScript types generated from the live public schema.
+The snapshot is limited to the Credo `public` schema. The Credo-only catalog access/RLS audit for 58 verified non-system tables and three views is documented in [milestone-2-security-audit.md](./milestone-2-security-audit.md). No table data was retrieved. See [`database.types.ts`](../../supabase/types/database.types.ts) for TypeScript types generated from the live public schema.

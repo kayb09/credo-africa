@@ -42,13 +42,6 @@ CREATE POLICY "Allow anon upload to verifications"
   WITH CHECK (bucket_id = 'verifications');
 INSERT INTO storage.buckets (id, name, public) VALUES ('verifications', 'verifications', false);
 
-CREATE SCHEMA mzanzi;
-CREATE TABLE mzanzi.capital_gains (id integer PRIMARY KEY);
-CREATE TABLE mzanzi.tax_documents (id integer PRIMARY KEY);
-CREATE TABLE mzanzi.tax_returns (id integer PRIMARY KEY);
-CREATE TABLE mzanzi.transactions (id integer PRIMARY KEY);
-CREATE TABLE mzanzi.users (id integer PRIMARY KEY);
-
 -- Reproduce the unsafe owner-specific defaults observed in the live catalog.
 SET ROLE supabase_admin;
 ALTER DEFAULT PRIVILEGES IN SCHEMA public

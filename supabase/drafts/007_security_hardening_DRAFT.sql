@@ -1,6 +1,6 @@
 -- DRAFT ONLY. Never apply to production without owner approval and a reviewed rollout.
 -- Requires Supabase Auth (auth.users/auth.uid), the recovered public schema, and
--- the current mzanzi/storage objects documented in docs/audit/milestone-2-security-audit.md.
+-- the recovered Credo public/storage objects documented in docs/audit/milestone-2-security-audit.md.
 -- Run only as a database owner able to alter postgres default privileges.
 -- Separate supabase_admin defaults are handled by 007_supabase_admin_defaults_DRAFT.sql.
 
@@ -17,8 +17,8 @@ BEGIN
     RAISE EXCEPTION 'Supabase Auth users and auth.uid() are required';
   END IF;
 
-  IF to_regclass('storage.objects') IS NULL OR to_regclass('mzanzi.users') IS NULL THEN
-    RAISE EXCEPTION 'Expected storage.objects and mzanzi.users to exist';
+  IF to_regclass('storage.objects') IS NULL THEN
+    RAISE EXCEPTION 'Expected storage.objects to exist';
   END IF;
 END
 $preflight$;
@@ -240,24 +240,6 @@ CREATE POLICY trust_signals_select_own_or_admin
         AND owner.auth_user_id = (SELECT auth.uid())
     )
   );
-
--- mzanzi has sensitive tax/account fields but no current API grants or ownership
--- mapping. Keep it unavailable until a separate auth and data-retention design exists.
-REVOKE ALL PRIVILEGES ON SCHEMA mzanzi FROM PUBLIC, anon, authenticated, service_role;
-REVOKE ALL PRIVILEGES ON ALL TABLES IN SCHEMA mzanzi
-  FROM PUBLIC, anon, authenticated, service_role;
-REVOKE ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA mzanzi
-  FROM PUBLIC, anon, authenticated, service_role;
-ALTER TABLE mzanzi.capital_gains ENABLE ROW LEVEL SECURITY;
-ALTER TABLE mzanzi.tax_documents ENABLE ROW LEVEL SECURITY;
-ALTER TABLE mzanzi.tax_returns ENABLE ROW LEVEL SECURITY;
-ALTER TABLE mzanzi.transactions ENABLE ROW LEVEL SECURITY;
-ALTER TABLE mzanzi.users ENABLE ROW LEVEL SECURITY;
-
-ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA mzanzi
-  REVOKE ALL ON TABLES FROM PUBLIC, anon, authenticated, service_role;
-ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA mzanzi
-  REVOKE ALL ON SEQUENCES FROM PUBLIC, anon, authenticated, service_role;
 
 -- Remove client access to the private verification bucket. Keep service_role
 -- operations available; authenticated uploads need a separately reviewed path.

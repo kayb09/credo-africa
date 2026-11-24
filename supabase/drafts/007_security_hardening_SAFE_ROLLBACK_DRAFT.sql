@@ -23,17 +23,6 @@ REVOKE TRUNCATE ON ALL TABLES IN SCHEMA storage FROM PUBLIC, anon, authenticated
 REVOKE ALL PRIVILEGES ON TABLE storage.objects FROM PUBLIC, anon, authenticated;
 DROP POLICY IF EXISTS "Allow anon upload to verifications" ON storage.objects;
 
-REVOKE ALL PRIVILEGES ON SCHEMA mzanzi FROM PUBLIC, anon, authenticated, service_role;
-REVOKE ALL PRIVILEGES ON ALL TABLES IN SCHEMA mzanzi
-  FROM PUBLIC, anon, authenticated, service_role;
-REVOKE ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA mzanzi
-  FROM PUBLIC, anon, authenticated, service_role;
-ALTER TABLE mzanzi.capital_gains ENABLE ROW LEVEL SECURITY;
-ALTER TABLE mzanzi.tax_documents ENABLE ROW LEVEL SECURITY;
-ALTER TABLE mzanzi.tax_returns ENABLE ROW LEVEL SECURITY;
-ALTER TABLE mzanzi.transactions ENABLE ROW LEVEL SECURITY;
-ALTER TABLE mzanzi.users ENABLE ROW LEVEL SECURITY;
-
 REVOKE ALL ON FUNCTION app_private.is_app_admin() FROM PUBLIC, anon, authenticated;
 REVOKE ALL ON SCHEMA app_private FROM authenticated;
 

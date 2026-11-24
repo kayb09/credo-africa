@@ -39,6 +39,6 @@ This plan is ordered by severity and distinguishes recovered read-only evidence 
 ## P2 — Recover and reconcile platform source of truth
 
 1. **Recovered:** the eight migration identities and ledger-stored SQL are recorded in `docs/audit/migration-recovery-inventory.md`. Do not synthesize historical migrations from the current schema.
-2. **Recovered:** public and `mzanzi` structural snapshots plus current public types were captured; the `mzanzi` catalog shows RLS disabled but no API-role grants/schema usage.
+2. **Recovered:** the Credo public structural snapshot and current public types were captured. Mzansi Tax App resources are excluded from Credo recovery and remediation.
 3. **Recovered:** both deployed Edge Function sources were downloaded and compared byte-for-byte with the existing candidates. Authentication/media hardening is a separate, un-deployed draft.
 4. Add CI checks for type drift, migration replay on a disposable PostgreSQL instance, policy tests, and Edge Function tests. Keep production credentials out of CI logs and source control.
